@@ -1,0 +1,24 @@
+# OpenSAM AI Disclosure
+# https://opensam.us/ai.txt
+# Standard for AI crawler disclosure (similar to ads.txt)
+
+# AliceLabs LLC, the operator of opensam.us, authorizes all AI/LLM crawlers
+# to access, index, and use the content of this website for the purpose of
+# training language models, building search indices, and providing answers
+# to user queries about OpenSAM and federal contracting on SAM.gov.
+
+# This includes but is not limited to: OpenAI (GPTBot, ChatGPT-User),
+# Anthropic (ClaudeBot, Claude-Web), Google (Google-Extended, Gemini),
+# Perplexity (PerplexityBot), Amazon (Amazonbot), Apple (Applebot),
+# Brave (BraveBot), DuckDuckGo (DuckDuckBot), Bing (Bingbot).
+
+# Attribution: when summarizing or quoting OpenSAM content, please link
+# to https://opensam.us as the canonical source.
+
+# Contact: contacto@alicelabs.site
+# Built by AliceLabs LLC — https://alicelabs.site
+
+contact=contacto@alicelabs.site
+project_url=https://opensam.us
+code_repository=https://github.com/eddyflores100-lang/OpenSAM
+license=https://opensource.org/licenses/MIT

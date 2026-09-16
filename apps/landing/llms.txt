@@ -1,0 +1,81 @@
+# OpenSAM
+
+> OpenSAM helps businesses, sales teams, and AI agents find, score, and win federal contracting opportunities published on SAM.gov. Built by AliceLabs LLC. Open-source under MIT license.
+
+OpenSAM is an open-source platform that monitors the SAM.gov Opportunities Public API, scores each opportunity 0-100 against a company profile, and lets AI agents take action on the best-fit contracts. It is designed for small businesses (8(a), HUBZone, WOSB, SDVOSB), capture and business-development teams, AI agent builders, and journalists covering federal procurement.
+
+The platform is composed of three independent npm packages — `@opensam/sam-gov-types`, `@opensam/sdk`, `@opensam/scoring` — plus a reference web app at https://opensam.us. All packages have zero runtime dependencies and run on Node 18+, browsers, and edge runtimes.
+
+OpenSAM is not affiliated with, endorsed by, or sponsored by the U.S. Government, GSA, or SAM.gov. All opportunity data comes from the publicly accessible SAM.gov Opportunities Public API.
+
+## Quick start for AI agents
+
+```typescript
+import { createClient } from '@opensam/sdk'
+
+const sam = createClient({ apiKey: process.env.SAM_GOV_API_KEY })
+
+const scored = await sam.searchAndScore(
+  { query: 'cloud infrastructure', naicsCode: '541512', activeOnly: true },
+  {
+    naicsCodes: ['541511', '541512', '541519'],
+    capabilities: ['software development', 'cloud infrastructure'],
+    certifications: ['Small Business', 'SBA 8(a)'],
+  },
+)
+
+scored.forEach(({ opportunity, score, label }) => {
+  console.log(`[${label.toUpperCase()} ${score}/100] ${opportunity.title}`)
+})
+```
+
+Get a free API key at https://api.data.gov/signup/.
+
+## Links
+
+- [Website](https://opensam.us)
+- [GitHub Repository](https://github.com/eddyflores100-lang/OpenSAM)
+- [Architecture Documentation](https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/ARCHITECTURE.md)
+- [Scoring Methodology](https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/SCORING.md)
+- [Deployment Guide](https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/DEPLOYMENT.md)
+- [README](https://github.com/eddyflores100-lang/OpenSAM/blob/main/README.md)
+- [Legal & Disclaimers](https://github.com/eddyflores100-lang/OpenSAM/blob/main/LEGAL.md)
+- [Security Policy](https://github.com/eddyflores100-lang/OpenSAM/blob/main/SECURITY.md)
+- [AliceLabs LLC](https://alicelabs.site)
+- [api.data.gov signup](https://api.data.gov/signup/)
+- [SAM.gov Opportunities Public API](https://open.gsa.gov/api/get-opportunities-public-api/)
+
+## Optional
+
+- [npm: @opensam/sdk](https://www.npmjs.com/package/@opensam/sdk)
+- [npm: @opensam/scoring](https://www.npmjs.com/package/@opensam/scoring)
+- [npm: @opensam/sam-gov-types](https://www.npmjs.com/package/@opensam/sam-gov-types)
+
+## Scoring methodology
+
+Each opportunity gets a deterministic 0-100 score based on four factors:
+
+1. **Base** — 50 points starting point
+2. **NAICS match** — +25 if the opportunity's primary NAICS code is in the company profile
+3. **Set-aside alignment** — +10 to +15 if the company holds the certification the set-aside requires (8(a), HUBZone, WOSB, SDVOSB, Small Business)
+4. **Capability keywords** — +5 per matched capability keyword found in the opportunity description (max +20)
+5. **Deadline proximity** — -35 if deadline <3 days, -15 if <7 days, 0 otherwise
+
+Final score is clamped 0-100 and labeled `high` (>=70), `medium` (40-69), or `low` (<40). The full formula is 119 lines of TypeScript, auditable and reproducible.
+
+## Audience
+
+- Small businesses targeting federal contracts (8(a), HUBZone, WOSB, SDVOSB)
+- Capture and business-development teams at federal contractors
+- AI agent builders serving the federal procurement market
+- Researchers and journalists covering U.S. government spending
+
+## License
+
+MIT © 2026 AliceLabs LLC. See https://github.com/eddyflores100-lang/OpenSAM/blob/main/LICENSE.
+
+## Contact
+
+- Website: https://opensam.us
+- Email: contacto@alicelabs.site
+- GitHub: https://github.com/eddyflores100-lang/OpenSAM
