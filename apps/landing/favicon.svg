@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366F1"/>
-      <stop offset="100%" stop-color="#06B6D4"/>
-    </linearGradient>
-  </defs>
-  <rect width="32" height="32" rx="7" fill="#000000"/>
-  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" fill="none" stroke="url(#g)" stroke-opacity="0.5"/>
-  <text x="16" y="22" font-family="Geist,system-ui,sans-serif" font-size="17" font-weight="800" fill="url(#g)" text-anchor="middle">O</text>
+  <!-- Newspaper masthead style favicon -->
+  <!-- Background: warm newsprint cream -->
+  <rect width="32" height="32" fill="#F8F5EB"/>
+
+  <!-- 3px double-rule border (broadsheet masthead style) -->
+  <rect x="3" y="3" width="26" height="26" fill="none" stroke="#171108" stroke-width="1.2"/>
+  <rect x="4.5" y="4.5" width="23" height="23" fill="none" stroke="#171108" stroke-width="0.5"/>
+
+  <!-- The "O" of OpenSAM — Playfair-style serif via path -->
+  <!-- Using rubric red (the accent of the newspaper, used only for the wordmark) -->
+  <g transform="translate(16,17)">
+    <!-- Outer ring of O -->
+    <ellipse cx="0" cy="-1" rx="6.5" ry="8.5" fill="none" stroke="#8A1B1B" stroke-width="2.8"/>
+    <!-- Inner counter of O (cream) -->
+    <ellipse cx="0" cy="-1" rx="2.8" ry="4.4" fill="#F8F5EB"/>
+  </g>
+
+  <!-- Small ornament dot below (typographic detail, like newspaper masthead) -->
+  <circle cx="16" cy="26" r="0.9" fill="#171108"/>
 </svg>
