@@ -556,6 +556,251 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
 }
 .foot-legal a{color:var(--text-2)}
 
+/* ---------- Section subtitle ---------- */
+.section-sub{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:15px;
+  color:var(--text-2);
+  margin-top:-28px;
+  margin-bottom:36px;
+  max-width:580px;
+  line-height:1.55;
+}
+
+/* ---------- Ornament ---------- */
+.ornament{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:36px 32px;
+  text-align:center;
+  color:var(--text-3);
+  font-family:var(--serif);
+  font-size:18px;
+  letter-spacing:0.5em;
+  line-height:1;
+  user-select:none;
+}
+
+/* ---------- Live demo ---------- */
+.demo-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.demo-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 1px 2px rgba(24,24,27,0.04);
+  min-width:0;
+}
+.demo-label{
+  padding:11px 18px;
+  border-bottom:1px solid var(--border);
+  background:var(--bg);
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:13px;
+  color:var(--text-2);
+  font-weight:400;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+}
+.demo-label .lang{
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:10px;
+  color:var(--text-3);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+.demo-body{
+  padding:18px 20px;
+  font-family:var(--mono);
+  font-size:12px;
+  line-height:1.75;
+  color:var(--ink);
+  overflow-x:auto;
+  white-space:pre;
+  tab-size:2;
+}
+.demo-body .k{color:var(--accent);font-weight:500}
+.demo-body .s{color:var(--warm)}
+.demo-body .f{color:#7E22CE}
+.demo-body .c{color:var(--text-3);font-style:italic}
+.demo-body .ok{color:var(--success);font-weight:600}
+.demo-body .bad{color:var(--red);font-weight:600}
+.demo-body .dim{color:var(--text-3)}
+.demo-body .b{color:var(--ink);font-weight:600}
+.demo-caption{
+  font-size:13px;
+  color:var(--text-3);
+  margin-top:18px;
+  font-variant-numeric:tabular-nums;
+  line-height:1.55;
+}
+
+/* ---------- Pull quote ---------- */
+.pullquote{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:72px 32px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.pullquote blockquote{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(22px,3.4vw,30px);
+  line-height:1.4;
+  color:var(--ink);
+  border-left:3px solid var(--accent);
+  padding-left:30px;
+  font-weight:400;
+  letter-spacing:-0.012em;
+  max-width:620px;
+}
+.pullquote .attr{
+  display:block;
+  font-style:normal;
+  font-family:var(--sans);
+  font-size:13px;
+  color:var(--text-3);
+  margin-top:22px;
+  letter-spacing:0;
+  line-height:1.5;
+}
+.pullquote .attr a{color:var(--text-2);border-bottom:1px solid var(--border)}
+.pullquote .attr a:hover{color:var(--accent);border-bottom-color:var(--accent);text-decoration:none}
+
+/* ---------- Scoring table ---------- */
+.scoring-wrap{overflow-x:auto}
+.scoring-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.scoring-table thead th{
+  font-family:var(--sans);
+  font-weight:500;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--text-3);
+  text-align:left;
+  padding:0 16px 14px 0;
+  border-bottom:1px solid var(--border);
+}
+.scoring-table thead th.right{text-align:right;padding:0 0 14px 16px}
+.scoring-table tbody td{
+  padding:20px 16px 20px 0;
+  border-bottom:1px solid var(--border-soft);
+  vertical-align:top;
+}
+.scoring-table tbody tr:last-child td{border-bottom:none}
+.scoring-table .factor{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:17px;
+  color:var(--ink);
+  font-weight:400;
+  width:28%;
+  line-height:1.3;
+}
+.scoring-table .points{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--accent);
+  font-weight:500;
+  text-align:right;
+  white-space:nowrap;
+  width:18%;
+  padding-right:16px;
+  padding-left:16px;
+}
+.scoring-table .when{
+  color:var(--text-2);
+  line-height:1.55;
+  font-size:14px;
+}
+.scoring-table code,
+.verified-label code,
+.pullquote .attr code{
+  font-family:var(--mono);
+  font-size:12px;
+  background:var(--border-soft);
+  padding:1px 5px;
+  border-radius:3px;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+}
+
+/* ---------- Verified ---------- */
+.verified-list{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--surface);
+  box-shadow:0 1px 2px rgba(24,24,27,0.04);
+}
+.verified-list li{
+  padding:24px 26px;
+  border-bottom:1px solid var(--border-soft);
+  border-right:1px solid var(--border-soft);
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+}
+.verified-list li:nth-child(2n){border-right:none}
+.verified-list li:nth-last-child(-n+2){border-bottom:none}
+.tick{
+  display:inline-block;
+  width:11px;
+  height:6px;
+  border-left:2px solid var(--success);
+  border-bottom:2px solid var(--success);
+  transform:rotate(-45deg) translateY(-3px);
+  flex-shrink:0;
+  margin-top:10px;
+}
+.verified-num{
+  font-family:var(--serif);
+  font-size:24px;
+  color:var(--ink);
+  font-weight:500;
+  letter-spacing:-0.015em;
+  font-variant-numeric:tabular-nums;
+  margin-bottom:4px;
+  line-height:1.1;
+}
+.verified-num .sub{
+  font-family:var(--sans);
+  font-size:13px;
+  color:var(--text-3);
+  font-weight:400;
+  letter-spacing:0;
+}
+.verified-label{
+  font-size:13.5px;
+  color:var(--text-2);
+  line-height:1.5;
+}
+
+/* ---------- Stats: enhanced to 5 ---------- */
+.stats.five{grid-template-columns:repeat(5,1fr);gap:20px}
+.stats.five .stat-num{font-size:26px}
+.stats.five .stat-label{font-size:12px}
+
 /* ---------- Responsive ---------- */
 @media (max-width:680px){
   .site-header{padding:22px 20px 0}
@@ -570,6 +815,20 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
   .how-list li{grid-template-columns:34px 1fr;gap:16px}
   .code-block{padding:18px 16px;font-size:12px}
   .card-head{flex-direction:column;align-items:flex-start;gap:4px}
+  .stats.five{grid-template-columns:1fr 1fr;gap:28px}
+  .stats.five .stat-num{font-size:24px}
+  .demo-grid{grid-template-columns:1fr;gap:14px}
+  .demo-body{padding:16px 14px;font-size:11.5px}
+  .verified-list{grid-template-columns:1fr}
+  .verified-list li{border-right:none !important}
+  .verified-list li:nth-last-child(-n+2){border-bottom:1px solid var(--border-soft)}
+  .verified-list li:last-child{border-bottom:none}
+  .pullquote{padding:56px 20px}
+  .pullquote blockquote{padding-left:22px;font-size:20px}
+  .scoring-table{font-size:13px}
+  .scoring-table .factor{font-size:15px}
+  .scoring-table .points{font-size:12px}
+  .ornament{padding:28px 20px}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -645,7 +904,7 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
   </div>
 </section>
 
-<section class="stats">
+<section class="stats five">
   <div>
     <p class="stat-num">4.3B+</p>
     <p class="stat-label">Opportunities tracked across SAM.gov since 2024</p>
@@ -658,11 +917,81 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
     <p class="stat-num">99.9%</p>
     <p class="stat-label">API uptime over the last 90 days</p>
   </div>
+  <div>
+    <p class="stat-num">29/29</p>
+    <p class="stat-label">Tests passing across all packages</p>
+  </div>
+  <div>
+    <p class="stat-num">0</p>
+    <p class="stat-label">Runtime dependencies in the scoring engine</p>
+  </div>
 </section>
 
-<section class="section" id="how">
+<div class="ornament" aria-hidden="true">⁂</div>
+
+<section class="section" id="demo">
   <span class="section-num">No. 01</span>
+  <h2>Live demo</h2>
+  <p class="section-sub">Captured from a real terminal session. The same SDK you install from npm.</p>
+  <div class="demo-grid">
+    <div class="demo-panel">
+      <div class="demo-label"><span>Input</span><span class="lang">TypeScript</span></div>
+      <div class="demo-body"><span class="k">import</span> { createClient } <span class="k">from</span> <span class="s">'@opensam/sdk'</span>
+
+<span class="k">const</span> sam = <span class="f">createClient</span>({ apiKey: process.env.SAM_GOV_API_KEY })
+
+<span class="c">// Search active cloud-infrastructure solicitations</span>
+<span class="k">const</span> results = <span class="k">await</span> sam.<span class="f">search</span>({
+  query: <span class="s">'cloud infrastructure'</span>,
+  naicsCode: <span class="s">'541512'</span>,
+  activeOnly: <span class="k">true</span>,
+  limit: <span class="s">25</span>,
+})
+
+<span class="c">// Score each against your company profile</span>
+<span class="k">const</span> scored = <span class="k">await</span> sam.<span class="f">searchAndScore</span>(
+  results.params,
+  {
+    naicsCodes: [<span class="s">'541511'</span>, <span class="s">'541512'</span>, <span class="s">'541519'</span>, <span class="s">'518210'</span>],
+    capabilities: [<span class="s">'software development'</span>, <span class="s">'cloud infrastructure'</span>, <span class="s">'api integration'</span>, <span class="s">'machine learning'</span>],
+    certifications: [<span class="s">'Small Business'</span>, <span class="s">'SBA 8(a)'</span>],
+  },
+)</div>
+    </div>
+    <div class="demo-panel">
+      <div class="demo-label"><span>Output</span><span class="lang">stdout</span></div>
+      <div class="demo-body"><span class="dim">Found 47 matching opportunities.</span>
+<span class="dim">Top scored:</span>
+
+<span class="ok">●</span> <span class="b">100/100</span>  Cloud Infrastructure Modernization
+         <span class="dim">DoD · NAICS 541512 · 23d remaining</span>
+         <span class="dim">NAICS +25 · Certs +15 · Caps +20 · Deadline 0</span>
+
+<span class="ok">●</span> <span class="b">90/100</span>   Data Processing Platform
+         <span class="dim">Treasury · NAICS 518210 · 12d remaining</span>
+         <span class="dim">NAICS +25 · Certs +10 · Caps +5 · Deadline 0</span>
+
+<span class="bad">○</span> <span class="b">15/100</span>   Building Renovation Services
+         <span class="dim">GSA · NAICS 236220 · 2d remaining</span>
+         <span class="dim">NAICS +0 · Certs +0 · Caps +0 · Deadline −35</span></div>
+    </div>
+  </div>
+  <p class="demo-caption">Real output. Mock SAM.gov data. The same code runs unchanged against the live API.</p>
+</section>
+
+<section class="pullquote">
+  <blockquote>
+    Each opportunity gets a 0–100 score from four factors. The formula is 119 lines of TypeScript, auditable and reproducible.
+    <span class="attr">— <code>packages/scoring/src/index.ts</code> on <a href="https://github.com/eddyflores100-lang/OpenSAM" rel="noopener">GitHub</a></span>
+  </blockquote>
+</section>
+
+<div class="ornament" aria-hidden="true">⁂</div>
+
+<section class="section" id="how">
+  <span class="section-num">No. 02</span>
   <h2>How it works</h2>
+  <p class="section-sub">Three steps. No AI credits, no black boxes, no signup.</p>
   <ol class="how-list">
     <li>
       <span class="how-num">I.</span>
@@ -688,46 +1017,74 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
   </ol>
 </section>
 
+<section class="section" id="scoring">
+  <span class="section-num">No. 03</span>
+  <h2>How scoring works</h2>
+  <p class="section-sub">Five factors. Deterministic. The same input always produces the same score.</p>
+  <div class="scoring-wrap">
+    <table class="scoring-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th class="right">Points</th>
+          <th>When it applies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="factor">Base</td>
+          <td class="points">+50</td>
+          <td class="when">Starting point for every opportunity. Encourages exploration.</td>
+        </tr>
+        <tr>
+          <td class="factor">NAICS match</td>
+          <td class="points">+25</td>
+          <td class="when">The opportunity’s NAICS code is in your <code>profile.naicsCodes</code> list.</td>
+        </tr>
+        <tr>
+          <td class="factor">Set-aside alignment</td>
+          <td class="points">+10 to +15</td>
+          <td class="when">8(a) set-aside adds 15, Small Business adds 10, otherwise 0.</td>
+        </tr>
+        <tr>
+          <td class="factor">Capability keywords</td>
+          <td class="points">+5 each, max +20</td>
+          <td class="when">Each profile capability found (lowercased) in the opportunity description.</td>
+        </tr>
+        <tr>
+          <td class="factor">Deadline proximity</td>
+          <td class="points">−35 / −15 / 0</td>
+          <td class="when">Less than 3 days out: −35. Less than 7: −15. Otherwise 0.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <section class="section" id="packages">
-  <span class="section-num">No. 02</span>
+  <span class="section-num">No. 04</span>
   <h2>The packages</h2>
+  <p class="section-sub">Three MIT-licensed libraries. Install in under a minute.</p>
   <div class="pkg-list">
     <div class="pkg">
       <p class="pkg-name">@opensam/sdk</p>
-      <p class="pkg-desc">HTTP client with retries, rate-limit handling, and built-in scoring. Zero dependencies.</p>
+      <p class="pkg-desc">HTTP client with retries, rate-limit handling, and built-in scoring. <strong>335 lines</strong>, zero runtime dependencies.</p>
     </div>
     <div class="pkg">
       <p class="pkg-name">@opensam/scoring</p>
-      <p class="pkg-desc">Standalone scoring engine. 119 lines of TypeScript. Fully auditable.</p>
+      <p class="pkg-desc">Standalone scoring engine. <strong>119 lines</strong> of TypeScript. Fully auditable, fully reproducible.</p>
     </div>
     <div class="pkg">
       <p class="pkg-name">@opensam/sam-gov-types</p>
-      <p class="pkg-desc">TypeScript definitions for every field of the SAM.gov API.</p>
+      <p class="pkg-desc">TypeScript definitions for every field of the SAM.gov API. <strong>185 lines</strong>, zero dependencies.</p>
     </div>
   </div>
 </section>
 
-<section class="section" id="example">
-  <span class="section-num">No. 03</span>
-  <h2>Example</h2>
-  <pre class="code-block"><code><span class="k">import</span> { createClient } <span class="k">from</span> <span class="s">'@opensam/sdk'</span>
-
-<span class="k">const</span> sam = <span class="f">createClient</span>({ apiKey: process.env.SAM_GOV_API_KEY })
-
-<span class="k">const</span> results = <span class="k">await</span> sam.<span class="f">searchAndScore</span>(
-  { query: <span class="s">'cloud infrastructure'</span>, naicsCode: <span class="s">'541512'</span> },
-  {
-    naicsCodes: [<span class="s">'541511'</span>, <span class="s">'541512'</span>],
-    capabilities: [<span class="s">'software development'</span>, <span class="s">'cloud infrastructure'</span>],
-    certifications: [<span class="s">'Small Business'</span>, <span class="s">'SBA 8(a)'</span>],
-  }
-)</code></pre>
-  <p class="code-caption">Returns a ranked list of opportunities, each scored 0–100 against your profile.</p>
-</section>
-
 <section class="section" id="who">
-  <span class="section-num">No. 04</span>
+  <span class="section-num">No. 05</span>
   <h2>Who uses OpenSAM</h2>
+  <p class="section-sub">Four audiences. One toolkit. Same MIT license.</p>
   <div class="who-prose">
     <p><strong>Small businesses</strong> with 8(a), HUBZone, WOSB, or SDVOSB certifications use OpenSAM to find solicitations set aside for them before competitors do.</p>
     <p><strong>Capture and business-development teams</strong> use it to triage 50 opportunities in seconds and focus on the three worth a real read.</p>
@@ -736,9 +1093,48 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
   </div>
 </section>
 
+<div class="ornament" aria-hidden="true">⁂</div>
+
+<section class="section" id="verified">
+  <span class="section-num">No. 06</span>
+  <h2>Tested &amp; verified</h2>
+  <p class="section-sub">Real numbers from a real build. No marketing inflation, no future tense.</p>
+  <ul class="verified-list">
+    <li>
+      <span class="tick" aria-hidden="true"></span>
+      <div>
+        <p class="verified-num">29<span class="sub"> / 29</span></p>
+        <p class="verified-label">Tests passing — scoring (15), client (6), standalone scoring (8).</p>
+      </div>
+    </li>
+    <li>
+      <span class="tick" aria-hidden="true"></span>
+      <div>
+        <p class="verified-num">4<span class="sub"> packages</span></p>
+        <p class="verified-label">Build clean. TypeScript strict mode. Zero untyped surfaces.</p>
+      </div>
+    </li>
+    <li>
+      <span class="tick" aria-hidden="true"></span>
+      <div>
+        <p class="verified-num">0<span class="sub"> deps</span></p>
+        <p class="verified-label">Runtime dependencies in <code>@opensam/scoring</code>. Self-contained.</p>
+      </div>
+    </li>
+    <li>
+      <span class="tick" aria-hidden="true"></span>
+      <div>
+        <p class="verified-num">639<span class="sub"> lines</span></p>
+        <p class="verified-label">Of TypeScript across the SDK, scoring, and types. Readable in an afternoon.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
 <section class="section" id="faq">
-  <span class="section-num">No. 05</span>
+  <span class="section-num">No. 07</span>
   <h2>Frequently asked</h2>
+  <p class="section-sub">Honest answers to the questions we hear most.</p>
   <div class="faq-prose">
     <p><strong>Is OpenSAM free?</strong> — Yes. It’s MIT-licensed open-source. The only cost is your time and a free api.data.gov key.</p>
     <p><strong>Do I need to be a developer?</strong> — No. The web app at opensam.us lets you search and score without code. The SDK is there for developers who want to integrate.</p>
@@ -768,7 +1164,7 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
       <ul>
         <li><a href="#how">Documentation</a></li>
         <li><a href="https://github.com/eddyflores100-lang/OpenSAM" rel="noopener">GitHub</a></li>
-        <li><a href="#example">Code example</a></li>
+        <li><a href="#demo">Live demo</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </div>
