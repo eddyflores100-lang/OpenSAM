@@ -91,7 +91,7 @@ describe('SamGovClient.scoreOpportunity', () => {
       responseDeadLine: new Date(Date.now() + 60 * 86_400_000).toISOString(),
     })
     const closeDeadline = makeSamOpportunity({
-      responseDeadLine: new Date(Date.now() + 3 * 86_400_000).toISOString(), // < 3 days → -35
+      responseDeadLine: new Date(Date.now() + 2 * 86_400_000).toISOString(), // 2 days → -35
     })
     const farResult = SamGovClient.scoreOpportunity(farDeadline, profile)
     const closeResult = SamGovClient.scoreOpportunity(closeDeadline, profile)
@@ -141,7 +141,7 @@ describe('SamGovClient.scoreOpportunity', () => {
       naicsCode: '111110', // Agriculture — not in profile
       typeOfSetAsideDescription: '',
       description: 'Corn farming operations',
-      responseDeadLine: new Date(Date.now() + 2 * 86_400_000).toISOString(), // -35 penalty
+      responseDeadLine: new Date(Date.now() + 2 * 86_400_000).toISOString(), // 2 days → -35 penalty
     })
     const result = SamGovClient.scoreOpportunity(opp, profile)
     // 50 base + 0 naics + 0 cert + 0 capability - 35 deadline = 15 → low
