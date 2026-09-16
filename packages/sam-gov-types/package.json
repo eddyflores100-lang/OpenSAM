@@ -30,5 +30,10 @@
     "src",
     "README.md",
     "LICENSE"
-  ]
+  ],
+  "scripts": {
+    "build": "echo 'types-only package — nothing to build'",
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'no runtime tests — types verified by typecheck'"
+  }
 }
