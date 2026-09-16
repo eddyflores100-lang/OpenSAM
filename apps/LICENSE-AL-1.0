@@ -1,0 +1,122 @@
+AliceLabs Proprietary License (AL-1.0)
+
+Copyright (c) 2026 AliceLabs LLC. All rights reserved.
+
+This license applies to the OpenSAM web application, landing page,
+documentation site, hosted infrastructure, and all proprietary components
+collectively referred to as the "Proprietary Software."
+
+The open-source npm packages (@opensam/sdk, @opensam/scoring,
+@opensam/sam-gov-types) are licensed separately under the MIT License
+and are NOT covered by this license.
+
+----------------------------------------------------------------------
+
+1. DEFINITIONS
+
+   "Licensor" means AliceLabs LLC, a limited liability company.
+
+   "Software" means the OpenSAM web application, landing page,
+   hosted API, documentation site, and any proprietary components
+   not published as open-source npm packages.
+
+   "You" means the individual or entity exercising the rights
+   granted under this license.
+
+   "Authorized Use" means use of the Software as provided by
+   AliceLabs LLC through the hosted service at opensam.us or
+   through a properly licensed on-premise deployment.
+
+2. GRANT OF RIGHTS
+
+   Subject to your compliance with the terms of this license,
+   AliceLabs LLC grants you a limited, non-exclusive, non-transferable,
+   non-sublicensable, revocable license to:
+
+   (a) Access and use the hosted Software at opensam.us in accordance
+       with the Terms of Service at opensam.us/terms;
+
+   (b) For Enterprise customers, run the Software on your own
+       infrastructure for internal business purposes only, subject to
+       the terms of your Enterprise order form.
+
+3. RESTRICTIONS
+
+   You shall NOT:
+
+   (a) Copy, reproduce, or distribute the Software, in whole or in part,
+       except as expressly permitted by this license;
+
+   (b) Modify, adapt, translate, or create derivative works of the
+       Software, except for the open-source packages which are governed
+       by their own MIT License;
+
+   (c) Reverse engineer, decompile, or disassemble the Software;
+
+   (d) Sell, sublicense, rent, lease, or lend the Software to any
+       third party;
+
+   (e) Use the Software to provide a competing service or product;
+
+   (f) Remove or alter any copyright, trademark, or other proprietary
+       notices on the Software;
+
+   (g) Use the Software in violation of applicable laws or regulations.
+
+4. INTELLECTUAL PROPERTY
+
+   The Software is the intellectual property of AliceLabs LLC.
+   This license does not grant you any rights to trademarks, service
+   marks, or trade names of AliceLabs LLC. The name "OpenSAM" and
+   the OpenSAM logo are trademarks of AliceLabs LLC.
+
+5. OPEN-SOURCE COMPONENTS
+
+   The following components of the OpenSAM project are licensed under
+   the MIT License and are NOT subject to this Proprietary License:
+
+   - @opensam/sdk (packages/samgov-sdk/)
+   - @opensam/scoring (packages/govcon-scoring/)
+   - @opensam/sam-gov-types (packages/sam-gov-types/)
+
+   You may use, modify, and distribute these packages freely under
+   the terms of the MIT License.
+
+6. NO WARRANTY
+
+   THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED. ALICELABS LLC DISCLAIMS ALL WARRANTIES,
+   INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+7. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL ALICELABS LLC BE LIABLE FOR ANY INDIRECT,
+   INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING
+   LOST PROFITS, LOST DATA, OR BUSINESS INTERRUPTION, ARISING OUT OF
+   OR IN CONNECTION WITH YOUR USE OF THE SOFTWARE.
+
+8. TERMINATION
+
+   AliceLabs LLC may terminate this license at any time if you breach
+   any term of this license. Upon termination, you must cease all use
+   of the Software and destroy all copies in your possession.
+
+   Termination of this license does not affect your rights under the
+   MIT License for the open-source packages.
+
+9. ENTIRE AGREEMENT
+
+   This license constitutes the entire agreement between you and
+   AliceLabs LLC regarding the Software. It supersedes all prior
+   agreements and understandings, whether oral or written.
+
+----------------------------------------------------------------------
+
+For questions about this license, contact:
+  AliceLabs LLC
+  Email: contacto@alicelabs.site
+  Web: https://alicelabs.site
+
+For the MIT License governing the open-source packages, see:
+  https://github.com/eddyflores100-lang/OpenSAM/blob/main/packages/*/LICENSE

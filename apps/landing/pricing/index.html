@@ -235,7 +235,7 @@ a:hover{text-decoration-thickness:2px}
 <h2 class="section-hed">Why we charge for free software.</h2>
 
 <div class="editorial-body">
-  <p>OpenSAM is open-source under the MIT License. The source code lives at <a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a>. You can fork it, modify it, sell services on top of it, and never pay us a cent. That is the license, and we will not change it.</p>
+  <p>OpenSAM uses a dual license: MIT for the npm packages, AL-1.0 for the web app. The source code lives at <a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a>. You can fork it, modify it, sell services on top of it, and never pay us a cent. That is the license, and we will not change it.</p>
 
   <p>So what, exactly, are you paying for when you subscribe to Pro or Enterprise? Not the code. The infrastructure, the people, and the legal posture around the code.</p>
 
@@ -249,7 +249,7 @@ a:hover{text-decoration-thickness:2px}
   <p>If you are a prime contractor, a federally-funded research and development center, or an agency-adjacent nonprofit, you probably cannot ship SAM.gov opportunity data through a third-party SaaS. You need the software running in your own VPC, behind your own SSO, with your own audit log. Enterprise is that: the same OpenSAM code, deployed on your infrastructure, with a dedicated solutions engineer, a 99.9% uptime SLA with service credits, quarterly penetration test reports, and a FedRAMP Moderate readiness package (currently in progress, target Q2 2027).</p>
 
   <h3>What we will never do.</h3>
-  <p>We will never close the source. We will never add telemetry to the open-source packages. We will never sell your SAM.gov opportunity history. We will never email you marketing unless you explicitly ask. We will never require a credit card for the Free plan. We will never deprecate the public REST endpoints without 12 months&rsquo; notice. These commitments are written into the <a href="/terms">Terms of Service</a> as enforceable contract terms, not marketing copy.</p>
+  <p>We will never close the SDK source. The npm packages are MIT-licensed and irrevocable. The web app is AL-1.0 proprietary &mdash; that is open-core, and we will not pretend otherwise. We will never add telemetry to the open-source packages. We will never sell your SAM.gov opportunity history. We will never email you marketing unless you explicitly ask. We will never require a credit card for the Free plan. We will never deprecate the public REST endpoints without 12 months&rsquo; notice. These commitments are written into the <a href="/terms">Terms of Service</a> as enforceable contract terms, not marketing copy.</p>
 </div>
 
 <div class="section-rule"></div>
@@ -258,7 +258,7 @@ a:hover{text-decoration-thickness:2px}
 
 <div class="q-and-a">
   <p><strong>Is the Free plan really free forever, or is it a trial?</strong>
-  Free forever. The MIT License is irrevocable. The code at <a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a> is the product. There is no trial clock.</p>
+  Free forever. The npm packages are MIT-licensed and irrevocable. The code at <a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a> is the product. There is no trial clock.</p>
   <p><strong>What happens if I exceed 1,000 API calls per day on Free?</strong>
   The api.data.gov key is rate-limited by the U.S. government, not by us. If you exceed 1,000 calls, you wait until the next day, you bring your own api.data.gov key (free, separate limit), or you upgrade to Pro. We never cut you off; the limit is upstream.</p>
   <p><strong>Do Pro plans auto-renew? Can I cancel anytime?</strong>
@@ -295,7 +295,7 @@ a:hover{text-decoration-thickness:2px}
       <a href="/security">Security</a>
     </div>
     <p class="legal">
-      <b>&copy; 2026 AliceLabs LLC.</b> OpenSAM is open-source under the MIT License.<br>
+      <b>&copy; 2026 AliceLabs LLC.</b> OpenSAM uses a dual license: MIT for the npm packages, AL-1.0 for the web app.<br>
       Not affiliated with, endorsed by, or sponsored by the U.S. Government, SAM.gov, GSA, or any U.S. government agency.<br>
       Contact: <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a> &middot; <a href="https://github.com/eddyflores100-lang/OpenSAM">GitHub</a>
     </p>

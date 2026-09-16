@@ -295,9 +295,13 @@ a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.
 <h2>1. The Service</h2>
 <p>OpenSAM is a software platform that helps users find, score, and monitor federal contracting opportunities published on SAM.gov. The Service has three components: (a) open-source TypeScript packages published to the npm registry under the MIT License; (b) a reference web application hosted at opensam.us; and (c) optional paid subscriptions (Pro and Enterprise) that provide hosted infrastructure, support, and enterprise features.</p>
 
-<h2>2. License</h2>
-<p>The open-source packages &mdash; <code>@opensam/sdk</code>, <code>@opensam/scoring</code>, and <code>@opensam/sam-gov-types</code> &mdash; are licensed under the MIT License, reproduced in full at <a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/LICENSE">github.com/eddyflores100-lang/OpenSAM/blob/main/LICENSE</a>. The MIT License is irrevocable. You may use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software without restriction.</p>
-<p>The reference web application, documentation, brand assets, and hosted infrastructure (the &ldquo;Proprietary Components&rdquo;) are licensed under a separate proprietary license granted by AliceLabs LLC. Paid subscribers receive a limited, non-exclusive, non-transferable license to use the Proprietary Components for the duration of their subscription, subject to this Agreement.</p>
+<h2>2. License (Dual)</h2>
+<p>OpenSAM uses a dual license model:</p>
+<ul>
+  <li><strong>MIT License</strong> &mdash; applies to the open-source npm packages: <code>@opensam/sdk</code>, <code>@opensam/scoring</code>, and <code>@opensam/sam-gov-types</code>. The MIT License is irrevocable. You may use, copy, modify, merge, publish, distribute, sublicense, and sell copies of these packages without restriction. See <a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/packages/samgov-sdk/LICENSE">the MIT License</a> for full terms.</li>
+  <li><strong>AliceLabs Proprietary License (AL-1.0)</strong> &mdash; applies to the web application, landing page, hosted API, documentation site, and all other proprietary components. You may NOT copy, modify, distribute, reverse-engineer, or create derivative works of the Proprietary Software. Pro and Enterprise subscribers receive a limited, non-exclusive, non-transferable license to use the Proprietary Components for the duration of their subscription. See <a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/apps/LICENSE-AL-1.0">AL-1.0</a> for full terms.</li>
+</ul>
+<p>This is an open-core model: the developer tools are free and open-source; the hosted platform is proprietary and ours.</p>
 
 <h2>3. Acceptable Use</h2>
 <p>You agree to use the Service only for lawful purposes. You will not use the Service to: (a) violate any U.S. federal, state, or local law; (b) submit fraudulent, deceptive, or anti-competitive bids on SAM.gov; (c) redistribute SAM.gov opportunity data for resale without adding material value; (d) attempt to reverse-engineer, decompile, or otherwise extract source code from the hosted infrastructure; (e) interfere with the Service&rsquo;s operation, including rate-limit evasion or denial-of-service attacks; or (f) use the Service to develop a directly competing product without written permission.</p>
@@ -386,7 +390,7 @@ Repository: <a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/e
   </div>
   <p class="thirty">&mdash; 30 &mdash;</p>
   <p class="legal">
-    <b>&copy; 2026 AliceLabs LLC.</b> OpenSAM is open-source under the MIT License.<br>
+    <b>&copy; 2026 AliceLabs LLC.</b> OpenSAM uses a dual license: MIT for the npm packages, AL-1.0 for the web app.<br>
     Not affiliated with, endorsed by, or sponsored by the U.S. Government, SAM.gov, GSA, or any U.S. government agency.<br>
     Contact: <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a> &middot; <a href="https://github.com/eddyflores100-lang/OpenSAM">GitHub</a>
   </p>

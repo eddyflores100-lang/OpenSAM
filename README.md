@@ -422,6 +422,17 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-## License
+## License (Dual)
 
-[MIT](LICENSE) © 2026 AliceLabs LLC
+OpenSAM uses a **dual license** model:
+
+| Component | License | What it means |
+|-----------|---------|---------------|
+| `@opensam/sdk` | [MIT](packages/samgov-sdk/LICENSE) | Use, modify, sell — no restrictions |
+| `@opensam/scoring` | [MIT](packages/govcon-scoring/LICENSE) | Use, modify, sell — no restrictions |
+| `@opensam/sam-gov-types` | [MIT](packages/sam-gov-types/LICENSE) | Use, modify, sell — no restrictions |
+| Web app + landing page | [AL-1.0](apps/LICENSE-AL-1.0) | Proprietary — no copying, no redistribution |
+
+This is **open-core**: the developer tools are free and open-source under MIT; the hosted platform is proprietary under AliceLabs Proprietary License (AL-1.0).
+
+© 2026 AliceLabs LLC
