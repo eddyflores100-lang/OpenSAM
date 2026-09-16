@@ -386,6 +386,20 @@ img{max-width:100%;height:auto}
   box-shadow:var(--warm-shadow-lg);
   position:relative;
 }
+/* Soft warm radial glow behind the browser frame (v8.1) */
+.browser::before{
+  content:"";
+  position:absolute;
+  inset:-40px -40px 20px -40px;
+  background:radial-gradient(ellipse 60% 70% at 50% 30%,
+    rgba(194,65,12,0.18) 0%,
+    rgba(254,215,170,0.10) 35%,
+    transparent 70%);
+  z-index:-1;
+  pointer-events:none;
+  filter:blur(8px);
+}
+.browser-wrap{position:relative}
 .browser-bar{
   background:var(--bg-soft);
   border-bottom:1px solid var(--border);
@@ -849,19 +863,28 @@ img{max-width:100%;height:auto}
   font-size:16.5px;
   line-height:1.72;
   color:var(--body);
-  margin-bottom:24px;
-  padding-left:36px;
+  margin-bottom:16px;
+  padding:18px 22px 18px 56px;
   position:relative;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:12px;
+  transition:border-color 180ms ease,box-shadow 180ms ease;
+}
+.faq-prose p:hover{
+  border-color:var(--accent-soft);
+  box-shadow:0 2px 8px rgba(28,25,23,0.04);
 }
 .faq-prose p:last-child{margin-bottom:0}
 .faq-prose p::before{
   content:'Q.';
   position:absolute;
-  left:0;top:0;
+  left:22px;top:18px;
   font-family:var(--serif);
   font-style:italic;
   font-weight:500;
-  font-size:18px;
+  font-size:20px;
   color:var(--accent);
   letter-spacing:-0.01em;
   font-variation-settings:"opsz" 24;
@@ -1023,6 +1046,7 @@ img{max-width:100%;height:auto}
       </p>
     </div>
     <div class="hero-visual">
+      <div class="browser-wrap">
       <div class="browser" role="img" aria-label="OpenSAM web application showing scored federal contracting opportunities">
         <div class="browser-bar">
           <div class="browser-dots" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -1033,6 +1057,7 @@ img{max-width:100%;height:auto}
              alt="OpenSAM web app showing scored federal contracting opportunities with fit scores"
              width="1200" height="760"
              loading="lazy" decoding="async">
+      </div>
       </div>
     </div>
   </div>
