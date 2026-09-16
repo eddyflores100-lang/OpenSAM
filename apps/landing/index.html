@@ -241,21 +241,24 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
 .btn-primary{
   background:var(--accent);
   color:#FFFFFF;
-  padding:11px 20px;
+  padding:12px 22px;
   border-radius:6px;
   font-size:15px;
-  font-weight:500;
+  font-weight:600;
   font-family:var(--sans);
   border:1px solid var(--accent);
-  transition:background 120ms ease,border-color 120ms ease;
+  transition:background 120ms ease,border-color 120ms ease,box-shadow 120ms ease;
+  box-shadow:0 1px 2px rgba(79,70,229,0.20);
 }
-.btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:#FFFFFF;text-decoration:none}
+.btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:#FFFFFF;text-decoration:none;box-shadow:0 2px 6px rgba(79,70,229,0.30)}
 .btn-text{
-  color:var(--ink);
-  font-size:15px;
-  font-weight:500;
+  color:var(--text-2);
+  font-size:14px;
+  font-weight:400;
+  padding:8px 4px;
+  border-bottom:1px solid transparent;
 }
-.btn-text:hover{color:var(--accent);text-decoration:none}
+.btn-text:hover{color:var(--accent);text-decoration:none;border-bottom-color:var(--accent)}
 .btn-text .arrow{display:inline-block;margin-left:4px;transition:transform 160ms ease}
 .btn-text:hover .arrow{transform:translateX(2px)}
 .micro-stats{
@@ -278,22 +281,25 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
   box-shadow:0 1px 2px rgba(24,24,27,0.04);
 }
 .card-head{
-  padding:13px 20px;
+  padding:14px 20px 12px;
   border-bottom:1px solid var(--border);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:0.08em;
+  font-size:13px;
+  font-family:var(--serif);
+  font-style:italic;
+  letter-spacing:0;
   color:var(--text-2);
-  font-weight:500;
+  font-weight:400;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:baseline;
 }
 .card-head .meta{
   font-size:11px;
   color:var(--text-3);
   text-transform:none;
   letter-spacing:0;
+  font-style:normal;
+  font-family:var(--sans);
   font-variant-numeric:tabular-nums;
 }
 .card ul{list-style:none}
