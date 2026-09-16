@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="22HXXrYtXQaIAsXTwc3CVFBv7K12x0WHDEBaOC0TJps">
-<meta name="theme-color" content="#F4EEDE">
+<meta name="theme-color" content="#F8F5EB">
 <title>Data Processing Agreement &mdash; The OpenSAM Times</title>
 <meta name="description" content="Data Processing Agreement (DPA) for OpenSAM Enterprise customers. GDPR and CCPA compliant. Signed by AliceLabs LLC.">
 <meta name="keywords" content="OpenSAM, dpa, AliceLabs LLC, federal contracting, MIT license, DPA, data processing agreement, GDPR, CCPA, Article 28">
@@ -42,9 +42,9 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --paper:#F4EEDE;
-  --paper-2:#EBE3CB;
-  --paper-3:#FCF8EF;
+  --paper:#F8F5EB;
+  --paper-2:#F0E9D4;
+  --paper-3:#FDFBF4;
   --ink:#171108;
   --body:#3A2E1E;
   --mute:#6E5E45;
@@ -120,26 +120,26 @@ a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.
 }
 
 /* ===== Section heads ===== */
-.section-kicker{
+.section-kicker{column-span:all
   font-family:var(--mono);font-size:10px;
   letter-spacing:.1em;  /* was .2em — fixed the 'S ection' bug */
   text-transform:uppercase;color:var(--rubric);
   font-weight:700;margin-bottom:8px;
 }
-.section-hed{
+.section-hed{column-span:all
   font-family:var(--display);font-weight:700;
   font-size:clamp(26px,4vw,42px);
   line-height:1.1;letter-spacing:-0.015em;
   color:var(--ink);margin:0 0 12px;
 }
-.section-deck{
+.section-deck{column-span:all
   font-family:var(--serif);font-style:italic;
   font-size:18px;color:var(--text-2);
   max-width:580px;margin:0 auto 32px;
 }
 .section-rule{height:1px;background:var(--border);margin:48px 0}
 .center{text-align:center}
-.meta{
+.meta{column-span:all
   font-family:var(--mono);font-size:12px;color:var(--text-2);
   text-align:center;margin-bottom:32px;
   padding:10px 16px;
@@ -147,7 +147,24 @@ a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.
 }
 
 /* ===== Article body ===== */
-.article{max-width:680px;margin:0 auto}
+.article{max-width:1100px;margin:0 auto}
+.article-head{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:3px double var(--ink)}
+.article-body{column-count:2;column-gap:56px;column-rule:1px solid var(--border);font-size:16.5px;line-height:1.75;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.article-body p{margin-bottom:14px;text-indent:1.5em}
+.article-body p:first-of-type{text-indent:0}
+.article-body p:first-of-type::first-letter{font-family:var(--display);font-weight:900;float:left;font-size:56px;line-height:0.85;margin:6px 8px 0 0;color:var(--rubric)}
+.article-body h2{font-family:var(--display);font-weight:700;font-size:20px;margin:24px 0 8px;color:var(--ink);letter-spacing:-0.005em;border-bottom:1px solid var(--border);padding-bottom:3px;break-after:avoid}
+.article-body h3{font-family:var(--serif);font-weight:500;font-style:italic;font-size:17px;margin:18px 0 4px;color:var(--ink);break-after:avoid}
+.article-body ul{margin:8px 0 14px 18px;list-style:none}
+.article-body li{margin-bottom:5px;padding-left:14px;position:relative}
+.article-body li::before{content:"\25B8";color:var(--rubric);position:absolute;left:0;font-family:var(--mono);font-size:11px;top:6px}
+.article-body code{font-family:var(--mono);font-size:0.88em;background:var(--accent-soft);padding:1px 4px;border-radius:2px;color:var(--ink)}
+.article-body strong{color:var(--ink);font-weight:600}
+.article-body table{width:100%;border-collapse:collapse;margin:12px 0;font-family:var(--mono);font-size:12px;break-inside:avoid}
+.article-body table th{text-align:left;padding:6px 6px;border-bottom:2px solid var(--ink);color:var(--ink);font-weight:700;letter-spacing:0.04em}
+.article-body table td{padding:6px 6px;border-bottom:1px dotted var(--border);vertical-align:top}
+.article-body table tr:hover{background:var(--accent-soft)}
+@media (max-width:900px){.article-body{column-count:1;text-align:left;hyphens:none}}
 .article p{margin-bottom:18px;text-indent:24px}
 .article p:first-of-type{text-indent:0}
 .article p:first-of-type::first-letter{
@@ -155,7 +172,7 @@ a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.
   float:left;font-size:64px;line-height:0.85;
   margin:6px 10px 0 0;color:var(--rubric);
 }
-.article h2{
+.article h2{column-span:all
   font-family:var(--display);font-weight:700;font-size:26px;
   margin:36px 0 10px;color:var(--ink);letter-spacing:-0.01em;
   border-bottom:1px solid var(--border);padding-bottom:4px;
@@ -195,13 +212,13 @@ a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.
 .article table tr:hover{background:var(--accent-soft)}
 
 /* ===== Page foot / thirty / legal ===== */
-.page-foot{
+.page-foot{column-span:all
   font-family:var(--mono);font-size:11px;color:var(--text-3);
   text-align:center;letter-spacing:.1em;text-transform:uppercase;
   margin:32px 0 16px;padding-top:16px;
   border-top:1px solid var(--border);
 }
-.thirty{
+.thirty{column-span:all
   font-family:var(--display);font-weight:700;
   font-size:24px;color:var(--ink);
   text-align:center;margin:24px 0;letter-spacing:0.4em;
@@ -242,7 +259,7 @@ a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.
   text-transform:uppercase;letter-spacing:0.05em;font-size:10px;
 }
 .colophon a{font-family:var(--mono);font-size:12.5px}
-.colophon .thirty{
+.colophon .thirty{column-span:all
   font-family:var(--display);font-weight:700;font-size:22px;
   color:var(--ink);margin:24px 0 16px;letter-spacing:0.4em;text-align:center;
 }
@@ -265,12 +282,13 @@ a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.
 
 <main class="wrap">
   <article class="article">
-    <p class="section-kicker">Legal Affairs · C5</p>
-    <h2 class="section-hed">Data Processing Agreement</h2>
-    <p class="section-deck">The standard DPA for Enterprise customers. Sign it as-is, or use it as a starting point for negotiation.</p>
-    <p class="meta">Effective date: September 16, 2026 &middot; Last updated: September 16, 2026 &middot; Operator: AliceLabs LLC &middot; Jurisdiction: United States</p>
-
-
+    <div class="article-head">
+      <p class="section-kicker">Legal Affairs · C5</p>
+      <h2 class="section-hed">Data Processing Agreement</h2>
+      <p class="section-deck">The standard DPA for Enterprise customers. Sign it as-is, or use it as a starting point for negotiation.</p>
+      <p class="meta">Effective date: September 16, 2026 &middot; Last updated: September 16, 2026 &middot; Operator: AliceLabs LLC &middot; Jurisdiction: United States</p>
+    </div>
+    <div class="article-body">
 <p>This Data Processing Agreement (&ldquo;DPA&rdquo;) is entered into by and between AliceLabs LLC (&ldquo;Processor&rdquo;) and the customer entity identified in the signed order form (&ldquo;Controller&rdquo;). This DPA is incorporated into the master agreement between the parties and is effective as of the date of the order form.</p>
 
 <h2>1. Definitions</h2>
@@ -342,6 +360,8 @@ Date: _____________
 <p>AliceLabs LLC<br>
 Attn: Data Protection Officer &mdash; OpenSAM<br>
 Email: <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a></p>
+    </div>
+
 
 
     <p class="page-foot">End of Data Processing Agreement &middot; Continued on Page A1</p>
