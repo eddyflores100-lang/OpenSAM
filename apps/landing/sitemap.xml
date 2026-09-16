@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://opensam.us/</loc>
@@ -15,37 +13,65 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://opensam.us/"/>
     <image:image>
       <image:loc>https://opensam.us/og-image.png</image:loc>
-      <image:title>OpenSAM — Win More Federal Contracts with AI Agents</image:title>
+      <image:title>OpenSAM — Find federal contracts worth bidding on</image:title>
       <image:caption>OpenSAM helps businesses, sales teams, and AI agents find, score, and win federal contracting opportunities on SAM.gov.</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://opensam.us/#packages</loc>
+    <loc>https://opensam.us/pricing</loc>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://opensam.us/pricing"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://opensam.us/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://opensam.us/pricing"/>
+    <image:image>
+      <image:loc>https://opensam.us/og-image.png</image:loc>
+      <image:title>OpenSAM Subscriptions</image:title>
+    </image:image>
   </url>
 
   <url>
-    <loc>https://opensam.us/#how</loc>
+    <loc>https://opensam.us/terms</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://opensam.us/#architecture</loc>
+    <loc>https://opensam.us/privacy</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://opensam.us/#use-cases</loc>
+    <loc>https://opensam.us/refund</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://opensam.us/acceptable-use</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://opensam.us/dpa</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://opensam.us/security</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <url>

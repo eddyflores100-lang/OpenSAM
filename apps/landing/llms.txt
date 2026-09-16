@@ -34,16 +34,31 @@ Get a free API key at https://api.data.gov/signup/.
 ## Links
 
 - [Website](https://opensam.us)
+- [Pricing & subscriptions](https://opensam.us/pricing)
+- [Terms of Service](https://opensam.us/terms)
+- [Privacy Policy](https://opensam.us/privacy)
+- [Refund Policy](https://opensam.us/refund)
+- [Acceptable Use Policy](https://opensam.us/acceptable-use)
+- [Data Processing Agreement (DPA)](https://opensam.us/dpa)
+- [Security](https://opensam.us/security)
 - [GitHub Repository](https://github.com/eddyflores100-lang/OpenSAM)
 - [Architecture Documentation](https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/ARCHITECTURE.md)
 - [Scoring Methodology](https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/SCORING.md)
 - [Deployment Guide](https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/DEPLOYMENT.md)
 - [README](https://github.com/eddyflores100-lang/OpenSAM/blob/main/README.md)
 - [Legal & Disclaimers](https://github.com/eddyflores100-lang/OpenSAM/blob/main/LEGAL.md)
-- [Security Policy](https://github.com/eddyflores100-lang/OpenSAM/blob/main/SECURITY.md)
+- [Security Policy](https://opensam.us/security)
 - [AliceLabs LLC](https://alicelabs.site)
 - [api.data.gov signup](https://api.data.gov/signup/)
 - [SAM.gov Opportunities Public API](https://open.gsa.gov/api/get-opportunities-public-api/)
+
+## Pricing
+
+- **Free** — $0 forever, MIT licensed. For individuals, small businesses, AI agent builders.
+- **Pro** — $49/seat/month. For teams: hosted API, team workspaces, daily digest, webhook alerts, 24h support SLA, 10,000 API calls/day.
+- **Enterprise** — Custom annual. Self-hosted, on-prem, air-gapped, SAML SSO, FedRAMP readiness, 99.9% SLA with credits, dedicated SE.
+
+Free plan has no trial clock — it is the whole product. Pro has a 14-day free trial, no credit card required. Enterprise is negotiated per contract.
 
 ## Optional
 
