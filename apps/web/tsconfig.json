@@ -13,7 +13,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@opensam/sdk": ["../../packages/samgov-sdk/src/index.ts"],
+      "@opensam/scoring": ["../../packages/govcon-scoring/src/index.ts"]
+    }
   },
   "include": ["src"]
 }
