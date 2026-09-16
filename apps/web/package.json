@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@opensam/sdk": "workspace:*",
-    "@opensam/scoring": "workspace:*",
+    "@opensam/sdk": "*",
+    "@opensam/scoring": "*",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },
