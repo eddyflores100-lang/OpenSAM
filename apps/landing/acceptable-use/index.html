@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="22HXXrYtXQaIAsXTwc3CVFBv7K12x0WHDEBaOC0TJps">
-<meta name="theme-color" content="#F2EBD8">
+<meta name="theme-color" content="#F4EEDE">
 <title>Acceptable Use Policy &mdash; The OpenSAM Times</title>
 <meta name="description" content="Acceptable Use Policy for OpenSAM. Prohibits scraping, fraudulent bids, rate-limit evasion, and other abuse.">
 <meta name="keywords" content="OpenSAM, acceptable-use, AliceLabs LLC, federal contracting, MIT license, acceptable use policy, AUP, terms of use, scraping, abuse">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="googlebot" content="index, follow">
 <meta name="language" content="English">
 <meta name="geo.region" content="US">
@@ -41,53 +41,234 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#F2EBD8;--ink:#171108;--body:#3A2E1E;--text-2:#6B5A44;--text-3:#8A7860;--border:#C9B88E;--accent:#8A1B1B;--accent-soft:#F4E4E4;--paper:#FBF5E4;--serif:"Playfair Display",Georgia,serif;--body-serif:"EB Garamond",Georgia,serif;--mono:"Courier Prime",monospace;--maxw:760px}
-html{scroll-behavior:smooth}
-body{font-family:var(--body-serif);background:var(--bg);color:var(--body);line-height:1.72;font-size:18px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-a:hover{text-decoration-thickness:2px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+:root{
+  --paper:#F4EEDE;
+  --paper-2:#EBE3CB;
+  --paper-3:#FCF8EF;
+  --ink:#171108;
+  --body:#3A2E1E;
+  --mute:#6E5E45;
+  --text-2:#6B5A44;
+  --text-3:#8A7860;
+  --border:#C9B88E;
+  --rule:#8A1B1B;
+  --rubric:#8A1B1B;
+  --accent:#8A1B1B;
+  --accent-soft:#F4E4E4;
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --display:"Playfair Display",Georgia,serif;
+  --body-serif:"EB Garamond",Georgia,serif;
+  --mono:"Courier Prime","Courier New",monospace;
+  --maxw:760px;
+  --maxw-wide:1200px
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--body-serif);
+  background:var(--paper);
+  color:var(--body);
+  line-height:1.72;
+  font-size:18px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+a{color:var(--rubric);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;transition:color .15s}
+a:hover{color:#5C0F0F;text-decoration-thickness:2px;background:rgba(138,27,27,0.06)}
+::selection{background:var(--ink);color:var(--paper)}
+.wrap{max-width:var(--maxw-wide);margin:0 auto;padding:0 32px}
 @media (max-width:640px){.wrap{padding:0 20px}body{font-size:17px}}
-.masthead{padding:32px 0 16px;text-align:center;border-bottom:3px double var(--ink);margin-bottom:32px}
-.masthead .est{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:var(--text-2);text-transform:uppercase}
-.masthead h1{font-family:var(--serif);font-weight:900;font-size:clamp(36px,7vw,60px);letter-spacing:-0.02em;line-height:1;margin:8px 0 4px}
-.masthead .tagline{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--text-2)}
-.masthead .edition{font-family:var(--mono);font-size:11px;color:var(--text-3);margin-top:8px;text-transform:uppercase;letter-spacing:0.1em}
-.section-kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:8px}
-.section-hed{font-family:var(--serif);font-weight:700;font-size:clamp(26px,4vw,40px);line-height:1.1;letter-spacing:-0.015em;text-align:center;color:var(--ink);max-width:680px;margin:0 auto 12px}
-.section-deck{font-family:var(--serif);font-style:italic;font-size:17px;text-align:center;color:var(--text-2);max-width:580px;margin:0 auto 48px}
-.meta{font-family:var(--mono);font-size:12px;color:var(--text-2);text-align:center;margin-bottom:32px;padding:8px 16px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+/* ===== Masthead ===== */
+.masthead{
+  padding:40px 0 16px;
+  text-align:center;
+  border-bottom:3px double var(--ink);
+  margin-bottom:24px;
+  position:relative;
+}
+.masthead::before{
+  content:"";position:absolute;left:50%;top:8px;transform:translateX(-50%);
+  width:100%;height:1px;background:var(--ink);
+}
+.masthead .est{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  color:var(--text-2);text-transform:uppercase;
+  padding:6px 0;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  display:inline-block;
+  margin-bottom:8px;
+}
+.masthead h1{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(36px,7vw,60px);
+  letter-spacing:-0.02em;line-height:1;
+  margin:8px 0 4px;
+  color:var(--ink);
+}
+.masthead .tagline{
+  font-family:var(--serif);font-style:italic;
+  font-size:14px;color:var(--text-2);
+  margin-bottom:8px;
+}
+.masthead .edition{
+  font-family:var(--mono);font-size:11px;color:var(--text-3);
+  margin-top:8px;text-transform:uppercase;letter-spacing:.1em;
+  border-top:1px solid var(--border);
+  padding-top:8px;
+}
+
+/* ===== Section heads ===== */
+.section-kicker{
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;  /* was .2em — fixed the 'S ection' bug */
+  text-transform:uppercase;color:var(--rubric);
+  font-weight:700;margin-bottom:8px;
+}
+.section-hed{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(26px,4vw,42px);
+  line-height:1.1;letter-spacing:-0.015em;
+  color:var(--ink);margin:0 0 12px;
+}
+.section-deck{
+  font-family:var(--serif);font-style:italic;
+  font-size:18px;color:var(--text-2);
+  max-width:580px;margin:0 auto 32px;
+}
+.section-rule{height:1px;background:var(--border);margin:48px 0}
+.center{text-align:center}
+.meta{
+  font-family:var(--mono);font-size:12px;color:var(--text-2);
+  text-align:center;margin-bottom:32px;
+  padding:10px 16px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+
+/* ===== Article body ===== */
+.article{max-width:680px;margin:0 auto}
 .article p{margin-bottom:18px;text-indent:24px}
 .article p:first-of-type{text-indent:0}
-.article p:first-of-type::first-letter{font-family:var(--serif);font-weight:900;float:left;font-size:62px;line-height:0.85;margin:6px 8px 0 0;color:var(--accent)}
-.article h2{font-family:var(--serif);font-weight:700;font-size:24px;margin:32px 0 8px;color:var(--ink)}
-.article h3{font-family:var(--serif);font-weight:500;font-style:italic;font-size:19px;margin:24px 0 6px;color:var(--ink)}
-.article ul{margin:12px 0 18px 24px}
-.article li{margin-bottom:6px}
-.article code{font-family:var(--mono);font-size:0.92em;background:var(--accent-soft);padding:1px 4px;border-radius:2px}
-.article strong{color:var(--ink)}
-.colophon{padding:48px 0 32px;text-align:center;font-family:var(--mono);font-size:13px;color:var(--text-2);border-top:3px double var(--ink);margin-top:64px}
-.colophon a{color:var(--accent)}
-.colophon .thirty{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--ink);margin:16px 0 24px;letter-spacing:0.4em}
-.colophon .legal{font-family:var(--body-serif);font-style:italic;font-size:13px;color:var(--text-2);max-width:640px;margin:24px auto 0;line-height:1.6}
-.colophon .links{margin:24px 0}
-.colophon .links a{margin:0 8px}
+.article p:first-of-type::first-letter{
+  font-family:var(--display);font-weight:900;
+  float:left;font-size:64px;line-height:0.85;
+  margin:6px 10px 0 0;color:var(--rubric);
+}
+.article h2{
+  font-family:var(--display);font-weight:700;font-size:26px;
+  margin:36px 0 10px;color:var(--ink);letter-spacing:-0.01em;
+  border-bottom:1px solid var(--border);padding-bottom:4px;
+}
+.article h3{
+  font-family:var(--serif);font-weight:500;font-style:italic;
+  font-size:20px;margin:24px 0 6px;color:var(--ink);
+}
+.article ul{margin:12px 0 18px 24px;list-style:none}
+.article li{
+  margin-bottom:8px;padding-left:18px;position:relative;
+}
+.article li::before{
+  content:"\25B8";color:var(--rubric);
+  position:absolute;left:0;font-family:var(--mono);font-size:12px;top:7px;
+}
+.article code{
+  font-family:var(--mono);font-size:0.92em;
+  background:var(--accent-soft);padding:1px 5px;border-radius:2px;
+  color:var(--ink);
+}
+.article strong{color:var(--ink);font-weight:600}
+.article table{
+  width:100%;border-collapse:collapse;margin:16px 0;
+  font-family:var(--mono);font-size:13.5px;
+}
+.article table th{
+  text-align:left;padding:10px 8px;
+  border-bottom:2px solid var(--ink);color:var(--ink);
+  font-weight:700;letter-spacing:0.04em;
+}
+.article table td{
+  padding:10px 8px;
+  border-bottom:1px dotted var(--border);
+  vertical-align:top;
+}
+.article table tr:hover{background:var(--accent-soft)}
+
+/* ===== Page foot / thirty / legal ===== */
+.page-foot{
+  font-family:var(--mono);font-size:11px;color:var(--text-3);
+  text-align:center;letter-spacing:.1em;text-transform:uppercase;
+  margin:32px 0 16px;padding-top:16px;
+  border-top:1px solid var(--border);
+}
+.thirty{
+  font-family:var(--display);font-weight:700;
+  font-size:24px;color:var(--ink);
+  text-align:center;margin:24px 0;letter-spacing:0.4em;
+}
+.legal{
+  font-family:var(--body-serif);font-style:italic;
+  font-size:13px;color:var(--text-2);
+  max-width:640px;margin:24px auto 0;line-height:1.7;
+  text-align:center;
+}
+
+/* ===== Footer ===== */
+.colophon{
+  padding:48px 0 32px;
+  border-top:3px double var(--ink);
+  margin-top:64px;background:var(--paper-3);
+}
+.colo-grid{
+  max-width:var(--maxw-wide);
+  margin:0 auto;padding:0 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+}
+@media (max-width:640px){.colo-grid{grid-template-columns:1fr;gap:24px}}
+.colophon h4{
+  font-family:var(--display);font-weight:700;font-size:15px;
+  color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em;
+}
+.colophon p{font-size:14px;line-height:1.6;color:var(--body);margin-bottom:10px}
+.colophon ul{list-style:none;padding:0}
+.colophon li{
+  padding:5px 0;font-family:var(--mono);font-size:12.5px;
+  display:flex;align-items:baseline;gap:10px;
+  border-bottom:1px dotted var(--border);
+}
+.colophon li:last-child{border-bottom:none}
+.colophon .label{
+  color:var(--text-3);min-width:64px;
+  text-transform:uppercase;letter-spacing:0.05em;font-size:10px;
+}
+.colophon a{font-family:var(--mono);font-size:12.5px}
+.colophon .thirty{
+  font-family:var(--display);font-weight:700;font-size:22px;
+  color:var(--ink);margin:24px 0 16px;letter-spacing:0.4em;text-align:center;
+}
+.colophon .legal{
+  font-family:var(--body-serif);font-style:italic;font-size:13px;
+  color:var(--text-2);max-width:640px;margin:16px auto 0;line-height:1.7;text-align:center;
+}
 </style>
 </head>
 <body>
+
 <header class="masthead">
   <div class="wrap">
     <div class="est">EST. MMXXVI &middot; VOL. IX &middot; NO. 1 &middot; 3&cent;</div>
     <h1>The OpenSAM Times</h1>
     <div class="tagline">&ldquo;All the contracts that are fit to bid.&rdquo;</div>
-    <div class="edition">Section C4 &middot; Legal Affairs &middot; Saturday, September 16, 2026</div>
+    <div class="edition">Legal Affairs · C4 &middot; Saturday, September 16, 2026</div>
   </div>
 </header>
-<main class="wrap article">
-<p class="section-kicker">Section C4 &middot; Legal Affairs</p>
-<h2 class="section-hed">Acceptable Use Policy</h2>
-<p class="section-deck">What you may and may not do with OpenSAM. Short, specific, enforceable.</p>
-<p class="meta">Effective date: September 16, 2026 &middot; Last updated: September 16, 2026 &middot; Operator: AliceLabs LLC &middot; Jurisdiction: United States</p>
+
+<main class="wrap">
+  <article class="article">
+    <p class="section-kicker">Legal Affairs · C4</p>
+    <h2 class="section-hed">Acceptable Use Policy</h2>
+    <p class="section-deck">What you may and may not do with OpenSAM. Short, specific, enforceable.</p>
+    <p class="meta">Effective date: September 16, 2026 &middot; Last updated: September 16, 2026 &middot; Operator: AliceLabs LLC &middot; Jurisdiction: United States</p>
 
 
 <p>This Acceptable Use Policy (&ldquo;AUP&rdquo;) governs your use of OpenSAM (the &ldquo;Service&rdquo;) operated by AliceLabs LLC. It is incorporated by reference into our <a href="/terms">Terms of Service</a>. Capitalized terms have the meanings given in the Terms.</p>
@@ -150,29 +331,52 @@ a:hover{text-decoration-thickness:2px}
 Attn: Trust &amp; Safety &mdash; OpenSAM<br>
 Email: <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a></p>
 
-<p style="margin-top:32px;font-family:var(--mono);font-size:13px;color:var(--text-3);text-align:center">End of Acceptable Use Policy &middot; &mdash; 30 &mdash;</p>
 
-
+    <p class="page-foot">End of Acceptable Use Policy &middot; Continued on Page A1</p>
+    <p class="thirty">&mdash; 30 &mdash;</p>
+  </article>
 </main>
+
 <footer class="colophon">
-  <div class="wrap">
-    <div class="thirty">&mdash; 30 &mdash;</div>
-    <div class="links">
-      <a href="/">Front Page</a> &middot;
-      <a href="/pricing">Pricing</a> &middot;
-      <a href="/terms">Terms</a> &middot;
-      <a href="/privacy">Privacy</a> &middot;
-      <a href="/refund">Refund</a> &middot;
-      <a href="/acceptable-use">Acceptable Use</a> &middot;
-      <a href="/dpa">DPA</a> &middot;
-      <a href="/security">Security</a>
+  <div class="colo-grid">
+    <div>
+      <h4>The House</h4>
+      <p>The OpenSAM Times is published at <b>opensam.us</b>. Editorial offices maintained by <b>AliceLabs LLC</b>, founded 2026.</p>
+      <p style="margin-top:6px">Letters to the Editor: <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a></p>
+
+      <h4 style="margin-top:14px">Pricing &amp; Plans</h4>
+      <ul>
+        <li><span class="label">Plans</span><a href="/pricing">opensam.us/pricing</a></li>
+        <li><span class="label">Free</span>$0 forever &mdash; MIT licensed</li>
+        <li><span class="label">Pro</span>for teams &amp; capture pipelines</li>
+        <li><span class="label">Ent.</span>self-hosted, on-prem, SLA</li>
+      </ul>
     </div>
-    <p class="legal">
-      <b>&copy; 2026 AliceLabs LLC.</b> OpenSAM is open-source under the MIT License.<br>
-      Not affiliated with, endorsed by, or sponsored by the U.S. Government, SAM.gov, GSA, or any U.S. government agency.<br>
-      Contact: <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a> &middot; <a href="https://github.com/eddyflores100-lang/OpenSAM">GitHub</a>
-    </p>
+    <div>
+      <h4>Legal &amp; Policies</h4>
+      <ul>
+        <li><span class="label">Terms</span><a href="/terms">Terms of Service</a></li>
+        <li><span class="label">Privacy</span><a href="/privacy">Privacy Policy</a></li>
+        <li><span class="label">Refund</span><a href="/refund">Refund Policy</a></li>
+        <li><span class="label">Use</span><a href="/acceptable-use">Acceptable Use</a></li>
+        <li><span class="label">DPA</span><a href="/dpa">Data Processing</a></li>
+        <li><span class="label">Security</span><a href="/security">Security</a></li>
+      </ul>
+
+      <h4 style="margin-top:14px">Where to Find the Source</h4>
+      <ul>
+        <li><span class="label">Repo</span><a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a></li>
+        <li><span class="label">Web</span><a href="https://opensam.us">opensam.us</a></li>
+        <li><span class="label">Mail</span><a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a></li>
+      </ul>
+    </div>
   </div>
+  <p class="thirty">&mdash; 30 &mdash;</p>
+  <p class="legal">
+    <b>&copy; 2026 AliceLabs LLC.</b> OpenSAM is open-source under the MIT License.<br>
+    Not affiliated with, endorsed by, or sponsored by the U.S. Government, SAM.gov, GSA, or any U.S. government agency.<br>
+    Contact: <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a> &middot; <a href="https://github.com/eddyflores100-lang/OpenSAM">GitHub</a>
+  </p>
 </footer>
 </body>
 </html>
