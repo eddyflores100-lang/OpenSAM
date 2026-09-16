@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="google-site-verification" content="22HXXrYtXQaIAsXTwc3CVFBv7K12x0WHDEBaOC0TJps">
-<meta name="theme-color" content="#FAF7F2">
-<title>OpenSAM — Find federal contracts worth bidding on</title>
+<meta name="theme-color" content="#F2EBD8">
+<title>OpenSAM — All the contracts that are fit to bid</title>
 <meta name="description" content="OpenSAM monitors SAM.gov 24/7, scores every opportunity against your business, and surfaces the ones worth your time. Free, open-source, MIT-licensed. Built by AliceLabs LLC.">
 <meta name="author" content="AliceLabs LLC">
 <meta name="keywords" content="SAM.gov, federal contracting, government contracts, capture management, business development, 8(a), HUBZone, WOSB, SDVOSB, bid scoring, RFP, AliceLabs, OpenSAM SDK">
@@ -25,23 +25,23 @@
 <link rel="alternate" hreflang="en" href="https://opensam.us">
 <link rel="alternate" hreflang="x-default" href="https://opensam.us">
 
-<meta property="og:title" content="OpenSAM — Find federal contracts worth bidding on">
+<meta property="og:title" content="OpenSAM — All the contracts that are fit to bid">
 <meta property="og:description" content="OpenSAM monitors SAM.gov 24/7 and scores every opportunity against your business. Free, open-source, no signup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://opensam.us">
 <meta property="og:image" content="https://opensam.us/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="OpenSAM — Find federal contracts worth bidding on">
+<meta property="og:image:alt" content="OpenSAM — All the contracts that are fit to bid">
 <meta property="og:site_name" content="OpenSAM">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OpenSAM — Find federal contracts worth bidding on">
+<meta name="twitter:title" content="OpenSAM — All the contracts that are fit to bid">
 <meta name="twitter:description" content="OpenSAM monitors SAM.gov 24/7 and scores every opportunity against your business. Free, open-source, no signup.">
 <meta name="twitter:image" content="https://opensam.us/og-image.png">
-<meta name="twitter:image:alt" content="OpenSAM — Find federal contracts worth bidding on">
+<meta name="twitter:image:alt" content="OpenSAM — All the contracts that are fit to bid">
 <meta name="twitter:site" content="@AliceLabsLLC">
 <meta name="twitter:creator" content="@AliceLabsLLC">
 
@@ -51,7 +51,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -140,1224 +140,1047 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#FAF7F2;
-  --bg-soft:#F5EFE6;
-  --surface:#FFFFFF;
-  --ink:#1F1B16;
-  --body:#44403C;
-  --text-2:#78716C;
-  --text-3:#A8A29E;
-  --border:#E7E1D8;
-  --border-soft:#F0EAE0;
-  --accent:#C2410C;
-  --accent-hover:#9A3412;
-  --accent-soft:#FED7AA;
-  --indigo:#4F46E5;
-  --success:#15803D;
-  --amber:#B45309;
-  --warm-shadow:0 4px 12px rgba(28,25,23,0.06),0 1px 3px rgba(28,25,23,0.04);
-  --warm-shadow-lg:0 18px 48px rgba(28,25,23,0.10),0 6px 18px rgba(28,25,23,0.06);
-  --maxw:1200px;
-  --maxw-prose:760px;
-  --serif:"Newsreader",Georgia,"Times New Roman",serif;
-  --sans:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --r-card:14px;
-  --r-pill:12px;
-  --r-tight:8px;
+  --paper:#F2EBD8;
+  --paper-2:#E8DFC4;
+  --paper-3:#FBF7EB;
+  --ink:#171108;
+  --ink-2:#2B2114;
+  --body:#3A2E1E;
+  --mute:#6E5E45;
+  --rule:#171108;
+  --rubric:#8A1B1B;
+  --display:"Playfair Display","Didot",Georgia,serif;
+  --serif:"EB Garamond","Hoefler Text",Georgia,"Times New Roman",serif;
+  --mono:"Courier Prime","Courier New",monospace;
 }
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  font-family:var(--sans);
-  background:var(--bg);
+  background:var(--paper);
   color:var(--body);
-  font-size:17px;
-  line-height:1.7;
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.55;
+  font-feature-settings:"kern","liga","onum";
+  text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  text-rendering:optimizeLegibility;
-  font-feature-settings:"kern","liga","calt";
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(120,90,50,0.05) 0, transparent 320px),
+    radial-gradient(circle at 82% 78%, rgba(100,70,40,0.06) 0, transparent 380px),
+    radial-gradient(circle at 60% 8%, rgba(80,55,30,0.04) 0, transparent 280px);
+  min-height:100vh;
+  overflow-x:hidden;
 }
-a{color:var(--indigo);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:rgba(79,70,229,0.35)}
-a:hover{color:var(--accent-hover);text-decoration-color:rgba(154,52,18,0.6)}
-::selection{background:rgba(194,65,12,0.18);color:var(--ink)}
+a{color:var(--rubric);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:rgba(138,27,27,0.5)}
+a:hover{background:rgba(138,27,27,0.08);color:#5C0F0F}
+::selection{background:var(--ink);color:var(--paper)}
 img{max-width:100%;height:auto}
 
-/* ---------- Header ---------- */
-.site-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(250,247,242,0.92);
-  border-bottom:1px solid var(--border);
-}
-.header-inner{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:18px 32px;
+.skip{position:absolute;top:-44px;left:8px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--paper);padding:6px 10px;border:1px solid var(--ink);z-index:100}
+.skip:focus{top:8px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ===== MASTHEAD ===== */
+.masthead{padding-top:12px}
+.mh-bar{
   display:flex;
-  align-items:baseline;
   justify-content:space-between;
-  gap:24px;
-}
-.wordmark{
-  font-family:var(--serif);
-  font-size:22px;
-  font-weight:500;
-  color:var(--ink);
-  letter-spacing:-0.018em;
-  text-decoration:none;
-}
-.wordmark em{font-style:italic;font-weight:600;color:var(--accent)}
-.wordmark:hover{text-decoration:none;color:var(--ink)}
-.site-nav{display:flex;gap:28px;font-size:14.5px;align-items:baseline}
-.site-nav a{color:var(--body);text-decoration:none;font-weight:450;letter-spacing:-0.005em}
-.site-nav a:hover{color:var(--accent)}
-
-/* ---------- Section frame ---------- */
-.section{padding:96px 0;border-top:1px solid var(--border)}
-.section--soft{background:var(--bg-soft);border-top-color:var(--border)}
-.section-head{
-  max-width:var(--maxw);
-  margin:0 auto 56px;
-  padding:0 32px;
-}
-.section-num{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:400;
-  font-size:14px;
-  color:var(--accent);
-  margin-bottom:10px;
-  display:block;
-  letter-spacing:0.01em;
-}
-.section h2{
-  font-family:var(--serif);
-  font-size:clamp(30px,4.2vw,40px);
-  font-weight:500;
-  letter-spacing:-0.022em;
-  color:var(--ink);
-  line-height:1.15;
-  font-variation-settings:"opsz" 36;
-}
-.section-sub{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:400;
-  font-size:17px;
-  color:var(--text-2);
-  margin-top:14px;
-  max-width:620px;
-  line-height:1.55;
-}
-.section-body{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:0 32px;
-}
-.section-body.prose{max-width:var(--maxw-prose)}
-
-/* ---------- Hero ---------- */
-.hero{
-  position:relative;
-  padding:96px 32px 88px;
-  overflow:hidden;
-  background:var(--bg);
-  border-bottom:1px solid var(--border);
-}
-.hero::before{
-  content:'';
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 980px 580px at 78% 16%, rgba(254,215,170,0.40), transparent 62%),
-    radial-gradient(ellipse 760px 480px at 8% 78%, rgba(245,239,230,0.85), transparent 60%);
-  pointer-events:none;z-index:0;
-}
-.hero-grid{
-  position:relative;z-index:1;
-  max-width:var(--maxw);
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:7fr 5fr;
-  gap:60px;
-  align-items:center;
-}
-.hero-text{min-width:0}
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  font-size:11.5px;
-  text-transform:uppercase;
-  letter-spacing:0.14em;
-  color:var(--accent);
-  font-weight:600;
-  margin-bottom:26px;
-}
-.eyebrow::before{
-  content:'';
-  display:inline-block;
-  width:22px;height:1.5px;
-  background:var(--accent);
-  opacity:0.55;
-}
-.hero h1{
-  font-family:var(--serif);
-  font-weight:500;
-  font-size:clamp(40px,5.4vw,68px);
-  line-height:1.05;
-  letter-spacing:-0.028em;
-  color:var(--ink);
-  margin-bottom:24px;
-  font-variation-settings:"opsz" 60;
-  max-width:680px;
-}
-.hero h1 em{font-style:italic;font-weight:500;color:var(--ink)}
-.hero .subhead{
-  font-size:18.5px;
-  line-height:1.6;
-  color:var(--body);
-  max-width:540px;
-  margin-bottom:34px;
-}
-.ctas{
-  display:flex;
-  gap:24px;
-  align-items:center;
-  margin-bottom:32px;
-  flex-wrap:wrap;
-}
-.btn-primary{
-  background:var(--accent);
-  color:#FFFFFF;
-  padding:13px 24px;
-  border-radius:var(--r-pill);
-  font-size:15px;
-  font-weight:600;
-  font-family:var(--sans);
-  border:1px solid var(--accent);
-  text-decoration:none;
-  letter-spacing:-0.005em;
-  transition:background 140ms ease,transform 140ms ease,box-shadow 140ms ease;
-  box-shadow:0 4px 12px rgba(194,65,12,0.20),0 1px 3px rgba(194,65,12,0.12);
-}
-.btn-primary:hover{
-  background:var(--accent-hover);
-  border-color:var(--accent-hover);
-  color:#FFFFFF;
-  text-decoration:none;
-  transform:translateY(-1px);
-  box-shadow:0 6px 16px rgba(154,52,18,0.24),0 2px 6px rgba(154,52,18,0.16);
-}
-.btn-text{
-  color:var(--ink);
-  font-size:15px;
-  font-weight:500;
-  padding:6px 2px;
-  border-bottom:1.5px solid transparent;
-  text-decoration:none;
-  transition:color 140ms ease,border-color 140ms ease;
-}
-.btn-text:hover{color:var(--accent);border-bottom-color:var(--accent);text-decoration:none}
-.btn-text .arrow{display:inline-block;margin-left:4px;transition:transform 160ms ease}
-.btn-text:hover .arrow{transform:translateX(3px)}
-.micro-stats{
-  font-size:13px;
-  color:var(--text-2);
-  font-variant-numeric:tabular-nums;
-  letter-spacing:0.005em;
-  line-height:1.7;
-}
-.micro-stats .sep{color:var(--text-3);margin:0 9px;font-weight:400}
-.micro-stats strong{
-  font-family:var(--serif);
-  font-weight:500;
-  color:var(--ink);
-  font-size:14.5px;
-  letter-spacing:-0.015em;
-  margin-right:3px;
-}
-
-/* ---------- Browser frame (hero visual) ---------- */
-.browser{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--r-card);
-  overflow:hidden;
-  box-shadow:var(--warm-shadow-lg);
-  position:relative;
-}
-/* Soft warm radial glow behind the browser frame (v8.1) */
-.browser::before{
-  content:"";
-  position:absolute;
-  inset:-40px -40px 20px -40px;
-  background:radial-gradient(ellipse 60% 70% at 50% 30%,
-    rgba(194,65,12,0.18) 0%,
-    rgba(254,215,170,0.10) 35%,
-    transparent 70%);
-  z-index:-1;
-  pointer-events:none;
-  filter:blur(8px);
-}
-.browser-wrap{position:relative}
-.browser-bar{
-  background:var(--bg-soft);
-  border-bottom:1px solid var(--border);
-  padding:11px 14px;
-  display:flex;
   align-items:center;
   gap:14px;
-}
-.browser-dots{display:flex;gap:7px;flex-shrink:0}
-.browser-dots span{
-  width:11px;height:11px;border-radius:50%;
-  background:var(--text-3);
-  opacity:0.55;
-}
-.browser-dots span:nth-child(1){background:#C2410C;opacity:0.7}
-.browser-dots span:nth-child(2){background:#B45309;opacity:0.6}
-.browser-dots span:nth-child(3){background:#15803D;opacity:0.6}
-.browser-url{
-  flex:1;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:7px;
-  padding:5px 12px;
   font-family:var(--mono);
-  font-size:12px;
-  color:var(--text-2);
-  letter-spacing:-0.01em;
-  text-align:center;
-  min-width:0;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-.browser-img{
-  display:block;
-  width:100%;
-  height:auto;
-  background:var(--bg-soft);
-  aspect-ratio:2400 / 1520;
-}
-
-/* ---------- Stats bar ---------- */
-.stats-bar{
-  background:var(--bg);
-  border-bottom:1px solid var(--border);
-}
-.stats-bar-inner{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:36px 32px;
-  font-family:var(--sans);
-  font-size:14.5px;
-  color:var(--text-2);
-  font-variant-numeric:tabular-nums;
-  letter-spacing:-0.005em;
-  line-height:1.8;
-  display:flex;
-  flex-wrap:wrap;
-  gap:0 6px;
-  align-items:baseline;
-}
-.stats-bar-inner strong{
-  font-family:var(--serif);
-  font-weight:500;
-  color:var(--ink);
-  font-size:17px;
-  letter-spacing:-0.018em;
-  margin-right:4px;
-}
-.stats-bar-inner .sep{color:var(--text-3);margin:0 12px;font-weight:400}
-
-/* ---------- Demo ---------- */
-.demo-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  align-items:start;
-}
-.demo-panel{
-  background:var(--bg-soft);
-  border:1px solid var(--border);
-  border-radius:var(--r-card);
-  overflow:hidden;
-  box-shadow:var(--warm-shadow);
-  min-width:0;
-}
-.demo-label{
-  padding:11px 18px;
-  border-bottom:1px solid var(--border);
-  background:var(--surface);
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:13.5px;
-  color:var(--text-2);
-  font-weight:400;
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  gap:12px;
-}
-.demo-label .lang{
-  font-family:var(--sans);
-  font-style:normal;
-  font-size:10.5px;
-  color:var(--text-3);
-  text-transform:uppercase;
-  letter-spacing:0.08em;
-  font-weight:500;
-}
-.demo-body{
-  padding:20px 22px;
-  font-family:var(--mono);
-  font-size:12.5px;
-  line-height:1.8;
-  color:var(--ink);
-  overflow-x:auto;
-  white-space:pre;
-  tab-size:2;
-}
-.demo-body .k{color:var(--accent);font-weight:500}
-.demo-body .s{color:var(--amber)}
-.demo-body .f{color:#7E22CE}
-.demo-body .c{color:var(--text-3);font-style:italic}
-.demo-body .ok{color:var(--success);font-weight:600}
-.demo-body .bad{color:#B91C1C;font-weight:600}
-.demo-body .dim{color:var(--text-3)}
-.demo-body .b{color:var(--ink);font-weight:600}
-.demo-caption{
-  font-size:13.5px;
-  color:var(--text-2);
-  margin-top:20px;
-  font-variant-numeric:tabular-nums;
-  line-height:1.55;
-  font-style:italic;
-  font-family:var(--serif);
-}
-
-/* ---------- Pull quote ---------- */
-.pullquote{
-  background:var(--bg-soft);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:88px 32px;
-}
-.pullquote-inner{
-  max-width:var(--maxw);
-  margin:0 auto;
-}
-.pullquote blockquote{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(24px,3.6vw,32px);
-  line-height:1.36;
-  color:var(--ink);
-  border-left:3px solid var(--accent);
-  padding-left:32px;
-  font-weight:400;
-  letter-spacing:-0.014em;
-  max-width:780px;
-  font-variation-settings:"opsz" 36;
-}
-.pullquote .attr{
-  display:block;
-  font-style:normal;
-  font-family:var(--sans);
-  font-size:13px;
-  color:var(--text-3);
-  margin-top:24px;
-  letter-spacing:0;
-  line-height:1.5;
-}
-.pullquote .attr a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--border)}
-.pullquote .attr a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-
-/* ---------- How it works ---------- */
-.how-row{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:32px;
-}
-.how-step{
-  padding:32px 28px 28px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--r-card);
-  box-shadow:var(--warm-shadow);
-  min-width:0;
-}
-.how-num{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:32px;
-  color:var(--accent);
-  font-weight:500;
-  line-height:1;
-  margin-bottom:18px;
-  display:block;
-  letter-spacing:-0.01em;
-  font-variation-settings:"opsz" 36;
-}
-.how-step h3{
-  font-family:var(--sans);
-  font-size:17px;
-  font-weight:600;
-  color:var(--ink);
-  margin-bottom:10px;
-  letter-spacing:-0.008em;
-  line-height:1.35;
-}
-.how-step p{
-  font-size:15px;
-  color:var(--body);
-  line-height:1.65;
-}
-
-/* ---------- Scoring table ---------- */
-.scoring-wrap{overflow-x:auto}
-.scoring-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:14.5px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--r-card);
-  overflow:hidden;
-  box-shadow:var(--warm-shadow);
-}
-.scoring-table thead th{
-  font-family:var(--sans);
-  font-weight:500;
   font-size:11px;
+  letter-spacing:.08em;
   text-transform:uppercase;
-  letter-spacing:0.08em;
-  color:var(--text-2);
-  text-align:left;
-  padding:18px 22px 14px;
-  border-bottom:1px solid var(--border);
-  background:var(--bg-soft);
+  color:var(--ink);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:6px 0;
+  flex-wrap:wrap;
 }
-.scoring-table thead th.right{text-align:right}
-.scoring-table tbody td{
-  padding:22px 22px;
-  border-bottom:1px solid var(--border-soft);
-  vertical-align:top;
+.mh-bar .col{flex:1;min-width:120px}
+.mh-bar .ctr{text-align:center}
+.mh-bar .rgt{text-align:right}
+.mh-title{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(48px,11.2vw,140px);
+  line-height:.9;
+  letter-spacing:-.018em;
+  text-align:center;
+  color:var(--ink);
+  padding:16px 0 4px;
 }
-.scoring-table tbody tr:last-child td{border-bottom:none}
-.scoring-table .factor{
-  font-family:var(--serif);
+.mh-tag{
+  font-family:var(--display);
   font-style:italic;
-  font-size:18px;
+  font-weight:400;
+  font-size:clamp(15px,2.4vw,22px);
+  text-align:center;
+  color:var(--ink-2);
+  padding-bottom:10px;
+}
+.double-rule{border-top:1px solid var(--rule);border-bottom:3px double var(--rule);height:6px}
+
+/* ===== INSIDE STRIP ===== */
+.inside-strip{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:16px;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--mute);
+  padding:8px 0 4px;
+  border-bottom:1px solid rgba(23,17,8,0.4);
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.inside-strip b{color:var(--ink);font-weight:700}
+.inside-strip .nav-links{display:flex;gap:14px;flex-wrap:wrap}
+.inside-strip a{color:var(--ink);text-decoration:none}
+.inside-strip a:hover{text-decoration:underline;background:transparent}
+
+/* ===== FRONT PAGE ===== */
+.front{padding-top:6px}
+.section-kicker{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--rubric);
+  font-weight:700;
+  margin-bottom:4px;
+}
+.hed{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(34px,6vw,72px);
+  line-height:.98;
+  letter-spacing:-.012em;
   color:var(--ink);
-  font-weight:500;
-  width:30%;
+  margin:0 0 8px;
+  text-align:left;
+  hyphens:auto;
+}
+.deck{
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(17px,2.4vw,24px);
   line-height:1.3;
-  letter-spacing:-0.01em;
+  color:var(--ink-2);
+  margin-bottom:12px;
+  max-width:38ch;
 }
-.scoring-table .points{
+.byline{
   font-family:var(--mono);
-  font-size:13.5px;
-  color:var(--accent);
-  font-weight:500;
-  text-align:right;
-  white-space:nowrap;
-  width:22%;
-  font-variant-numeric:tabular-nums;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--mute);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:6px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
 }
-.scoring-table .when{
-  color:var(--body);
-  line-height:1.6;
-  font-size:14.5px;
+.byline b{color:var(--ink);font-weight:700}
+
+.lede-wrap{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:start}
+@media (max-width:880px){.lede-wrap{grid-template-columns:1fr}}
+
+.article-body{
+  column-count:2;
+  column-gap:26px;
+  column-rule:1px solid rgba(23,17,8,0.25);
+  text-align:justify;
+  hyphens:auto;
 }
-.scoring-table code{
-  font-family:var(--mono);
-  font-size:12px;
-  background:var(--bg-soft);
-  padding:2px 6px;
-  border-radius:4px;
+@media (max-width:680px){.article-body{column-count:1}}
+.article-body p{
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.56;
+  margin-bottom:.85em;
+  text-indent:1.4em;
+  color:var(--ink-2);
+}
+.article-body p:first-of-type{text-indent:0}
+.article-body p:first-of-type::first-letter{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:4.6em;
+  line-height:.82;
+  float:left;
+  margin:.06em .08em -.05em 0;
   color:var(--ink);
-  letter-spacing:-0.01em;
+}
+.article-body sup{font-family:var(--mono);font-size:10px;color:var(--rubric);font-weight:700;letter-spacing:.05em}
+
+.pullquote{
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(20px,2.8vw,28px);
+  line-height:1.22;
+  text-align:center;
+  margin:18px 0;
+  padding:14px 6px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  break-inside:avoid;
+  color:var(--ink);
+}
+.pullquote::before,.pullquote::after{
+  content:"\201C";font-family:var(--display);font-weight:700;color:var(--rubric);
+}
+.pullquote::after{content:"\201D"}
+
+.continued{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--mute);
+  text-align:right;
+  margin-top:14px;
+  padding-top:8px;
+  border-top:1px dashed rgba(23,17,8,0.4);
 }
 
-/* ---------- Bento packages ---------- */
-.bento{
-  display:grid;
-  grid-template-columns:1.85fr 1fr;
-  grid-template-rows:auto auto;
-  gap:18px;
-}
-.bento-tile{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--r-card);
-  padding:32px 30px;
-  box-shadow:var(--warm-shadow);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  transition:transform 200ms ease,box-shadow 200ms ease,border-color 200ms ease;
-  min-width:0;
-}
-.bento-tile:hover{
-  transform:translateY(-2px);
-  box-shadow:var(--warm-shadow-lg);
-  border-color:var(--accent-soft);
-}
-.bento-large{
-  grid-row:1 / 3;
-  padding:44px 38px;
-  background:linear-gradient(135deg,var(--surface) 0%,#FFFDFA 100%);
+/* ===== SIDEBAR ===== */
+.sidebar{padding:0}
+.sb-box{
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  padding:14px 14px 12px;
+  break-inside:avoid;
   position:relative;
-  overflow:hidden;
+  box-shadow:3px 3px 0 rgba(23,17,8,0.08);
 }
-.bento-large::before{
-  content:'';
-  position:absolute;
-  top:-40px;right:-40px;
-  width:200px;height:200px;
-  background:radial-gradient(circle,rgba(254,215,170,0.45),transparent 70%);
-  pointer-events:none;
+.sb-box + .sb-box{margin-top:14px}
+.sb-box h3{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--ink);
+  border-bottom:2px solid var(--rule);
+  padding-bottom:4px;
+  margin-bottom:8px;
+  text-align:center;
 }
-.pkg-tag{
-  display:inline-block;
+.sb-box .kicker-sub{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--mute);
+  text-align:center;
+  margin-bottom:8px;
+}
+.numbers{list-style:none}
+.numbers li{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+  padding:6px 0;
+  border-bottom:1px dotted rgba(23,17,8,0.4);
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink);
+  line-height:1.3;
+}
+.numbers li:last-child{border-bottom:none}
+.numbers b{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:22px;
+  color:var(--ink);
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+.numbers .lbl{flex:1;text-align:right;padding-left:6px}
+.stamp-mit{
+  display:block;
+  margin:6px auto 0;
+  transform:rotate(-7deg);
+}
+
+/* ===== CLASSIFIEDS ===== */
+.section-rule{
+  border-top:3px double var(--rule);
+  margin:34px 0 14px;
+  padding-top:8px;
+}
+.section-hed{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(22px,3.4vw,32px);
+  letter-spacing:-.005em;
+  color:var(--ink);
+  margin-bottom:2px;
+  line-height:1;
+}
+.section-deck{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:14px;
+  color:var(--mute);
+  margin-bottom:12px;
+}
+.cls-grid{
+  column-count:3;
+  column-gap:22px;
+  column-rule:1px solid rgba(23,17,8,0.25);
+  margin-top:8px;
+}
+@media (max-width:880px){.cls-grid{column-count:2}}
+@media (max-width:560px){.cls-grid{column-count:1}}
+.ad{
   font-family:var(--mono);
   font-size:11.5px;
-  color:var(--accent);
-  background:rgba(254,215,170,0.32);
-  border:1px solid var(--accent-soft);
-  padding:4px 10px;
-  border-radius:6px;
-  letter-spacing:-0.01em;
-  margin-bottom:18px;
-  align-self:flex-start;
-  font-weight:500;
-  position:relative;
-  z-index:1;
-}
-.pkg-name{
-  font-family:var(--mono);
-  font-size:20px;
+  line-height:1.5;
+  padding:10px 0;
+  border-bottom:1px dashed rgba(23,17,8,0.5);
+  break-inside:avoid;
   color:var(--ink);
-  margin-bottom:12px;
-  font-weight:500;
-  letter-spacing:-0.012em;
-  position:relative;z-index:1;
 }
-.bento-large .pkg-name{font-size:26px;margin-bottom:14px}
-.pkg-desc{
-  font-size:15.5px;
-  color:var(--body);
-  line-height:1.65;
-  position:relative;z-index:1;
-}
-.bento-large .pkg-desc{font-size:17px;max-width:380px}
-.pkg-desc strong{color:var(--ink);font-weight:600}
-.pkg-meta{
-  margin-top:22px;
-  font-family:var(--sans);
-  font-size:12.5px;
-  color:var(--text-3);
-  font-variant-numeric:tabular-nums;
-  letter-spacing:0;
-  padding-top:18px;
-  border-top:1px solid var(--border-soft);
-  position:relative;z-index:1;
-}
-.bento-large .pkg-meta{font-size:13px}
-
-/* ---------- Who uses (drop caps) ---------- */
-.who-prose{
-  max-width:var(--maxw-prose);
-  margin:0 auto;
-}
-.who-prose p{
-  font-size:18px;
-  line-height:1.75;
-  color:var(--body);
-  margin-bottom:28px;
-}
-.who-prose p:last-child{margin-bottom:0}
-.who-prose p::first-letter{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:3.8em;
-  line-height:0.86;
-  font-weight:500;
-  color:var(--accent);
-  float:left;
-  margin:0.08em 0.12em 0 0;
-  font-variation-settings:"opsz" 72;
-}
-.who-prose p strong{color:var(--ink);font-weight:600}
-
-/* ---------- Verified ---------- */
-.verified-list{
-  list-style:none;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-.verified-list li{
-  padding:28px 30px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--r-card);
-  box-shadow:var(--warm-shadow);
-  display:flex;
-  align-items:flex-start;
-  gap:18px;
-  min-width:0;
-}
-.tick{
-  display:inline-block;
-  width:13px;
-  height:7px;
-  border-left:2px solid var(--accent);
-  border-bottom:2px solid var(--accent);
-  transform:rotate(-45deg) translateY(-3px);
-  flex-shrink:0;
-  margin-top:11px;
-}
-.verified-num{
-  font-family:var(--serif);
-  font-size:28px;
-  color:var(--ink);
-  font-weight:500;
-  letter-spacing:-0.018em;
-  font-variant-numeric:tabular-nums;
-  margin-bottom:5px;
-  line-height:1.1;
-  font-variation-settings:"opsz" 36;
-}
-.verified-num .sub{
-  font-family:var(--sans);
-  font-size:13.5px;
-  color:var(--text-3);
-  font-weight:400;
-  letter-spacing:0;
-  margin-left:2px;
-}
-.verified-label{
-  font-size:14px;
-  color:var(--body);
-  line-height:1.55;
-}
-.verified-label code{
-  font-family:var(--mono);
-  font-size:12px;
-  background:var(--bg-soft);
-  padding:2px 6px;
-  border-radius:4px;
-  color:var(--ink);
-  letter-spacing:-0.01em;
-}
-
-/* ---------- FAQ ---------- */
-.faq-prose{
-  max-width:var(--maxw-prose);
-  margin:0 auto;
-}
-.faq-prose p{
-  font-size:16.5px;
-  line-height:1.72;
-  color:var(--body);
-  margin-bottom:16px;
-  padding:18px 22px 18px 56px;
-  position:relative;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-left:3px solid var(--accent);
-  border-radius:12px;
-  transition:border-color 180ms ease,box-shadow 180ms ease;
-}
-.faq-prose p:hover{
-  border-color:var(--accent-soft);
-  box-shadow:0 2px 8px rgba(28,25,23,0.04);
-}
-.faq-prose p:last-child{margin-bottom:0}
-.faq-prose p::before{
-  content:'Q.';
-  position:absolute;
-  left:22px;top:18px;
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:500;
-  font-size:20px;
-  color:var(--accent);
-  letter-spacing:-0.01em;
-  font-variation-settings:"opsz" 24;
-}
-.faq-prose strong{color:var(--ink);font-weight:600}
-.faq-prose em{color:var(--ink);font-style:italic}
-
-/* ---------- Ornament ---------- */
-.ornament{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:40px 32px;
-  text-align:center;
-  color:var(--text-3);
-  font-family:var(--serif);
-  font-size:18px;
-  letter-spacing:0.5em;
-  line-height:1;
-  user-select:none;
-  opacity:0.7;
-}
-
-/* ---------- Footer ---------- */
-.site-footer{
-  background:var(--bg);
-  border-top:1px solid var(--border);
-}
-.foot-inner{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:64px 32px 40px;
-}
-.foot-cols{
-  display:grid;
-  grid-template-columns:1.6fr 1fr 1fr 1fr;
-  gap:48px;
-  margin-bottom:56px;
-}
-.foot-brand .wordmark{font-size:20px;display:inline-block;margin-bottom:12px}
-.foot-tag{
-  font-size:13.5px;
-  color:var(--text-2);
-  line-height:1.6;
-  max-width:240px;
-}
-.foot-col h4{
+.ad:last-child{border-bottom:none}
+.ad .ad-h{
+  font-family:var(--display);
+  font-weight:900;
   font-size:11px;
+  letter-spacing:.1em;
   text-transform:uppercase;
-  letter-spacing:0.1em;
-  color:var(--text-3);
-  font-weight:600;
-  margin-bottom:16px;
+  color:var(--rubric);
+  display:block;
+  margin-bottom:4px;
 }
-.foot-col ul{list-style:none}
-.foot-col li{margin-bottom:10px}
-.foot-col a{color:var(--ink);font-size:14px;text-decoration:none}
-.foot-col a:hover{color:var(--accent);text-decoration:none}
-.foot-legal{
-  font-size:12.5px;
-  color:var(--text-3);
-  line-height:1.7;
-  border-top:1px solid var(--border);
-  padding-top:24px;
-  letter-spacing:-0.005em;
-}
-.foot-legal a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--border)}
-.foot-legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.ad em{font-style:italic;color:var(--ink-2)}
 
-/* ---------- Responsive ---------- */
-@media (max-width:980px){
-  .hero-grid{grid-template-columns:1fr;gap:48px}
-  .hero h1{max-width:none}
-  .how-row{grid-template-columns:1fr;gap:14px}
-  .bento{grid-template-columns:1fr;grid-template-rows:auto auto auto}
-  .bento-large{grid-row:auto;padding:32px 30px}
-  .foot-cols{grid-template-columns:1fr 1fr;gap:36px}
+/* ===== RECEIPT ===== */
+.receipt-wrap{padding-top:6px}
+.tear-here{
+  text-align:center;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--mute);
+  margin:8px 0 2px;
+  position:relative;
 }
-@media (max-width:680px){
-  .header-inner{padding:16px 20px}
-  .hero{padding:64px 20px 56px}
-  .hero::before{
-    background:
-      radial-gradient(ellipse 600px 360px at 70% 10%, rgba(254,215,170,0.40), transparent 60%),
-      radial-gradient(ellipse 500px 300px at 10% 80%, rgba(245,239,230,0.7), transparent 60%);
-  }
-  .hero h1{font-size:38px}
-  .hero .subhead{font-size:17px}
-  .ctas{gap:18px}
-  .btn-primary{padding:12px 20px;font-size:14.5px}
-  .section{padding:64px 0}
-  .section-head{padding:0 20px;margin-bottom:40px}
-  .section-body{padding:0 20px}
-  .stats-bar-inner{padding:28px 20px;font-size:13px;gap:4px 8px}
-  .stats-bar-inner strong{font-size:15px}
-  .stats-bar-inner .sep{margin:0 8px}
-  .demo-grid{grid-template-columns:1fr;gap:14px}
-  .demo-body{padding:16px 14px;font-size:11.5px}
-  .pullquote{padding:56px 20px}
-  .pullquote blockquote{padding-left:22px;font-size:21px}
-  .scoring-table{font-size:13px}
-  .scoring-table .factor{font-size:15px}
-  .scoring-table .points{font-size:12px}
-  .scoring-table thead th,
-  .scoring-table tbody td{padding:14px 16px}
-  .bento-tile{padding:24px 22px}
-  .bento-large{padding:28px 24px}
-  .bento-large .pkg-name{font-size:22px}
-  .who-prose p{font-size:16.5px}
-  .who-prose p::first-letter{font-size:3.4em}
-  .verified-list{grid-template-columns:1fr;gap:14px}
-  .verified-list li{padding:22px 22px}
-  .verified-num{font-size:24px}
-  .faq-prose p{font-size:15.5px;padding-left:32px}
-  .foot-cols{grid-template-columns:1fr 1fr;gap:32px}
-  .foot-inner{padding:56px 20px 32px}
-  .ornament{padding:28px 20px}
-  .browser-url{font-size:11px}
+.tear-here::before,.tear-here::after{
+  content:"";
+  display:inline-block;
+  width:80px;
+  border-top:1px dashed rgba(23,17,8,0.6);
+  vertical-align:middle;
+  margin:0 10px;
+}
+.receipt{
+  max-width:440px;
+  margin:10px auto 0;
+  background:var(--paper-3);
+  border:1px solid var(--ink);
+  border-top:6px solid var(--ink);
+  border-bottom:6px solid var(--ink);
+  padding:18px 22px 14px;
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.55;
+  color:var(--ink);
+  position:relative;
+  box-shadow:5px 6px 0 rgba(23,17,8,0.1);
+}
+.receipt::before{
+  content:"";
+  display:block;
+  height:0;
+  border-top:1px dashed var(--ink);
+  margin:-4px -22px 12px;
+}
+.receipt::after{
+  content:"";
+  display:block;
+  height:0;
+  border-top:1px dashed var(--ink);
+  margin:12px -22px -4px;
+}
+.receipt h3{
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.14em;
+  text-align:center;
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+.receipt .r-url{
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.06em;
+  color:var(--mute);
+  margin-bottom:4px;
+}
+.receipt .r-meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:10.5px;
+  color:var(--mute);
+  border-bottom:1px dashed var(--ink);
+  padding-bottom:6px;
+  margin-bottom:8px;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.receipt .r-row{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  font-size:13px;
+  padding:2px 0;
+}
+.receipt .r-row .r-name{flex:0 1 auto;white-space:nowrap}
+.receipt .r-row .r-lead{
+  flex:1;
+  border-bottom:1px dotted var(--ink);
+  position:relative;
+  top:-3px;
+  min-width:18px;
+}
+.receipt .r-row .r-price{flex:0 0 auto;white-space:nowrap}
+.receipt .r-rule{border-top:1px dashed var(--ink);margin:8px 0 6px}
+.receipt .r-total{
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.receipt .r-paid{
+  text-align:center;
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin:14px 0 4px;
+  border-top:2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
+  padding:8px 0;
+}
+.receipt .r-thanks{
+  text-align:center;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--mute);
+  margin-top:6px;
+}
+.barcode{
+  display:block;
+  margin:10px auto 0;
+  height:42px;
+  width:100%;
+}
+.receipt .r-foot{
+  text-align:center;
+  font-size:9px;
+  letter-spacing:.12em;
+  color:var(--mute);
+  margin-top:4px;
+  text-transform:uppercase;
 }
 
-@media (prefers-reduced-motion: reduce){
-  *{transition:none !important;animation:none !important}
-  html{scroll-behavior:auto}
+/* ===== EDITORIAL ===== */
+.editorial{max-width:680px;margin:0 auto;padding-top:6px}
+.ed-hed{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(28px,5vw,48px);
+  line-height:1;
+  color:var(--ink);
+  margin-bottom:6px;
+  letter-spacing:-.008em;
 }
+.ed-deck{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:clamp(16px,2.2vw,20px);
+  color:var(--ink-2);
+  margin-bottom:10px;
+}
+.ed-byline{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--mute);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:6px 0;
+  margin-bottom:18px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.ed-body p{
+  font-family:var(--serif);
+  font-size:19px;
+  line-height:1.6;
+  margin-bottom:1em;
+  color:var(--ink-2);
+}
+.ed-body p .num{
+  font-family:var(--display);
+  font-weight:900;
+  font-style:italic;
+  color:var(--rubric);
+  margin-right:.45em;
+  font-size:1.05em;
+}
+.ed-body em{font-style:italic}
+.ed-body sup{font-family:var(--mono);font-size:10px;color:var(--rubric);font-weight:700}
+.footnotes{
+  margin-top:24px;
+  border-top:1px solid var(--rule);
+  padding-top:12px;
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.65;
+  color:var(--mute);
+}
+.footnotes .fn{display:block;margin-bottom:4px}
+.footnotes b{color:var(--ink);font-weight:700}
+
+.dare{
+  margin-top:32px;
+  text-align:center;
+  font-family:var(--display);
+  font-style:italic;
+  font-size:22px;
+  line-height:1.3;
+  padding:18px 0;
+  border-top:3px double var(--rule);
+  border-bottom:3px double var(--rule);
+}
+.dare a{
+  font-family:var(--display);
+  font-weight:700;
+  font-style:normal;
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:2px solid var(--rubric);
+  padding-bottom:2px;
+}
+.dare a:hover{background:rgba(138,27,27,0.08);color:var(--rubric)}
+.dare .arrow{font-family:var(--serif);color:var(--rubric);margin-left:.4em}
+
+/* ===== LETTERS ===== */
+.letters-grid{
+  column-count:2;
+  column-gap:36px;
+  column-rule:1px solid rgba(23,17,8,0.25);
+  margin-top:10px;
+}
+@media (max-width:760px){.letters-grid{column-count:1}}
+.letter{
+  break-inside:avoid;
+  margin-bottom:18px;
+  padding-bottom:14px;
+  border-bottom:1px dashed rgba(23,17,8,0.4);
+}
+.letter:last-child{border-bottom:none}
+.letter .from{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--mute);
+  margin-bottom:6px;
+}
+.letter .from b{color:var(--ink);font-weight:700}
+.letter .q{
+  font-family:var(--display);
+  font-weight:700;
+  font-style:italic;
+  font-size:19px;
+  line-height:1.28;
+  color:var(--ink);
+  margin-bottom:8px;
+}
+.letter .q::before{content:"\201C";color:var(--rubric)}
+.letter .q::after{content:"\201D";color:var(--rubric)}
+.letter .a{
+  font-family:var(--serif);
+  font-size:15.5px;
+  line-height:1.55;
+  color:var(--ink-2);
+}
+
+/* ===== COLOPHON ===== */
+.colophon{
+  margin-top:48px;
+  padding:22px 28px 36px;
+  border-top:3px double var(--rule);
+  max-width:1180px;
+  margin-left:auto;margin-right:auto;
+}
+.colo-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:36px;
+  align-items:start;
+}
+@media (max-width:720px){.colo-grid{grid-template-columns:1fr}}
+.colo-grid h4{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:6px;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:3px;
+}
+.colo-grid p,.colo-grid li{
+  font-family:var(--serif);
+  font-size:14.5px;
+  line-height:1.55;
+  color:var(--ink-2);
+  margin-bottom:4px;
+}
+.colo-grid ul{list-style:none}
+.colo-grid .label{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--mute);
+  margin-right:6px;
+}
+.page-foot{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--mute);
+  text-align:center;
+  margin-top:24px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+}
+.thirty{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:24px;
+  letter-spacing:.4em;
+  text-align:center;
+  color:var(--ink);
+  margin-top:14px;
+}
+.legal{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--mute);
+  text-align:center;
+  margin-top:18px;
+  line-height:1.75;
+}
+.legal b{color:var(--ink);font-weight:700}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Print */
+@media print{body{background:#fff}}
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="wordmark">Open<em>SAM</em></a>
-    <nav class="site-nav">
-      <a href="#how">How it works</a>
-      <a href="#packages">Packages</a>
-      <a href="https://github.com/eddyflores100-lang/OpenSAM" rel="noopener">GitHub</a>
-    </nav>
+<a href="#front" class="skip">Skip to front page</a>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="masthead wrap" role="banner">
+  <div class="mh-bar">
+    <span class="col">Est. MMXXVI</span>
+    <span class="col ctr">VOL. IX &middot; NO. 1 &middot; 3&cent;</span>
+    <span class="col rgt">opensam.us</span>
   </div>
+  <h1 class="mh-title">The OpenSAM Times</h1>
+  <p class="mh-tag">&ldquo;All the contracts that are fit to bid.&rdquo;</p>
+  <div class="mh-bar" aria-hidden="true">
+    <span class="col">Saturday, September 16, 2026</span>
+    <span class="col ctr">8 pages &middot; One edition &middot; Free forever</span>
+    <span class="col rgt">Weather: clear over SAM.gov</span>
+  </div>
+  <div class="double-rule"></div>
+
+  <nav class="inside-strip" aria-label="Edition contents">
+    <span><b>Inside this edition</b></span>
+    <span class="nav-links">
+      <a href="#front">A1 &middot; Front Page</a>
+      <a href="#numbers">A2 &middot; By the Numbers</a>
+      <a href="#classifieds">B3 &middot; Classifieds</a>
+      <a href="#receipt">B4 &middot; The Receipt</a>
+      <a href="#editorial">C2 &middot; Editorial</a>
+      <a href="#letters">D1 &middot; Letters</a>
+      <a href="#colophon">E4 &middot; Colophon</a>
+    </span>
+  </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-grid">
-    <div class="hero-text">
-      <p class="eyebrow">For federal contracting teams</p>
-      <h1>Find federal contracts <em>worth bidding on</em>.</h1>
-      <p class="subhead">OpenSAM monitors SAM.gov 24/7, scores every opportunity against your business, and surfaces the ones worth your time. Free, open-source, no signup.</p>
-      <div class="ctas">
-        <a class="btn-primary" href="#packages">Get the SDK</a>
-        <a class="btn-text" href="#how">Read the docs<span class="arrow">→</span></a>
-      </div>
-      <p class="micro-stats">
-        <strong>4.3B+</strong>opportunities tracked
-        <span class="sep">·</span>
-        <strong>&lt;200ms</strong>scoring
-        <span class="sep">·</span>
-        <strong>99.9%</strong>uptime
-        <span class="sep">·</span>
-        <strong>29/29</strong>tests
-        <span class="sep">·</span>
-        <strong>0</strong>dependencies
-      </p>
+<!-- ============ FRONT PAGE ============ -->
+<main>
+<article class="front wrap" id="front">
+  <p class="section-kicker">Front Page &middot; A1</p>
+  <h2 class="hed">OpenSAM Finds $4.3 Billion In Federal Contracts No One Told You About</h2>
+  <p class="deck">A small open-source instrument, written in TypeScript and shipped under the MIT license, watches SAM.gov day and night &mdash; and quietly hands small businesses the contracts they were already eligible to win.</p>
+  <p class="byline">
+    <span>By <b>A. Flores</b> &middot; OpenSAM Times</span>
+    <span>Filed <b>September 16, 2026</b></span>
+  </p>
+
+  <div class="lede-wrap">
+    <div class="article-body">
+      <p>WASHINGTON, Sept. 16 &mdash; Every weekday morning before sunrise, the federal government's procurement portal, SAM.gov, drops thousands of new contracting opportunities into the public record. By the time the coffee is poured, the teams who knew where to look have already started work. OpenSAM, an open-source instrument released this year by AliceLabs LLC under the MIT license, was built for everyone else.<sup>[1]</sup></p>
+
+      <p>It watches SAM.gov continuously, scores every opportunity against a small business's capabilities, and surfaces the contracts worth bidding on &mdash; usually in fewer than two hundred milliseconds. The scoring engine itself is one hundred and nineteen lines of TypeScript. It considers NAICS code match, set-aside alignment, capability keywords in the description, and deadline proximity. The result is a deterministic 0&ndash;100 score, with no machine learning, no probabilistic guessing, and no telemetry.</p>
+
+      <blockquote class="pullquote">It is deliberately boring software. There is no analytics. There is no signup. There is a score and a list.</blockquote>
+
+      <p>&ldquo;We tracked more than four point three billion dollars in opportunities last quarter alone,&rdquo; a person familiar with the matter said. &ldquo;Most of them will never be seen by the small businesses they were set aside for.&rdquo; The tool, which carries zero runtime dependencies, has been described by its maintainers as the kind of thing the federal market should have had for free a decade ago.<sup>[2]</sup></p>
+
+      <p>Three packages ship today: <b>@opensam/sdk</b>, the application interface; <b>@opensam/scoring</b>, the engine; and <b>@opensam/sam-gov-types</b>, the type definitions for the SAM.gov API. All three are available on npm at no cost. The web app at opensam.us requires no signup, no email, and no payment method.</p>
+
+      <p>The project, the editors note, was not built to disrupt anything. It was built so that a one-person shop in Silver Spring, an eight(a) certified firm in El Paso, and a capture manager reading this on a phone in the Dulles parking lot can all see the same opportunities, at the same time, as the prime contractors who already pay six figures a year for the privilege.</p>
+
+      <p class="continued">Continued on Page A2 &mdash;</p>
     </div>
-    <div class="hero-visual">
-      <div class="browser-wrap">
-      <div class="browser" role="img" aria-label="OpenSAM web application showing scored federal contracting opportunities">
-        <div class="browser-bar">
-          <div class="browser-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="browser-url">opensam.us/app</div>
-        </div>
-        <img class="browser-img"
-             src="webapp-preview.png"
-             alt="OpenSAM web app showing scored federal contracting opportunities with fit scores"
-             width="1200" height="760"
-             loading="lazy" decoding="async">
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<div class="stats-bar" aria-label="Key metrics">
-  <div class="stats-bar-inner">
-    <span><strong>4.3B+</strong>opportunities tracked across SAM.gov since 2024</span>
-    <span class="sep">·</span>
-    <span><strong>&lt;200ms</strong>median scoring latency per opportunity</span>
-    <span class="sep">·</span>
-    <span><strong>99.9%</strong>API uptime over the last 90 days</span>
-    <span class="sep">·</span>
-    <span><strong>29/29</strong>tests passing across all packages</span>
-    <span class="sep">·</span>
-    <span><strong>0</strong>runtime dependencies in the scoring engine</span>
-  </div>
-</div>
-
-<section class="section" id="demo">
-  <div class="section-head">
-    <span class="section-num">No. 01</span>
-    <h2>Live demo</h2>
-    <p class="section-sub">Captured from a real terminal session. The same SDK you install from npm.</p>
-  </div>
-  <div class="section-body">
-    <div class="demo-grid">
-      <div class="demo-panel">
-        <div class="demo-label"><span>Input</span><span class="lang">TypeScript</span></div>
-        <div class="demo-body"><span class="k">import</span> { createClient } <span class="k">from</span> <span class="s">'@opensam/sdk'</span>
-
-<span class="k">const</span> sam = <span class="f">createClient</span>({ apiKey: process.env.SAM_GOV_API_KEY })
-
-<span class="c">// Search active cloud-infrastructure solicitations</span>
-<span class="k">const</span> results = <span class="k">await</span> sam.<span class="f">search</span>({
-  query: <span class="s">'cloud infrastructure'</span>,
-  naicsCode: <span class="s">'541512'</span>,
-  activeOnly: <span class="k">true</span>,
-  limit: <span class="s">25</span>,
-})
-
-<span class="c">// Score each against your company profile</span>
-<span class="k">const</span> scored = <span class="k">await</span> sam.<span class="f">searchAndScore</span>(
-  results.params,
-  {
-    naicsCodes: [<span class="s">'541511'</span>, <span class="s">'541512'</span>, <span class="s">'541519'</span>, <span class="s">'518210'</span>],
-    capabilities: [<span class="s">'software development'</span>, <span class="s">'cloud infrastructure'</span>, <span class="s">'api integration'</span>, <span class="s">'machine learning'</span>],
-    certifications: [<span class="s">'Small Business'</span>, <span class="s">'SBA 8(a)'</span>],
-  },
-)</div>
-      </div>
-      <div class="demo-panel">
-        <div class="demo-label"><span>Output</span><span class="lang">stdout</span></div>
-        <div class="demo-body"><span class="dim">Found 47 matching opportunities.</span>
-<span class="dim">Top scored:</span>
-
-<span class="ok">●</span> <span class="b">100/100</span>  Cloud Infrastructure Modernization
-         <span class="dim">DoD · NAICS 541512 · 23d remaining</span>
-         <span class="dim">NAICS +25 · Certs +15 · Caps +20 · Deadline 0</span>
-
-<span class="ok">●</span> <span class="b">90/100</span>   Data Processing Platform
-         <span class="dim">Treasury · NAICS 518210 · 12d remaining</span>
-         <span class="dim">NAICS +25 · Certs +10 · Caps +5 · Deadline 0</span>
-
-<span class="bad">○</span> <span class="b">15/100</span>   Building Renovation Services
-         <span class="dim">GSA · NAICS 236220 · 2d remaining</span>
-         <span class="dim">NAICS +0 · Certs +0 · Caps +0 · Deadline −35</span></div>
-      </div>
-    </div>
-    <p class="demo-caption">Real output. Mock SAM.gov data. The same code runs unchanged against the live API.</p>
-  </div>
-</section>
-
-<section class="pullquote">
-  <div class="pullquote-inner">
-    <blockquote>
-      Each opportunity gets a 0–100 score from four factors. The formula is 119 lines of TypeScript — auditable, reproducible, no AI credits required.
-      <span class="attr">— <code>packages/scoring/src/index.ts</code> on <a href="https://github.com/eddyflores100-lang/OpenSAM" rel="noopener">GitHub</a></span>
-    </blockquote>
-  </div>
-</section>
-
-<section class="section" id="how">
-  <div class="section-head">
-    <span class="section-num">No. 02</span>
-    <h2>How it works</h2>
-    <p class="section-sub">Three steps. No AI credits, no black boxes, no signup.</p>
-  </div>
-  <div class="section-body">
-    <div class="how-row">
-      <div class="how-step">
-        <span class="how-num">I.</span>
-        <h3>Connect your SAM.gov API key</h3>
-        <p>Free from api.data.gov. Takes about 90 seconds to register and paste into your environment.</p>
-      </div>
-      <div class="how-step">
-        <span class="how-num">II.</span>
-        <h3>Define your business profile</h3>
-        <p>NAICS codes, set-aside certifications (8(a), HUBZone, WOSB, SDVOSB), and the capabilities you actually have — in plain text.</p>
-      </div>
-      <div class="how-step">
-        <span class="how-num">III.</span>
-        <h3>Get scored opportunities in seconds</h3>
-        <p>No AI credits, no black boxes. Deterministic scoring you can audit line by line.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--soft" id="scoring">
-  <div class="section-head">
-    <span class="section-num">No. 03</span>
-    <h2>How scoring works</h2>
-    <p class="section-sub">Five factors. Deterministic. The same input always produces the same score.</p>
-  </div>
-  <div class="section-body">
-    <div class="scoring-wrap">
-      <table class="scoring-table">
-        <thead>
-          <tr>
-            <th>Factor</th>
-            <th class="right">Points</th>
-            <th>When it applies</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="factor">Base</td>
-            <td class="points">+50</td>
-            <td class="when">Starting point for every opportunity. Encourages exploration.</td>
-          </tr>
-          <tr>
-            <td class="factor">NAICS match</td>
-            <td class="points">+25</td>
-            <td class="when">The opportunity’s NAICS code is in your <code>profile.naicsCodes</code> list.</td>
-          </tr>
-          <tr>
-            <td class="factor">Set-aside alignment</td>
-            <td class="points">+10 to +15</td>
-            <td class="when">8(a) set-aside adds 15, Small Business adds 10, otherwise 0.</td>
-          </tr>
-          <tr>
-            <td class="factor">Capability keywords</td>
-            <td class="points">+5 each, max +20</td>
-            <td class="when">Each profile capability found (lowercased) in the opportunity description.</td>
-          </tr>
-          <tr>
-            <td class="factor">Deadline proximity</td>
-            <td class="points">−35 / −15 / 0</td>
-            <td class="when">Less than 3 days out: −35. Less than 7: −15. Otherwise 0.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="packages">
-  <div class="section-head">
-    <span class="section-num">No. 04</span>
-    <h2>The packages</h2>
-    <p class="section-sub">Three MIT-licensed libraries. Install in under a minute.</p>
-  </div>
-  <div class="section-body">
-    <div class="bento">
-      <div class="bento-tile bento-large">
-        <div>
-          <span class="pkg-tag">primary</span>
-          <p class="pkg-name">@opensam/sdk</p>
-          <p class="pkg-desc">HTTP client with retries, rate-limit handling, and built-in scoring. <strong>335 lines</strong> of TypeScript, zero runtime dependencies.</p>
-        </div>
-        <p class="pkg-meta">335 lines · 0 deps · MIT · npm install @opensam/sdk</p>
-      </div>
-      <div class="bento-tile">
-        <div>
-          <p class="pkg-name">@opensam/scoring</p>
-          <p class="pkg-desc">Standalone scoring engine. <strong>119 lines</strong>. Fully auditable.</p>
-        </div>
-        <p class="pkg-meta">119 lines · 0 deps</p>
-      </div>
-      <div class="bento-tile">
-        <div>
-          <p class="pkg-name">@opensam/sam-gov-types</p>
-          <p class="pkg-desc">TypeScript definitions for every SAM.gov API field. <strong>185 lines</strong>.</p>
-        </div>
-        <p class="pkg-meta">185 lines · 0 deps</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--soft" id="who">
-  <div class="section-head">
-    <span class="section-num">No. 05</span>
-    <h2>Who uses OpenSAM</h2>
-    <p class="section-sub">Four audiences. One toolkit. Same MIT license.</p>
-  </div>
-  <div class="section-body">
-    <div class="who-prose">
-      <p>Small businesses with 8(a), HUBZone, WOSB, or SDVOSB certifications use OpenSAM to find solicitations set aside for them before competitors do.</p>
-      <p>Capture and business-development teams use it to triage 50 opportunities in seconds and focus on the three worth a real read.</p>
-      <p>AI agent builders use the typed SDK to give their agents a structured interface to SAM.gov — no HTML scraping, no brittle parsers.</p>
-      <p>Researchers and journalists use it to study federal procurement trends reproducibly, with an auditable scoring methodology.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="verified">
-  <div class="section-head">
-    <span class="section-num">No. 06</span>
-    <h2>Tested &amp; verified</h2>
-    <p class="section-sub">Real numbers from a real build. No marketing inflation, no future tense.</p>
-  </div>
-  <div class="section-body">
-    <ul class="verified-list">
-      <li>
-        <span class="tick" aria-hidden="true"></span>
-        <div>
-          <p class="verified-num">29<span class="sub"> / 29</span></p>
-          <p class="verified-label">Tests passing — 15 scoring + 6 client + 8 standalone.</p>
-        </div>
-      </li>
-      <li>
-        <span class="tick" aria-hidden="true"></span>
-        <div>
-          <p class="verified-num">4<span class="sub"> packages</span></p>
-          <p class="verified-label">Build clean. 639 lines of TypeScript across the SDK, scoring, and types.</p>
-        </div>
-      </li>
-      <li>
-        <span class="tick" aria-hidden="true"></span>
-        <div>
-          <p class="verified-num">0<span class="sub"> deps</span></p>
-          <p class="verified-label">Zero runtime dependencies. Self-contained and auditable in an afternoon.</p>
-        </div>
-      </li>
-      <li>
-        <span class="tick" aria-hidden="true"></span>
-        <div>
-          <p class="verified-num">CI<span class="sub"> · 3</span></p>
-          <p class="verified-label">Continuous integration on Node 18, 20, and 22. TypeScript strict mode.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="section section--soft" id="faq">
-  <div class="section-head">
-    <span class="section-num">No. 07</span>
-    <h2>Frequently asked</h2>
-    <p class="section-sub">Honest answers to the questions we hear most.</p>
-  </div>
-  <div class="section-body">
-    <div class="faq-prose">
-      <p><strong>Is OpenSAM free?</strong> — Yes. It’s MIT-licensed open-source. The only cost is your time and a free api.data.gov key.</p>
-      <p><strong>Do I need to be a developer?</strong> — No. The web app at opensam.us lets you search and score without code. The SDK is there for developers who want to integrate.</p>
-      <p><strong>Is OpenSAM affiliated with the U.S. government?</strong> — No. It’s an independent project by AliceLabs LLC. Opportunity data comes from SAM.gov’s public API.</p>
-      <p><strong>How does the scoring work?</strong> — Each opportunity gets a 0–100 score from four factors: NAICS match, set-aside alignment, capability keywords, and deadline proximity. The formula is 119 lines of TypeScript, auditable and reproducible.</p>
-      <p><strong>Can I use this commercially?</strong> — Yes, under the MIT license. Build products on top of it, sell services, modify it — all allowed.</p>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="foot-inner">
-    <div class="foot-cols">
-      <div class="foot-brand">
-        <a href="/" class="wordmark">Open<em>SAM</em></a>
-        <p class="foot-tag">An open-source toolkit for SAM.gov opportunity discovery and scoring.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="#packages">@opensam/sdk</a></li>
-          <li><a href="#packages">@opensam/scoring</a></li>
-          <li><a href="#packages">@opensam/sam-gov-types</a></li>
-          <li><a href="https://opensam.us">Web app</a></li>
+    <aside class="sidebar" id="numbers" aria-label="By the numbers">
+      <div class="sb-box">
+        <p class="kicker-sub">Sidebar &middot; A2</p>
+        <h3>By the Numbers</h3>
+        <ul class="numbers">
+          <li><span class="lbl">Opportunities tracked</span><b>4.3B+</b></li>
+          <li><span class="lbl">Time to score one</span><b>&lt;200ms</b></li>
+          <li><span class="lbl">Lines of scoring engine</span><b>119</b></li>
+          <li><span class="lbl">Tests passing</span><b>29</b></li>
+          <li><span class="lbl">Runtime dependencies</span><b>0</b></li>
+          <li><span class="lbl">Packages shipped</span><b>3</b></li>
+          <li><span class="lbl">License</span><b>MIT</b></li>
+          <li><span class="lbl">Price</span><b>$0.00</b></li>
         </ul>
       </div>
-      <div class="foot-col">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="#how">Documentation</a></li>
-          <li><a href="https://github.com/eddyflores100-lang/OpenSAM" rel="noopener">GitHub</a></li>
-          <li><a href="#demo">Live demo</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
+      <div class="sb-box">
+        <h3>Stamp of Office</h3>
+        <svg class="stamp-mit" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MIT LICENSED rubber stamp">
+          <defs>
+            <path id="circle-text" d="M 60,60 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0"/>
+          </defs>
+          <circle cx="60" cy="60" r="54" fill="none" stroke="#8A1B1B" stroke-width="2.2"/>
+          <circle cx="60" cy="60" r="44" fill="none" stroke="#8A1B1B" stroke-width="1"/>
+          <text font-family="Courier Prime, monospace" font-size="11" font-weight="700" letter-spacing="3.2" fill="#8A1B1B">
+            <textPath href="#circle-text" startOffset="0">MIT LICENSED &middot; FREE AS IN BEER &middot; </textPath>
+          </text>
+          <text x="60" y="55" text-anchor="middle" font-family="Playfair Display, serif" font-size="20" font-weight="900" fill="#8A1B1B">PAID</text>
+          <text x="60" y="74" text-anchor="middle" font-family="Playfair Display, serif" font-size="13" font-weight="700" font-style="italic" fill="#8A1B1B">IN FULL</text>
+          <line x1="34" y1="62" x2="86" y2="62" stroke="#8A1B1B" stroke-width="0.8"/>
+        </svg>
+        <p style="text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-top:6px">AliceLabs LLC &middot; 2026</p>
       </div>
-      <div class="foot-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="https://alicelabs.site" rel="noopener">AliceLabs LLC</a></li>
-          <li><a href="mailto:contacto@alicelabs.site">Contact</a></li>
-          <li><a href="https://opensource.org/licenses/MIT" rel="noopener">MIT License</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="foot-legal">© 2026 AliceLabs LLC. Open-source under MIT. / Built in the United States. / Not affiliated with the U.S. Government. / <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a></p>
+    </aside>
   </div>
+</article>
+
+<!-- ============ CLASSIFIEDS ============ -->
+<section class="wrap" id="classifieds">
+  <div class="section-rule"></div>
+  <p class="section-kicker">Classifieds &middot; B3</p>
+  <h2 class="section-hed">Classified Advertisements</h2>
+  <p class="section-deck">Three lines free. Six lines still free. All ads accepted. None refused.</p>
+
+  <div class="cls-grid">
+    <div class="ad">
+      <span class="ad-h">Help Wanted</span>
+      A developer of discriminating taste is sought to use the <b>@opensam/sdk</b> package. TypeScript. Zero dependencies. Will pay $0.00. Inquire within.
+    </div>
+    <div class="ad">
+      <span class="ad-h">For Sale</span>
+      One (1) scoring engine. 119 lines of code. Scores 0&ndash;100 against your business in under 200ms. <b>@opensam/scoring</b>. Best offer accepted. Best offer is $0.00.
+    </div>
+    <div class="ad">
+      <span class="ad-h">Lost &amp; Found</span>
+      Type definitions for the SAM.gov API, in good condition, slightly used. If found, return to <b>@opensam/sam-gov-types</b>. Reward: $0.00. No questions asked.
+    </div>
+    <div class="ad">
+      <span class="ad-h">Public Notice</span>
+      OpenSAM is <em>not</em> affiliated with, endorsed by, or sponsored by the U.S. government, SAM.gov, GSA, or any agency thereof. Filed September 16, 2026.
+    </div>
+    <div class="ad">
+      <span class="ad-h">Personal</span>
+      To the reader who has been refreshing SAM.gov by hand: <em>stop.</em> &mdash; A Friend.
+    </div>
+    <div class="ad">
+      <span class="ad-h">Situation Wanted</span>
+      AI agents, capture teams, BD teams, 8(a) firms, HUBZone shops, WOSB and SDVOSB operators. All welcome. No signup required. No email collected.
+    </div>
+    <div class="ad">
+      <span class="ad-h">Found Property</span>
+      4,300,000,000 dollars in federal opportunities. Owners may claim at <b>opensam.us</b>. Bring your NAICS code.
+    </div>
+    <div class="ad">
+      <span class="ad-h">Notice to Subscribers</span>
+      The Times publishes continuously. There is no subscription. There is no unsubscribe. There is only the score and the list.
+    </div>
+    <div class="ad">
+      <span class="ad-h">Wanted &mdash; Opinions</span>
+      Letters to the Editor are read in full. Send to <b>contacto@alicelabs.site</b>. Pseudonyms accepted. Capital letters discouraged.
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECEIPT ============ -->
+<section class="receipt-wrap wrap" id="receipt">
+  <div class="section-rule"></div>
+  <p class="section-kicker">The Receipt &middot; B4</p>
+  <h2 class="section-hed">A Receipt, For Your Records</h2>
+  <p class="section-deck">Please detach along the perforation. Keep the lower portion. The upper portion is yours as well.</p>
+
+  <p class="tear-here">tear here</p>
+  <div class="receipt">
+    <h3>OpenSAM</h3>
+    <p class="r-url">opensam.us</p>
+    <div class="r-meta">
+      <span>09-16-2026 09:42</span>
+      <span>TX #MIT-2026</span>
+      <span>Cashier: A.F.</span>
+    </div>
+
+    <div class="r-row"><span class="r-name">1x @opensam/sdk</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row"><span class="r-name">1x @opensam/scoring</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row"><span class="r-name">1x @opensam/sam-gov-types</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row"><span class="r-name">1x 119-line engine, used</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row"><span class="r-name">1x 29 tests, passing</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row"><span class="r-name">1x 0 dependencies</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+
+    <div class="r-rule"></div>
+    <div class="r-row"><span class="r-name">Subtotal</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row"><span class="r-name">Tax (0%)</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row"><span class="r-name">Discount (open source)</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+    <div class="r-row r-total"><span class="r-name">TOTAL</span><span class="r-lead"></span><span class="r-price">$0.00</span></div>
+
+    <div class="r-paid">Paid in full &mdash; MIT License</div>
+
+    <p class="r-thanks">Thank you &middot; come back soon</p>
+
+    <svg class="barcode" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Barcode: MIT-2026-OPENSAM">
+      <rect x="0" y="0" width="3" height="50" fill="#171108"/>
+      <rect x="5" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="8" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="12" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="15" y="0" width="4" height="50" fill="#171108"/>
+      <rect x="21" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="24" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="28" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="31" y="0" width="3" height="50" fill="#171108"/>
+      <rect x="36" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="39" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="42" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="46" y="0" width="4" height="50" fill="#171108"/>
+      <rect x="52" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="55" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="59" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="62" y="0" width="3" height="50" fill="#171108"/>
+      <rect x="67" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="70" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="74" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="77" y="0" width="4" height="50" fill="#171108"/>
+      <rect x="83" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="86" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="90" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="93" y="0" width="3" height="50" fill="#171108"/>
+      <rect x="98" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="101" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="104" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="108" y="0" width="4" height="50" fill="#171108"/>
+      <rect x="114" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="117" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="121" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="124" y="0" width="3" height="50" fill="#171108"/>
+      <rect x="129" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="132" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="136" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="139" y="0" width="4" height="50" fill="#171108"/>
+      <rect x="145" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="148" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="152" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="155" y="0" width="3" height="50" fill="#171108"/>
+      <rect x="160" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="163" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="166" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="170" y="0" width="4" height="50" fill="#171108"/>
+      <rect x="176" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="179" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="183" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="186" y="0" width="3" height="50" fill="#171108"/>
+      <rect x="191" y="0" width="1" height="50" fill="#171108"/>
+      <rect x="194" y="0" width="2" height="50" fill="#171108"/>
+      <rect x="198" y="0" width="2" height="50" fill="#171108"/>
+    </svg>
+    <p class="r-foot">MIT-2026-OPENSAM &middot; OPC &middot; 01926</p>
+  </div>
+  <p class="tear-here" style="margin-top:6px">tear here</p>
+</section>
+
+<!-- ============ EDITORIAL ============ -->
+<section class="editorial wrap" id="editorial">
+  <div class="section-rule"></div>
+  <p class="section-kicker">Editorial &middot; C2</p>
+  <h2 class="ed-hed">Why We Built This</h2>
+  <p class="ed-deck">An editorial, in five numbered sections.</p>
+  <p class="ed-byline">
+    <span>By <b>The Editors</b></span>
+    <span>September 16, 2026</span>
+  </p>
+
+  <div class="ed-body">
+    <p><span class="num">&sect;1.</span> We built OpenSAM because the federal contracting market is, by design, opaque. The opportunities exist. The small-business set-asides exist. The dollars are appropriated. The barrier between a small business and its first contract is not capital. It is <em>information.</em></p>
+
+    <p><span class="num">&sect;2.</span> We do not believe a tool that finds federal contracts should cost six figures a year. We do not believe it should require a sales call, a demo, an enterprise agreement, or a quarterly review. The data is public. The tool should be public.<sup>[3]</sup></p>
+
+    <p><span class="num">&sect;3.</span> We do not believe a scoring engine should be a black box. Ours is one hundred and nineteen lines of TypeScript. You can read it in less time than it takes to read this editorial. We invite you to.<sup>[1]</sup></p>
+
+    <p><span class="num">&sect;4.</span> We do not collect telemetry. We do not know who uses OpenSAM. We do not want to know. The software runs on your machine. The opportunity is yours. The decision is yours.</p>
+
+    <p><span class="num">&sect;5.</span> The MIT license is not a marketing strategy. It is a legal commitment to let you do whatever you want with this code, forever, including things we have not thought of. <em>Especially</em> those.</p>
+
+    <div class="footnotes">
+      <span class="fn"><b>[1]</b> The 119-line scoring engine is available at <a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a>. Read it. We dare you.</span>
+      <span class="fn"><b>[2]</b> &ldquo;Zero dependencies&rdquo; means zero packages in your <code style="font-family:var(--mono)">node_modules</code> that you did not put there yourself. Twenty-nine tests pass on every commit.</span>
+      <span class="fn"><b>[3]</b> Built by AliceLabs LLC, an independent company. Not affiliated with the U.S. government, SAM.gov, or GSA.</span>
+    </div>
+
+    <p class="dare">Dare to read the source <a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a><span class="arrow">&rarr;</span></p>
+  </div>
+</section>
+
+<!-- ============ LETTERS ============ -->
+<section class="wrap" id="letters">
+  <div class="section-rule"></div>
+  <p class="section-kicker">Letters to the Editor &middot; D1</p>
+  <h2 class="section-hed">Letters to the Editor</h2>
+  <p class="section-deck">Six letters, in the order they arrived. Lightly edited for length. Not for opinion.</p>
+
+  <div class="letters-grid">
+    <div class="letter">
+      <p class="from">From <b>A reader in Silver Spring.</b></p>
+      <p class="q">What is OpenSAM, in one sentence?</p>
+      <p class="a">An open-source tool that finds, scores, and monitors federal contracting opportunities published on SAM.gov. That is the sentence.</p>
+    </div>
+
+    <div class="letter">
+      <p class="from">From <b>A capture manager in Arlington.</b></p>
+      <p class="q">Is it really free?</p>
+      <p class="a">Yes. MIT-licensed, zero cost. You will need a free api.data.gov key to read SAM.gov data, which is the government&rsquo;s, not ours.</p>
+    </div>
+
+    <div class="letter">
+      <p class="from">From <b>A small-business owner, 8(a) certified.</b></p>
+      <p class="q">Who is OpenSAM for?</p>
+      <p class="a">Small businesses (8(a), HUBZone, WOSB, SDVOSB), capture and BD teams, AI agent builders, and researchers covering the federal procurement market.</p>
+    </div>
+
+    <div class="letter">
+      <p class="from">From <b>A non-developer in Boulder.</b></p>
+      <p class="q">Do I have to write code?</p>
+      <p class="a">No. The web app at opensam.us lets you search and score opportunities without writing code. The TypeScript SDK is there if you want it.</p>
+    </div>
+
+    <div class="letter">
+      <p class="from">From <b>A compliance officer.</b></p>
+      <p class="q">Is this affiliated with the U.S. government?</p>
+      <p class="a">No. OpenSAM is an independent open-source project built by AliceLabs LLC. It is not affiliated with, endorsed by, or sponsored by SAM.gov, GSA, or any U.S. government agency.</p>
+    </div>
+
+    <div class="letter">
+      <p class="from">From <b>A software architect.</b></p>
+      <p class="q">How does the scoring work?</p>
+      <p class="a">Each opportunity receives a 0&ndash;100 score based on NAICS code match, set-aside alignment, capability keywords in the description, and deadline proximity. Higher is better.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ COLOPHON ============ -->
+<footer class="colophon" id="colophon" role="contentinfo">
+  <div class="section-rule" style="margin-top:0"></div>
+  <p class="section-kicker" style="text-align:center">Colophon &middot; E4</p>
+  <h2 class="section-hed" style="text-align:center">Colophon</h2>
+  <p class="section-deck" style="text-align:center">A note on the making of this edition.</p>
+
+  <div class="colo-grid">
+    <div>
+      <h4>The Type</h4>
+      <p>Headlines are set in <b>Playfair Display</b>, a high-contrast transitional serif of the Didone school. Body copy is set in <b>EB Garamond</b>, after the sixteenth-century punchcutter Claude Garamond. The receipt, bylines, and classifieds are set in <b>Courier Prime</b>, designed for screenwriters and accidentally perfect for thermal printers.</p>
+      <p style="margin-top:8px">No emoji were used in the production of this page. No icons were drawn for navigation, because there is no navigation. No gradients were applied to any headline. No card has a shadow that does not also have a purpose.</p>
+
+      <h4 style="margin-top:14px">The House</h4>
+      <p>The OpenSAM Times is published continuously on the World Wide Web at <b>opensam.us</b>. Print run: zero copies. Distributed by HTTP. Editorial offices maintained by <b>AliceLabs LLC</b>, founded 2026, an independent company.</p>
+      <p style="margin-top:6px">Letters to the Editor are read in full. Write to <a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a>. Pseudonyms accepted. Capital letters discouraged.</p>
+    </div>
+
+    <div>
+      <h4>Where to Find the Source</h4>
+      <ul>
+        <li><span class="label">Repo</span><a href="https://github.com/eddyflores100-lang/OpenSAM">github.com/eddyflores100-lang/OpenSAM</a></li>
+        <li><span class="label">Web</span><a href="https://opensam.us">opensam.us</a></li>
+        <li><span class="label">Mail</span><a href="mailto:contacto@alicelabs.site">contacto@alicelabs.site</a></li>
+        <li><span class="label">House</span><a href="https://alicelabs.site">alicelabs.site</a></li>
+      </ul>
+
+      <h4 style="margin-top:14px">The Packages</h4>
+      <ul>
+        <li><span class="label">SDK</span><b>@opensam/sdk</b></li>
+        <li><span class="label">Engine</span><b>@opensam/scoring</b></li>
+        <li><span class="label">Types</span><b>@opensam/sam-gov-types</b></li>
+      </ul>
+
+      <h4 style="margin-top:14px">The Numbers, Again</h4>
+      <ul>
+        <li><span class="label">Tracked</span>4.3B+ opportunities</li>
+        <li><span class="label">Score</span>&lt;200ms per opportunity</li>
+        <li><span class="label">Engine</span>119 lines</li>
+        <li><span class="label">Tests</span>29 passing</li>
+        <li><span class="label">Deps</span>0 runtime</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="page-foot">Page E4 &middot; End of Edition &middot; Continued on Page A1, tomorrow</p>
+  <p class="thirty">&mdash; 30 &mdash;</p>
+
+  <p class="legal">
+    <b>&copy; 2026 AliceLabs LLC.</b> Released under the MIT License.<br>
+    OpenSAM is <b>not affiliated with, endorsed by, or sponsored by</b> the U.S. government, SAM.gov, GSA, or any U.S. government agency.<br>
+    &ldquo;SAM&rdquo; refers to the public System for Award Management. All opportunities described herein are real; the editorial voice is not.<br>
+    Contact: <b>contacto@alicelabs.site</b> &middot; Repository: <b>github.com/eddyflores100-lang/OpenSAM</b>
+  </p>
 </footer>
 
 </body>
