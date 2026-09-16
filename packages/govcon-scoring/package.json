@@ -1,0 +1,52 @@
+{
+  "name": "@opensam/scoring",
+  "version": "1.1.0",
+  "description": "Federal contract viability scoring engine — NAICS matching, certification alignment, capability analysis. No AI required.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --import tsx src/__tests__/scoring.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "govcon",
+    "federal-contracting",
+    "sam-gov",
+    "naics",
+    "scoring",
+    "govtech",
+    "procurement"
+  ],
+  "author": "AliceLabs LLC <legal@alicelabs.site> (https://alicelabs.site)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eddyflores100-lang/OpenSAM.git",
+    "directory": "packages/govcon-scoring"
+  },
+  "homepage": "https://github.com/eddyflores100-lang/OpenSAM/tree/main/packages/govcon-scoring#readme",
+  "bugs": {
+    "url": "https://github.com/eddyflores100-lang/OpenSAM/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "tsx": "^4.19.0"
+  }
+}

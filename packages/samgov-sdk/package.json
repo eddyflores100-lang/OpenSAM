@@ -1,0 +1,60 @@
+{
+  "name": "@opensam/sdk",
+  "version": "1.1.0",
+  "description": "TypeScript SDK for the SAM.gov Federal Opportunities API — search, filter, paginate, and score federal contracts. Zero dependencies.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --import tsx src/__tests__/scoring.test.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "sam-gov",
+    "federal",
+    "government",
+    "contracting",
+    "govtech",
+    "procurement",
+    "naics",
+    "api",
+    "sdk",
+    "typescript",
+    "opportunities",
+    "rfp",
+    "bid",
+    "proposal"
+  ],
+  "author": "AliceLabs LLC <legal@alicelabs.site> (https://alicelabs.site)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eddyflores100-lang/OpenSAM.git",
+    "directory": "packages/samgov-sdk"
+  },
+  "homepage": "https://github.com/eddyflores100-lang/OpenSAM/tree/main/packages/samgov-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/eddyflores100-lang/OpenSAM/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "tsx": "^4.19.0"
+  }
+}

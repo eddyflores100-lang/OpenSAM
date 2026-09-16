@@ -1,0 +1,50 @@
+{
+  "name": "opensam",
+  "version": "2.0.0",
+  "private": true,
+  "description": "OpenSAM — Open-source autonomous agent platform for SAM.gov federal contracting. Type-safe SDK, scoring engine, and full web app.",
+  "license": "MIT",
+  "author": "AliceLabs LLC <legal@alicelabs.site> (https://alicelabs.site)",
+  "homepage": "https://github.com/eddyflores100-lang/OpenSAM",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eddyflores100-lang/OpenSAM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eddyflores100-lang/OpenSAM/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "clean": "rm -rf packages/*/dist apps/*/dist node_modules",
+    "dev": "npm run dev --workspace apps/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "tsx": "^4.19.0",
+    "eslint": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0"
+  },
+  "keywords": [
+    "sam-gov",
+    "federal-contracting",
+    "govtech",
+    "procurement",
+    "naics",
+    "ai-agent",
+    "typescript",
+    "open-source",
+    "alice-labs"
+  ]
+}
