@@ -3,8 +3,8 @@
 ## Setup
 
 ```bash
-git clone https://github.com/alicelabs-llc/govcon-scoring.git
-cd govcon-scoring
+git clone https://github.com/eddyflores100-lang/OpenSAM.git
+cd OpenSAM/packages/govcon-scoring
 npm install
 ```
 
@@ -22,7 +22,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:
 
 ## Submitting changes
 
-1. Branch from `master`
+1. Branch from `main`
 2. Add or update tests
 3. Confirm `npm test` passes
 4. Open a PR using the provided template

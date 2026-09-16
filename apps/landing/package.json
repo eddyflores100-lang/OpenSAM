@@ -1,0 +1,11 @@
+{
+  "name": "@opensam/landing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenSAM landing page for opensam.us",
+  "scripts": {
+    "dev": "npx http-server . -p 5174 -o",
+    "build": "echo 'static site — no build step'"
+  }
+}

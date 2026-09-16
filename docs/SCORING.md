@@ -16,6 +16,68 @@ The score is a number between **0 and 100**, computed deterministically from fou
 
 Final score is clamped to 0–100 and labeled `high` (≥70), `medium` (40–69), or `low` (<40).
 
+## Score computation flow
+
+```mermaid
+flowchart TB
+    Start([SamOpportunity<br/>+ CompanyProfile]) --> Base["Score = 50<br/>(base)"]
+
+    Base --> NAICS{"profile.naicsCodes<br/>includes<br/>opp.naicsCode?"}
+    NAICS -- Yes --> NAICS_Y["+25"]
+    NAICS -- No --> NAICS_N["+0"]
+    NAICS_Y --> Cert
+    NAICS_N --> Cert
+
+    Cert{"set-aside<br/>aligned with<br/>certification?"}
+    Cert -- "Small Business" --> Cert_SB["+10"]
+    Cert -- "8(a)" --> Cert_8a["+15"]
+    Cert -- "WOSB" --> Cert_W["+15"]
+    Cert -- "HUBZone" --> Cert_H["+15"]
+    Cert -- "SDVOSB" --> Cert_S["+15"]
+    Cert -- "(none)" --> Cert_N["+0"]
+
+    Cert_SB --> Cap
+    Cert_8a --> Cap
+    Cert_W --> Cap
+    Cert_H --> Cap
+    Cert_S --> Cap
+    Cert_N --> Cap
+
+    Cap{"For each cap<br/>in profile.capabilities<br/>in description?"}
+    Cap -- "Match found" --> Cap_M["+5 each<br/>max +20"]
+    Cap -- "No match" --> Cap_N["+0"]
+
+    Cap_M --> DL
+    Cap_N --> DL
+
+    DL{"Days until<br/>responseDeadLine"}
+    DL -- "< 3 days" --> DL_Close["−35"]
+    DL -- "3-7 days" --> DL_Mid["−15"]
+    DL -- "> 7 days" --> DL_Far["0"]
+
+    DL_Close --> Clamp
+    DL_Mid --> Clamp
+    DL_Far --> Clamp
+
+    Clamp["Math.max(0,<br/>Math.min(100, score))"]
+    Clamp --> Label{"Score >= 70?"}
+    Label -- Yes --> High["🟢 high"]
+    Label -- "40-69" --> Med["🟡 medium"]
+    Label -- "< 40" --> Low["🔴 low"]
+
+    High --> End([Return ScoreBreakdown])
+    Med --> End
+    Low --> End
+
+    style Start fill:#1d63ed,color:#fff
+    style Clamp fill:#0d1117,color:#fff
+    style High fill:#238636,color:#fff
+    style Med fill:#d29922,color:#000
+    style Low fill:#cf222e,color:#fff
+    style DL_Close fill:#cf222e,color:#fff
+    style DL_Mid fill:#d29922,color:#000
+```
+
 ## Why this formula?
 
 The formula was designed to be:

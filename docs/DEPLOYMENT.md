@@ -2,6 +2,49 @@
 
 OpenSAM's web app (`apps/web`) is a static Vite build. You can deploy it to any static-hosting provider.
 
+## Deployment topology
+
+```mermaid
+flowchart LR
+    subgraph "Build (CI)"
+        Src["Source<br/>apps/web/"] --> Build["npm run build"]
+        Build --> Static["dist/<br/>HTML + CSS + JS"]
+    end
+
+    subgraph "Hosting options"
+        Vercel["Vercel"]
+        Netlify["Netlify"]
+        CF["Cloudflare Pages"]
+        GH["GitHub Pages"]
+        Supabase["Supabase<br/>Edge Functions"]
+    end
+
+    Static --> Vercel
+    Static --> Netlify
+    Static --> CF
+    Static --> GH
+
+    Vercel --> Domain["opensam.us"]
+    Netlify --> Domain
+    CF --> Domain
+    GH --> Domain
+
+    subgraph "Runtime"
+        Browser["User browser"]
+        Proxy["Edge Function<br/>(optional)"]
+    end
+
+    Domain --> Browser
+    Browser -->|direct call<br/>with api_key| SAM["SAM.gov API"]
+    Browser -->|proxied call| Proxy
+    Proxy -->|server-side<br/>api_key| SAM
+
+    style Domain fill:#1d63ed,color:#fff
+    style Static fill:#238636,color:#fff
+    style SAM fill:#6e7681,color:#fff
+    style Proxy fill:#d29922,color:#000
+```
+
 ## Prerequisites
 
 - A [api.data.gov](https://api.data.gov/signup/) API key (free).

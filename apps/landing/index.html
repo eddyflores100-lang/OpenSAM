@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenSAM — Open-source autonomous agent for SAM.gov federal contracting</title>
+  <meta name="description" content="Open-source toolkit to find, filter, score, and act on federal contracting opportunities published on SAM.gov. Type-safe TypeScript SDK, deterministic scoring engine, and reference web app. MIT licensed, built by AliceLabs LLC.">
+  <meta name="author" content="AliceLabs LLC">
+  <meta property="og:title" content="OpenSAM — Open-source autonomous agent for SAM.gov federal contracting">
+  <meta property="og:description" content="Type-safe SDK · Deterministic scoring engine · Web app · No vendor lock-in. Built by AliceLabs LLC.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://opensam.us">
+  <meta property="og:image" content="https://opensam.us/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OpenSAM — Open-source autonomous agent for SAM.gov federal contracting">
+  <meta name="twitter:description" content="Type-safe SDK · Deterministic scoring engine · Web app · No vendor lock-in. Built by AliceLabs LLC.">
+  <link rel="canonical" href="https://opensam.us">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d63ed'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E">
+  <style>
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #1d63ed;
+      --brand-700: #1746a3;
+      --brand-100: #eef6ff;
+      --green: #238636;
+      --amber: #d29922;
+      --red: #cf222e;
+      --ink: #0d1117;
+      --ink-soft: #57606a;
+      --line: #d0d7de;
+      --bg: #ffffff;
+      --bg-soft: #f6f8fa;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre {
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9em;
+    }
+
+    /* ===== Container ===== */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== Nav ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 18px; color: var(--ink);
+    }
+    .brand-mark {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--brand); color: #fff;
+      display: grid; place-items: center;
+      font-weight: 700; font-size: 16px;
+    }
+    .nav-links {
+      display: flex; gap: 28px; align-items: center;
+      list-style: none;
+    }
+    .nav-links a { color: var(--ink); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--brand); text-decoration: none; }
+    .nav-cta {
+      background: var(--ink); color: #fff !important;
+      padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--ink-soft); text-decoration: none; }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: 96px 0 64px;
+      text-align: center;
+      background: radial-gradient(ellipse at top, var(--brand-100), transparent 70%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 60px);
+      line-height: 1.1; font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--brand), #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p.lead {
+      font-size: 19px; color: var(--ink-soft);
+      max-width: 680px; margin: 0 auto 32px;
+    }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 8px;
+      font-weight: 600; font-size: 15px;
+      transition: transform 0.1s, background 0.2s;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: var(--brand-700); text-decoration: none; transform: translateY(-1px); }
+    .btn-ghost { background: #fff; border-color: var(--line); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--ink-soft); text-decoration: none; }
+    .btn-lg { padding: 14px 24px; font-size: 16px; }
+
+    .badges {
+      margin-top: 36px;
+      display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    }
+    .badges img { height: 24px; }
+
+    /* ===== Stats strip ===== */
+    .stats {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-soft);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat .num { font-size: 36px; font-weight: 800; color: var(--brand); }
+    .stat .label { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+    @media (max-width: 720px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ===== Section ===== */
+    section { padding: 80px 0; }
+    .section-head {
+      text-align: center; max-width: 720px; margin: 0 auto 48px;
+    }
+    .section-head .eyebrow {
+      display: inline-block; padding: 4px 12px;
+      background: var(--brand-100); color: var(--brand-700);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; border-radius: 99px; margin-bottom: 16px;
+    }
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 40px); font-weight: 800;
+      letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .section-head p {
+      font-size: 17px; color: var(--ink-soft);
+    }
+
+    /* ===== Package cards ===== */
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .pkg {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 28px;
+      background: #fff;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .pkg:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .pkg-icon { font-size: 32px; margin-bottom: 16px; }
+    .pkg h3 { font-size: 20px; margin-bottom: 8px; }
+    .pkg .pkg-name {
+      display: inline-block; font-family: monospace; font-size: 13px;
+      background: var(--bg-soft); padding: 2px 8px; border-radius: 4px;
+      color: var(--ink-soft); margin-bottom: 16px;
+    }
+    .pkg p { font-size: 15px; color: var(--ink-soft); margin-bottom: 16px; }
+    .pkg ul { list-style: none; padding: 0; }
+    .pkg li {
+      font-size: 14px; padding: 4px 0;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pkg li::before { content: "✓"; color: var(--green); font-weight: 700; }
+
+    /* ===== Code sample ===== */
+    .code-block {
+      background: var(--ink); color: #e6edf3;
+      border-radius: 12px; padding: 24px;
+      overflow-x: auto; font-size: 13.5px; line-height: 1.6;
+      max-width: 760px; margin: 0 auto;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+    .code-block .kw { color: #ff7b72; }
+    .code-block .str { color: #a5d6ff; }
+    .code-block .fn { color: #d2a8ff; }
+    .code-block .com { color: #8b949e; }
+    .code-block .num { color: #79c0ff; }
+
+    /* ===== Architecture diagram ===== */
+    .arch-diagram {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 760px;
+      margin: 0 auto;
+      font-family: monospace; font-size: 13px;
+      overflow-x: auto;
+    }
+
+    /* ===== Use cases ===== */
+    .usecases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .usecase {
+      padding: 24px;
+      border-left: 4px solid var(--brand);
+      background: var(--brand-100);
+      border-radius: 8px;
+    }
+    .usecase h4 { font-size: 16px; margin-bottom: 8px; }
+    .usecase p { font-size: 14px; color: var(--ink-soft); }
+
+    /* ===== CTA ===== */
+    .cta-band {
+      background: linear-gradient(135deg, var(--brand), #6366f1);
+      color: #fff;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .cta-band h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; margin-bottom: 12px; }
+    .cta-band p { font-size: 17px; opacity: 0.92; margin-bottom: 32px; }
+    .cta-band .btn { background: #fff; color: var(--brand); }
+    .cta-band .btn:hover { background: #f6f8fa; text-decoration: none; transform: translateY(-1px); }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--ink); color: #c9d1d9;
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    .footer-brand .brand { color: #fff; margin-bottom: 12px; }
+    .footer-brand p { font-size: 14px; color: #8b949e; }
+    footer h5 {
+      color: #fff; font-size: 13px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 8px; font-size: 14px; }
+    footer ul a { color: #c9d1d9; }
+    footer ul a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid #21262d;
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: #8b949e;
+    }
+    @media (max-width: 720px) { .footer-bottom { flex-direction: column; gap: 8px; } }
+
+    /* ===== Mermaid container ===== */
+    .mermaid {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand">
+      <span class="brand-mark">O</span>
+      <span>OpenSAM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#code">Code</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="https://github.com/eddyflores100-lang/OpenSAM#readme">Docs</a></li>
+      <li><a href="https://github.com/eddyflores100-lang/OpenSAM" class="nav-cta">★ on GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="container">
+    <h1>
+      <span class="gradient">Open-source</span><br>
+      autonomous agent for SAM.gov
+    </h1>
+    <p class="lead">
+      OpenSAM helps small businesses, contractors, and AI agents find, filter,
+      score, and act on federal contracting opportunities published on SAM.gov.
+      Type-safe TypeScript SDK, deterministic scoring engine, reference web app.
+      No vendor lock-in.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://github.com/eddyflores100-lang/OpenSAM" class="btn btn-primary btn-lg">
+        Get started →
+      </a>
+      <a href="#code" class="btn btn-ghost btn-lg">View code example</a>
+    </div>
+    <div class="badges">
+      <img alt="CI" src="https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/ci.yml/badge.svg">
+      <img alt="CodeQL" src="https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/codeql.yml/badge.svg">
+      <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat-square&logo=typescript">
+      <img alt="MIT License" src="https://img.shields.io/badge/License-MIT-238636?style=flat-square">
+      <img alt="Zero Deps" src="https://img.shields.io/badge/Dependencies-0-0d1117?style=flat-square">
+    </div>
+  </div>
+</header>
+
+<!-- ===== Stats strip ===== -->
+<section class="stats" style="padding: 32px 0;">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">0</div>
+        <div class="label">Runtime dependencies</div>
+      </div>
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="label">Independent packages</div>
+      </div>
+      <div class="stat">
+        <div class="num">119</div>
+        <div class="label">Lines in scoring engine</div>
+      </div>
+      <div class="stat">
+        <div class="num">MIT</div>
+        <div class="label">License</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Packages ===== -->
+<section id="packages">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Composable</span>
+      <h2>Three packages. Pick what you need.</h2>
+      <p>
+        Each package is independently published to npm with zero runtime dependencies.
+        Install just the types, the full SDK, or the standalone scoring engine — your call.
+      </p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <div class="pkg-icon">🧩</div>
+        <h3>Type definitions</h3>
+        <span class="pkg-name">@opensam/sam-gov-types</span>
+        <p>Full TypeScript types for every endpoint of the SAM.gov Public API. Includes <code>SamOpportunity</code>, <code>SamSearchParams</code>, <code>SamSearchResponse</code>, and more.</p>
+        <ul>
+          <li>Strict union types for notice & set-aside</li>
+          <li>JSDoc on every field</li>
+          <li>Matches SAM.gov's actual field names</li>
+        </ul>
+      </div>
+      <div class="pkg">
+        <div class="pkg-icon">🔌</div>
+        <h3>HTTP SDK</h3>
+        <span class="pkg-name">@opensam/sdk</span>
+        <p>Fully typed HTTP client with retries, rate-limit handling, async iteration, and built-in scoring. Zero runtime deps — runs on Node, browsers, and edge runtimes.</p>
+        <ul>
+          <li>Retry on 5xx, back off on 429</li>
+          <li>Auto-paginate with async generators</li>
+          <li>Static scoring method</li>
+        </ul>
+      </div>
+      <div class="pkg">
+        <div class="pkg-icon">📊</div>
+        <h3>Scoring engine</h3>
+        <span class="pkg-name">@opensam/scoring</span>
+        <p>Deterministic viability score (0–100) using NAICS matching, set-aside alignment, capability keywords, and deadline proximity. No AI credits required.</p>
+        <ul>
+          <li>Transparent, auditable formula</li>
+          <li>Reproducible scores</li>
+          <li>119 lines of TypeScript</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Code sample ===== -->
+<section id="code" style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Developer experience</span>
+      <h2>Type-safe from import to score</h2>
+      <p>Full TypeScript everywhere. Autocomplete on every field of the SAM.gov response, including the oddly-named <code>responseDeadLine</code> (capital L — yes, really).</p>
+    </div>
+    <pre class="code-block"><span class="kw">import</span> { <span class="fn">createClient</span> } <span class="kw">from</span> <span class="str">'@opensam/sdk'</span>
+
+<span class="kw">const</span> sam = <span class="fn">createClient</span>({
+  apiKey: process.env.<span class="kw">SAM_GOV_API_KEY</span>!,  <span class="com">// from api.data.gov</span>
+})
+
+<span class="com">// Search active cloud-infrastructure solicitations</span>
+<span class="kw">const</span> results = <span class="kw">await</span> sam.<span class="fn">search</span>({
+  query: <span class="str">'cloud infrastructure'</span>,
+  naicsCode: <span class="str">'541512'</span>,
+  activeOnly: <span class="kw">true</span>,
+  limit: <span class="num">25</span>,
+})
+
+<span class="com">// Score each against your company profile</span>
+<span class="kw">const</span> scored = <span class="kw">await</span> sam.<span class="fn">searchAndScore</span>(results.params, {
+  naicsCodes: [<span class="str">'541511'</span>, <span class="str">'541512'</span>, <span class="str">'541519'</span>],
+  capabilities: [<span class="str">'software development'</span>, <span class="str">'cloud infrastructure'</span>],
+  certifications: [<span class="str">'Small Business'</span>, <span class="str">'SBA 8(a)'</span>],
+})
+
+scored.<span class="fn">forEach</span>(({ opportunity, score, label }) =&gt; {
+  console.<span class="fn">log</span>(<span class="str">`[${label.toUpperCase()} ${score}/100] ${opportunity.title}`</span>)
+})
+<span class="com">// 🟢 HIGH 90/100 — Cloud Modernization for DoD</span>
+<span class="com">// 🟡 MED  62/100 — Data Processing for Treasury</span>
+<span class="com">// 🔴 LOW  25/100 — Building Renovation (NAICS mismatch)</span></pre>
+  </div>
+</section>
+
+<!-- ===== How scoring works ===== -->
+<section id="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Transparent scoring</span>
+      <h2>No black boxes. No AI credits.</h2>
+      <p>
+        The scoring formula is in plain text in the source code.
+        Every point added or subtracted is visible in the breakdown.
+        You can reproduce any score, audit any decision.
+      </p>
+    </div>
+    <div class="arch-diagram">
+<pre>          ┌─────────────────────────────────┐
+          │      Opportunity received       │
+          └────────────────┬────────────────┘
+                           │
+                           ▼
+              ┌────────────────────────┐
+              │   Base score: +50      │
+              └───────────┬────────────┘
+                          │
+              ┌───────────▼────────────┐
+              │  NAICS match?          │
+              │  Yes → +25   No → +0   │
+              └───────────┬────────────┘
+                          │
+              ┌───────────▼────────────┐
+              │  Set-aside alignment?  │
+              │  +10 to +15            │
+              └───────────┬────────────┘
+                          │
+              ┌───────────▼────────────┐
+              │  Capability keywords?  │
+              │  +5 each, max +20     │
+              └───────────┬────────────┘
+                          │
+              ┌───────────▼────────────┐
+              │  Deadline proximity?   │
+              │  &lt;3d → -35  &lt;7d → -15 │
+              └───────────┬────────────┘
+                          │
+              ┌───────────▼────────────┐
+              │  Clamp 0-100 → label   │
+              │  ≥70 🟢 high            │
+              │  40-69 🟡 medium        │
+              │  &lt;40  🔴 low            │
+              └────────────────────────┘</pre>
+    </div>
+    <p style="text-align:center; margin-top:24px;">
+      <a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/SCORING.md">
+        Read the full methodology →
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== Architecture ===== -->
+<section id="architecture" style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Architecture</span>
+      <h2>Layered, composable, zero-dependency</h2>
+      <p>Each layer is an independent npm package. Use only what you need.</p>
+    </div>
+    <div class="arch-diagram">
+<pre>  ┌──────────────────────────────────────────────────────────┐
+  │            Presentation layer (apps/web)                │
+  │      Vite + React + Tailwind + Supabase (optional)      │
+  └──────────────────────────┬───────────────────────────────┘
+                             │ uses
+                             ▼
+  ┌──────────────────────────────────────────────────────────┐
+  │           Application layer (@opensam/sdk)              │
+  │     SamGovClient — search, paginate, score, retry       │
+  └──────┬───────────────────────────────────────────┬───────┘
+         │ uses                                       │ uses
+         ▼                                            ▼
+  ┌──────────────────┐                    ┌──────────────────┐
+  │  @opensam/types  │                    │ @opensam/scoring │
+  │  TS definitions  │                    │  Score 0-100     │
+  └──────────────────┘                    └──────────────────┘
+                            │
+                            ▼ HTTPS fetch
+              ┌──────────────────────────────┐
+              │  SAM.gov Opportunities API   │
+              │   api.sam.gov (public)       │
+              └──────────────────────────────┘</pre>
+    </div>
+    <p style="text-align:center; margin-top:24px;">
+      <a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/docs/ARCHITECTURE.md">
+        See full architecture docs →
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== Use cases ===== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Who uses OpenSAM</span>
+      <h2>Built for the federal contracting community</h2>
+    </div>
+    <div class="usecases">
+      <div class="usecase">
+        <h4>🏢 Small businesses (8(a), HUBZone, WOSB, SDVOSB)</h4>
+        <p>Find the solicitations where your certifications give you a real edge — without paying $200/mo for a feed.</p>
+      </div>
+      <div class="usecase">
+        <h4>🤖 AI agents & LLM apps</h4>
+        <p>Give your agent a typed interface to reason about opportunities. No more scraping HTML — call <code>sam.search()</code> and go.</p>
+      </div>
+      <div class="usecase">
+        <h4>📋 Capture teams & BD</h4>
+        <p>Score 50 opportunities in 2 seconds. Triage which ones are worth a real read, which to skip, which to bid.</p>
+      </div>
+      <div class="usecase">
+        <h4>🎓 Researchers & journalists</h4>
+        <p>Free, auditable, MIT-licensed. Reproducible scoring for academic studies of federal procurement trends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Start finding your next federal contract today</h2>
+    <p>Free API key from api.data.gov · MIT licensed · No vendor lock-in</p>
+    <a href="https://github.com/eddyflores100-lang/OpenSAM" class="btn btn-lg">
+      ★ Star on GitHub
+    </a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark">O</span>
+          <span>OpenSAM</span>
+        </div>
+        <p>
+          Open-source autonomous agent platform for SAM.gov federal contracting.
+          Built by AliceLabs LLC. Not affiliated with the U.S. Government.
+        </p>
+      </div>
+      <div>
+        <h5>Project</h5>
+        <ul>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM">GitHub</a></li>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM/issues">Issues</a></li>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM/discussions">Discussions</a></li>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM/releases">Releases</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Packages</h5>
+        <ul>
+          <li><a href="https://www.npmjs.com/package/@opensam/sdk">@opensam/sdk</a></li>
+          <li><a href="https://www.npmjs.com/package/@opensam/scoring">@opensam/scoring</a></li>
+          <li><a href="https://www.npmjs.com/package/@opensam/sam-gov-types">@opensam/sam-gov-types</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/LICENSE">MIT License</a></li>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/LEGAL.md">Legal & disclaimers</a></li>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/SECURITY.md">Security policy</a></li>
+          <li><a href="https://github.com/eddyflores100-lang/OpenSAM/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 AliceLabs LLC. Licensed under the MIT License.</div>
+      <div>
+        <a href="https://alicelabs.site" style="color: #8b949e;">alicelabs.site</a>
+        ·
+        <a href="mailto:contacto@alicelabs.site" style="color: #8b949e;">contacto@alicelabs.site</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -10,8 +10,8 @@ Thank you for your interest in contributing! This guide explains how to get star
 ## Setup
 
 ```bash
-git clone https://github.com/alicelabs-llc/samgov-sdk.git
-cd samgov-sdk
+git clone https://github.com/eddyflores100-lang/OpenSAM.git
+cd OpenSAM/packages/samgov-sdk
 npm install
 ```
 
@@ -40,14 +40,14 @@ Example: `feat: add deadlineFrom filter to search()`
 
 ## Submitting a PR
 
-1. Fork the repo and create your branch from `master`
+1. Fork the repo and create your branch from `main`
 2. Add tests for any new functionality
 3. Ensure all checks pass: `npm test && npx tsc --noEmit`
 4. Open a PR — the template will guide you
 
 ## Reporting bugs
 
-Use the [bug report template](https://github.com/alicelabs-llc/samgov-sdk/issues/new?template=bug_report.md).
+Use the [bug report template](https://github.com/eddyflores100-lang/OpenSAM/issues/new?template=bug_report.md).
 
 ---
 
