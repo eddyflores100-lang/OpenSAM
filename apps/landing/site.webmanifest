@@ -1,7 +1,7 @@
 {
   "name": "OpenSAM",
   "short_name": "OpenSAM",
-  "description": "Find, score, and win federal contracting opportunities on SAM.gov with AI agents.",
+  "description": "Private assisted opportunity research pilot",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -10,7 +10,11 @@
   "scope": "/",
   "lang": "en-US",
   "dir": "ltr",
-  "categories": ["business", "productivity", "utilities"],
+  "categories": [
+    "business",
+    "productivity",
+    "utilities"
+  ],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -29,29 +33,6 @@
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Search opportunities",
-      "short_name": "Search",
-      "description": "Find federal contracting opportunities on SAM.gov",
-      "url": "/?action=search"
-    },
-    {
-      "name": "View on GitHub",
-      "short_name": "GitHub",
-      "description": "Browse the OpenSAM source code on GitHub",
-      "url": "https://github.com/eddyflores100-lang/OpenSAM"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/og-image.png",
-      "sizes": "1200x630",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "OpenSAM landing page"
     }
   ]
 }

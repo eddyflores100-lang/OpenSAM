@@ -25,3 +25,7 @@ Only normalized display fields and a canonical sam.gov link are returned. Upstre
 ## Previous frontend exposure
 
 The old UI read a Vite-prefixed provider key, which would embed an actual configured value in public bundles. This change removes that path. If any earlier deployment used a real key, revoke/rotate it in the provider account and remove old bundles/source maps from hosting and CDN caches. This cannot revoke an already exposed key or prove whether a prior deployment had one. No production secrets or deployments were accessed or changed.
+
+## Public landing
+
+Landing copy and information pages describe this limited pilot. Build with `npm run build --workspace apps/landing`; publish only apps/landing/dist. Historical copy is retained in docs/legacy-landing outside the artifact. No payment flow is present. The new scope notes do not amend existing signed agreements. Before production, the operator must confirm hosting, email handling and engagement terms.
