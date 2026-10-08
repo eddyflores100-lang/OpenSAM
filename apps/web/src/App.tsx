@@ -1,45 +1,35 @@
-import { useState, useMemo } from 'react'
-import { createClient, type ScoredOpportunity } from '@opensam/sdk'
-
-const SAM_GOV_API_KEY = import.meta.env.VITE_SAM_GOV_API_KEY as string | undefined
-
-const DEFAULT_PROFILE = {
-  naicsCodes: ['541511', '541512', '541519'],
-  capabilities: ['software development', 'cloud infrastructure', 'react', 'node.js'],
-  certifications: ['Small Business', 'SBA 8(a)'],
-}
+import { useState } from 'react'
+import type { ScoredOpportunity } from '@opensam/sdk'
 
 function App() {
   const [query, setQuery] = useState('cloud infrastructure')
-  const [naics, setNaics] = useState('541512')
+  const [naics, setNaics] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [results, setResults] = useState<ScoredOpportunity[]>([])
 
-  const client = useMemo(() => {
-    if (!SAM_GOV_API_KEY) return null
-    return createClient({ apiKey: SAM_GOV_API_KEY })
-  }, [])
+  const [accessCode, setAccessCode] = useState('')
+  const [capabilities, setCapabilities] = useState('')
+  const [searched, setSearched] = useState(false)
+  const [scope, setScope] = useState('')
 
   async function search(e: React.FormEvent) {
     e.preventDefault()
-    if (!client) {
-      setError('Missing VITE_SAM_GOV_API_KEY. Get one at https://api.data.gov/signup/')
-      return
-    }
     setLoading(true)
     setError(null)
     try {
-      const scored = await client.searchAndScore(
-        {
-          query,
-          naicsCode: naics || undefined,
-          activeOnly: true,
-          limit: 25,
-        },
-        DEFAULT_PROFILE,
-      )
-      setResults(scored)
+      setResults([])
+      setSearched(false)
+      const response = await fetch('/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessCode}` },
+        body: JSON.stringify({ query, naics, capabilities: capabilities.split(',').map(c => c.trim()).filter(Boolean) }),
+      })
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || 'Search unavailable')
+      setResults(data.results)
+      setScope(data.scope)
+      setSearched(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err))
     } finally {
@@ -52,16 +42,22 @@ function App() {
       <header className="bg-brand-600 text-white">
         <div className="max-w-5xl mx-auto px-6 py-8">
           <h1 className="text-3xl font-bold">OpenSAM</h1>
-          <p className="opacity-90 mt-1">Open-source autonomous agent for SAM.gov federal contracting</p>
+          <p className="opacity-90 mt-1">Assisted opportunity research · Private pilot</p>
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-8">
+        <section className="bg-white rounded-lg p-6 mb-6">
+          <h2 className="text-xl font-semibold">Build a shortlist for human review</h2>
+          <p className="mt-2">Search notice titles from the last 30 days. The score measures NAICS and title keyword matches; it does not establish eligibility or likelihood of winning.</p>
+          <a className="inline-block mt-3 underline text-brand-600" href="mailto:contact@alicelabs.site?subject=OpenSAM%20assisted%20pilot">Request an assisted pilot by email</a>
+          <p className="text-sm text-gray-600">Opens your email app. Scope and price are agreed before service begins.</p>
+        </section>
         <form onSubmit={search} className="bg-white rounded-lg shadow p-6 mb-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Keyword</label>
+            <label htmlFor="query" className="block text-sm font-medium mb-1">Notice title contains</label>
             <input
-              type="text"
+              id="query" type="text" required minLength={2} maxLength={150}
               value={query}
               onChange={e => setQuery(e.target.value)}
               className="w-full border rounded px-3 py-2"
@@ -69,15 +65,17 @@ function App() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">NAICS code (optional)</label>
+            <label htmlFor="naics" className="block text-sm font-medium mb-1">Your NAICS code (optional)</label>
             <input
-              type="text"
+              id="naics" type="text" pattern="[0-9]{6}" maxLength={6}
               value={naics}
               onChange={e => setNaics(e.target.value)}
               className="w-full border rounded px-3 py-2"
               placeholder="541512"
             />
           </div>
+          <div><label htmlFor="capabilities" className="block text-sm font-medium mb-1">Your capabilities (comma separated, optional)</label><input id="capabilities" value={capabilities} onChange={e => setCapabilities(e.target.value)} maxLength={1600} className="w-full border rounded px-3 py-2" /></div>
+          <div><label htmlFor="access" className="block text-sm font-medium mb-1">Pilot access code</label><input id="access" type="password" autoComplete="off" required value={accessCode} onChange={e => setAccessCode(e.target.value)} className="w-full border rounded px-3 py-2" /><p className="text-sm text-gray-600">Provided by your pilot operator. Kept in memory for this page only.</p></div>
           <button
             type="submit"
             disabled={loading}
@@ -88,15 +86,16 @@ function App() {
         </form>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-800 rounded p-4 mb-6">
+          <div role="alert" className="bg-red-50 border border-red-200 text-red-800 rounded p-4 mb-6">
             {error}
           </div>
         )}
 
+        {searched && <p role="status" className="mb-6">{!results.length && 'No active records among the first 25 returned; more may exist. Try another title or NAICS. '}{scope}</p>}
         {results.length > 0 && (
           <div className="space-y-3">
             <h2 className="text-xl font-semibold">
-              {results.length} opportunities (sorted by viability)
+              {results.length} opportunities (sorted by profile match)
             </h2>
             {results.map(({ opportunity, score, label, matchedCapabilities }) => {
               const icon = label === 'high' ? '🟢' : label === 'medium' ? '🟡' : '🔴'

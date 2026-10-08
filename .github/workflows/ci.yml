@@ -27,7 +27,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Build packages
         run: npm run build --if-present
@@ -38,3 +38,6 @@ jobs:
       - name: Run tests
         run: npm test --if-present
 
+
+      - name: Pilot API security and contract tests
+        run: npm run test:pilot

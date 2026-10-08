@@ -2,7 +2,7 @@
   "name": "opensam",
   "version": "2.0.0",
   "private": true,
-  "description": "OpenSAM — Open-source autonomous agent platform for SAM.gov federal contracting. Type-safe SDK, scoring engine, and full web app.",
+  "description": "OpenSAM \u2014 Open-source autonomous agent platform for SAM.gov federal contracting. Type-safe SDK, scoring engine, and full web app.",
   "license": "MIT",
   "author": "AliceLabs LLC <legal@alicelabs.site> (https://alicelabs.site)",
   "homepage": "https://github.com/eddyflores100-lang/OpenSAM",
@@ -27,7 +27,9 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "echo 'TODO: eslint' && exit 0",
     "clean": "rm -rf packages/*/dist apps/*/dist node_modules",
-    "dev": "npm run dev --workspace apps/web --if-present"
+    "dev": "npm run dev --workspace apps/web --if-present",
+    "start:pilot": "node apps/server/server.mjs",
+    "test:pilot": "node --test apps/server/test/*.test.mjs"
   },
   "devDependencies": {
     "typescript": "^5.5.0",

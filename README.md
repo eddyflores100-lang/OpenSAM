@@ -1,8 +1,10 @@
+> Current web scope: authenticated title search and transparent profile matching for human review. No autonomous bidding or eligibility determination. See [pilot setup and limitations](docs/PILOT.md). Older SDK examples below describe a separate library API.
+
 <div align="center">
 
 # OpenSAM
 
-**Open-source autonomous agent platform for SAM.gov federal contracting.**
+**SAM.gov research tools and a private assisted-search pilot.**
 
 Type-safe SDK · Viability scoring engine · Web application · No vendor lock-in
 
@@ -13,7 +15,7 @@ Type-safe SDK · Viability scoring engine · Web application · No vendor lock-i
 [![Node](https://img.shields.io/badge/Node-%3E%3D18-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
 [![Zero Deps](https://img.shields.io/badge/Dependencies-0-0d1117?style=flat-square)](#packages)
 
-**Live:** [opensam.us](https://opensam.us) · **Code:** [github.com/eddyflores100-lang/OpenSAM](https://github.com/eddyflores100-lang/OpenSAM)
+**Project domain (deployment not validated by this change):** [opensam.us](https://opensam.us) · **Code:** [github.com/eddyflores100-lang/OpenSAM](https://github.com/eddyflores100-lang/OpenSAM)
 
 Built by [AliceLabs LLC](https://alicelabs.site)
 
@@ -374,11 +376,14 @@ npm run dev
 # opens http://localhost:5173
 ```
 
-You'll need a `.env.local` in `apps/web/`:
+The browser calls the same-origin `/api/search` endpoint. In a second terminal, set
+`SAM_GOV_API_KEY` and a random `OPENSAM_ACCESS_TOKEN` of at least 32 characters in
+the **server process environment**, then run `npm run start:pilot`. The Vite dev
+server proxies API calls to port 3001. Never put provider keys in Vite variables.
+For production, build the web app and run the same server behind HTTPS.
 
-```bash
-VITE_SAM_GOV_API_KEY=your_api_data_gov_key
-```
+See [pilot deployment and commercial scope](docs/PILOT.md). This is an assisted
+research pilot, not an autonomous bidding service or a public multi-user SaaS.
 
 ---
 
