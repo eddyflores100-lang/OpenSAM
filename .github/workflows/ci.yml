@@ -14,8 +14,39 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  prepare-lockfile:
+    name: Refresh dependency lockfile
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Resolve declared dependency updates
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Apply non-breaking security fixes
+        run: npm audit fix --package-lock-only --ignore-scripts --no-fund
+      - name: Commit regenerated lockfile
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          if ! git diff --quiet -- package-lock.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "chore: regenerate secure npm lockfile"
+            git push origin "HEAD:refs/heads/${HEAD_REF}"
+          fi
+
   ci:
     name: Build, Type-check & Test (Node ${{ matrix.node-version }})
+    needs: [prepare-lockfile]
+    if: always() && needs.prepare-lockfile.result != 'failure' && needs.prepare-lockfile.result != 'cancelled'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -33,20 +64,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-
-      - name: Regenerate and commit lockfile for same-repository PRs
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && matrix.node-version == 22
-        env:
-          HEAD_REF: ${{ github.head_ref }}
-        run: |
-          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
-          if ! git diff --quiet -- package-lock.json; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add package-lock.json
-            git commit -m "chore: regenerate npm lockfile"
-            git push origin "HEAD:refs/heads/${HEAD_REF}"
-          fi
 
       - name: Install locked dependencies
         run: npm ci --no-fund
