@@ -16,7 +16,7 @@ El piloto no presenta ofertas, no determina elegibilidad y no envía propuestas 
 
 ## Estado actual
 
-<badge>Private assisted-search pilot</badge>
+**Estado:** Piloto privado de búsqueda asistida.
 
 La aplicación web y el piloto tienen un alcance deliberadamente limitado:
 
