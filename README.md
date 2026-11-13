@@ -12,7 +12,7 @@ Type-safe SDK · Viability scoring engine · Web application · No vendor lock-i
 [![CodeQL](https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/codeql.yml/badge.svg)](https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/codeql.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-238636?style=flat-square)](LICENSE)
-[![Node](https://img.shields.io/badge/Node-%3E%3D18-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
+[![Node](https://img.shields.io/badge/Node-22.12%2B-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
 [![Zero Deps](https://img.shields.io/badge/Dependencies-0-0d1117?style=flat-square)](#packages)
 
 **Project domain (deployment not validated by this change):** [opensam.us](https://opensam.us) · **Code:** [github.com/eddyflores100-lang/OpenSAM](https://github.com/eddyflores100-lang/OpenSAM)
@@ -36,7 +36,7 @@ It is composed of three independent npm packages, a web application, and an opin
 | 📊 Scoring | `@opensam/scoring` | Deterministic viability scoring (0–100) — NAICS, set-aside, capabilities, deadline |
 | 🌐 Web app | `apps/web` | Reference front-end (Vite + React + Tailwind) showing search + scoring in action |
 
-All packages are **zero-runtime-dependency** (only `devDependencies` for build/test). The SDK runs on Node 18+, browsers, and edge runtimes.
+All packages are **zero-runtime-dependency** (only `devDependencies` for build/test). The SDK runtime targets Node 18+, browsers, and edge runtimes; building and testing this monorepo requires Node.js 22.12+.
 
 ---
 
@@ -307,7 +307,7 @@ OpenSAM/
 ├── examples/
 │   └── basic-search.ts
 ├── .github/workflows/
-│   ├── ci.yml              # Type-check, test, build (Node 18/20/22)
+│   ├── ci.yml              # Audit, type-check, test, build (Node 22/24)
 │   └── release.yml         # npm publish + GitHub Release on tag
 ├── package.json            # npm workspaces root
 └── tsconfig.base.json
@@ -350,15 +350,15 @@ Releases are automated via GitHub Actions:
 
 ### Prerequisites
 
-- Node.js 18+ (recommended: 20 LTS)
-- npm 9+ (bundled with Node 20)
+- Node.js 22.12+ (required by the current Vite/Vitest toolchain)
+- npm bundled with Node.js
 
 ### Install dependencies
 
 ```bash
 git clone https://github.com/eddyflores100-lang/OpenSAM.git
 cd OpenSAM
-npm install
+npm ci
 ```
 
 ### Run tests
@@ -393,7 +393,7 @@ research pilot, not an autonomous bidding service or a public multi-user SaaS.
 - [x] HTTP client with retries, rate-limit handling, async iteration
 - [x] Deterministic viability scoring (NAICS + set-aside + capabilities + deadline)
 - [x] Web app with search + scoring UI
-- [x] CI/CD pipeline (Node 18/20/22, CodeQL, npm publish on tag)
+- [x] CI pipeline (Node 22/24, npm audit, CodeQL, npm publish on tag)
 - [ ] Multi-user Supabase backend with RLS and encrypted PII
 - [ ] Edge Functions for automated daily opportunity digest
 - [ ] LLM agent that drafts proposal responses from opportunity + profile
