@@ -1,443 +1,156 @@
-> Current web scope: authenticated title search and transparent profile matching for human review. No autonomous bidding or eligibility determination. See [pilot setup and limitations](docs/PILOT.md). Older SDK examples below describe a separate library API.
-
-<div align="center">
-
 # OpenSAM
 
-**SAM.gov research tools and a private assisted-search pilot.**
+**Investigación asistida de oportunidades federales de SAM.gov y herramientas TypeScript para trabajar con esos datos.**
 
-Type-safe SDK · Viability scoring engine · Web application · No vendor lock-in
+OpenSAM reúne dos superficies relacionadas, pero distintas:
 
-[![CI](https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/ci.yml/badge.svg)](https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/codeql.yml/badge.svg)](https://github.com/eddyflores100-lang/OpenSAM/actions/workflows/codeql.yml)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-238636?style=flat-square)](LICENSE)
-[![Node](https://img.shields.io/badge/Node-22.12%2B-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
-[![Zero Deps](https://img.shields.io/badge/Dependencies-0-0d1117?style=flat-square)](#packages)
+1. **Piloto web privado:** búsqueda por título y coincidencia transparente con un perfil para que una persona revise los avisos.
+2. **Paquetes TypeScript:** tipos de la API pública, cliente SDK y utilidades de scoring reutilizables.
 
-**Project domain (deployment not validated by this change):** [opensam.us](https://opensam.us) · **Code:** [github.com/eddyflores100-lang/OpenSAM](https://github.com/eddyflores100-lang/OpenSAM)
+El piloto no presenta ofertas, no determina elegibilidad y no envía propuestas automáticamente.
 
-Built by [AliceLabs LLC](https://alicelabs.site)
+- **Código:** https://github.com/eddyflores100-lang/OpenSAM
+- **Fuente oficial:** https://sam.gov/
+- **Documentación de la API:** https://open.gsa.gov/api/get-opportunities-public-api/
+- **Guía del piloto:** [docs/PILOT.md](docs/PILOT.md)
 
-</div>
+## Estado actual
 
----
+<badge>Private assisted-search pilot</badge>
 
-## What is OpenSAM?
+La aplicación web y el piloto tienen un alcance deliberadamente limitado:
 
-OpenSAM is an open-source toolkit that helps small businesses, contractors, and AI agents **find, filter, score, and act on federal contracting opportunities published on SAM.gov** — without paying for a proprietary feed or relying on closed models.
+- Busca avisos de SAM.gov por título y criterios configurados.
+- Muestra registros activos devueltos por la consulta.
+- Calcula una puntuación explicable a partir de coincidencias de NAICS y palabras de capacidades en el título.
+- Presenta los resultados para revisión humana.
 
-It is composed of three independent npm packages, a web application, and an opinionated monorepo structure that you can fork, customize, and ship under the MIT license.
+**La puntuación es una ayuda de clasificación, no una recomendación de presentar una oferta.** No verifica certificaciones, elegibilidad legal, anexos, requisitos completos, capacidad real ni probabilidad de adjudicación. Una búsqueda sin resultados tampoco demuestra que no existan oportunidades relevantes.
 
-| Layer | Package | What it does |
-|---|---|---|
-| 🧩 Types | `@opensam/sam-gov-types` | TypeScript definitions for every endpoint of the SAM.gov Public API |
-| 🔌 SDK | `@opensam/sdk` | HTTP client with retries, rate-limit handling, pagination, and built-in scoring |
-| 📊 Scoring | `@opensam/scoring` | Deterministic viability scoring (0–100) — NAICS, set-aside, capabilities, deadline |
-| 🌐 Web app | `apps/web` | Reference front-end (Vite + React + Tailwind) showing search + scoring in action |
-
-All packages are **zero-runtime-dependency** (only `devDependencies` for build/test). The SDK runtime targets Node 18+, browsers, and edge runtimes; building and testing this monorepo requires Node.js 22.12+.
-
----
-
-## Why?
-
-The federal government publishes thousands of contracting opportunities every week on [SAM.gov](https://sam.gov). Reading them manually is impractical. Existing commercial tools charge $200–$2,000/month and lock you into their UX, their scoring, and their AI providers.
-
-OpenSAM exists because:
-
-1. **Public data should be accessible in code, not just behind a paywall UI.**
-2. **Scoring should be transparent and auditable, not a black box.** The formula is in [`packages/govcon-scoring/src/index.ts`](packages/govcon-scoring/src/index.ts) — 119 lines, fully documented.
-3. **AI agents need a typed interface** to reason about opportunities, not scraped HTML. This is what `@opensam/sdk` provides.
-4. **Small businesses** (8(a), HUBZone, WOSB, SDVOSB) deserve a free tool to find their best-fit contracts before their competitors do.
-
----
-
-## Architecture
-
-```mermaid
-graph TB
-    subgraph "Your application"
-        App["apps/web<br/>Vite + React + Tailwind<br/>or your own code"]
-    end
-
-    subgraph "OpenSAM npm packages"
-        SDK["@opensam/sdk<br/>HTTP client + scoring integration"]
-        Scoring["@opensam/scoring<br/>Deterministic 0-100 scoring"]
-        Types["@opensam/sam-gov-types<br/>TypeScript definitions"]
-    end
-
-    subgraph "External"
-        SAM["SAM.gov API<br/>api.sam.gov/opportunities/v2"]
-        DataGov["api.data.gov<br/>API key issuer"]
-    end
-
-    App --> SDK
-    SDK --> Scoring
-    SDK --> Types
-    Scoring -.-> Types
-    SDK -->|HTTPS + api_key| SAM
-    App -.->|sign-up| DataGov
-    SAM -.->|requires key| DataGov
-
-    style App fill:#1d63ed,color:#fff
-    style SDK fill:#0d1117,color:#fff
-    style Scoring fill:#238636,color:#fff
-    style Types fill:#3178C6,color:#fff
-    style SAM fill:#6e7681,color:#fff
-    style DataGov fill:#6e7681,color:#fff
-```
-
-## Data flow
-
-```mermaid
-sequenceDiagram
-    actor User
-    participant App as apps/web
-    participant SDK as @opensam/sdk
-    participant SAM as SAM.gov API
-    participant Score as @opensam/scoring
-
-    User->>App: Search "cloud infrastructure"
-    App->>SDK: search({ query, naicsCode })
-    SDK->>SAM: GET /opportunities/v2/search?api_key=...
-    SAM-->>SDK: JSON opportunities[]
-
-    Note over SDK: Retry on 5xx<br/>Back off on 429
-
-    App->>SDK: searchAndScore(params, profile)
-    SDK->>Score: scoreOpportunity(opp, profile)
-    Score-->>SDK: { score: 85, label: 'high', ... }
-    SDK-->>App: scored[] sorted by score desc
-    App-->>User: 🟢 85/100 — Cloud Modernization
-```
-
-## How scoring works
-
-The viability score is a deterministic, transparent 0–100 number. No AI credits, no opaque weights.
-
-```mermaid
-flowchart LR
-    Start([Opportunity +<br/>Company Profile]) --> Base["Base +50"]
-    Base --> NAICS{"NAICS<br/>match?"}
-    NAICS -- Yes --> NAICS_P["+25"]
-    NAICS -- No --> NAICS_N["+0"]
-    NAICS_P --> Cert{"Set-aside<br/>aligned?"}
-    NAICS_N --> Cert
-    Cert -- "Yes" --> Cert_P["+10 to +15"]
-    Cert -- "No" --> Cert_N["+0"]
-    Cert_P --> Cap{"Capability<br/>keywords?"}
-    Cert_N --> Cap
-    Cap -- "Yes" --> Cap_P["+5 each, max +20"]
-    Cap -- "No" --> Cap_N["+0"]
-    Cap_P --> DL{"Deadline<br/>close?"}
-    Cap_N --> DL
-    DL -- "<3 days" --> DL_P["-35"]
-    DL -- "<7 days" --> DL_M["-15"]
-    DL -- ">7 days" --> DL_N["0"]
-    DL_P --> Clamp["Clamp 0-100"]
-    DL_M --> Clamp
-    DL_N --> Clamp
-    Clamp --> Result([🟢/🟡/🔴<br/>Score & Label])
-
-    style Base fill:#1d63ed,color:#fff
-    style NAICS_P fill:#238636,color:#fff
-    style Cert_P fill:#238636,color:#fff
-    style Cap_P fill:#238636,color:#fff
-    style DL_P fill:#cf222e,color:#fff
-    style DL_M fill:#d29922,color:#000
-    style Result fill:#0d1117,color:#fff
-```
-
-| Factor | Points | Logic |
-|---|---|---|
-| **Base** | 50 | Starting point for every opportunity |
-| **NAICS match** | +25 | Opportunity's primary NAICS is in your profile |
-| **Set-aside eligibility** | +10 to +15 | Your certifications align with the set-aside type |
-| **Capability keywords** | +5 each (max +20) | Your capabilities appear in the opportunity description |
-| **Deadline proximity** | −15 to −35 | Penalty if the response deadline is within 7 days |
-
-Final score is clamped to 0–100 and labeled:
-
-- 🟢 **high** — 70 or above (bid this)
-- 🟡 **medium** — 40–69 (worth reviewing)
-- 🔴 **low** — below 40 (probably skip)
-
-See the full source: [`packages/govcon-scoring/src/index.ts`](packages/govcon-scoring/src/index.ts) and [`docs/SCORING.md`](docs/SCORING.md).
-
----
-
-## Quick start
-
-### 1. Get a free SAM.gov API key
-
-- Sign up at https://api.data.gov/signup/ (free, takes 30 seconds).
-- Your key works for the SAM.gov Opportunities Public API immediately.
-
-### 2. Install the SDK
-
-```bash
-npm install @opensam/sdk
-```
-
-### 3. Search and score opportunities
-
-```typescript
-import { createClient } from '@opensam/sdk'
-
-const sam = createClient({
-  apiKey: process.env.SAM_GOV_API_KEY!, // from api.data.gov
-})
-
-// Search for active cloud-infrastructure solicitations
-const results = await sam.search({
-  query: 'cloud infrastructure',
-  naicsCode: '541512',
-  noticeType: 'Solicitation',
-  activeOnly: true,
-  limit: 25,
-})
-
-console.log(`Found ${results.total} matching opportunities`)
-
-// Score each one against your company profile
-const scored = await sam.searchAndScore(results.params, {
-  naicsCodes: ['541511', '541512', '541519'],
-  capabilities: ['software development', 'cloud infrastructure', 'react', 'node.js'],
-  certifications: ['Small Business', 'SBA 8(a)'],
-})
-
-scored.forEach(({ opportunity, score, label }) => {
-  console.log(`[${label.toUpperCase()} ${score}/100] ${opportunity.title}`)
-})
-```
-
-### 4. Or use the scoring engine standalone
-
-If you already fetch opportunities elsewhere and just want the scoring:
-
-```bash
-npm install @opensam/scoring
-```
-
-```typescript
-import { scoreOpportunity } from '@opensam/scoring'
-
-const score = scoreOpportunity(
-  {
-    naicsCode: '541512',
-    setAside: '8(a) Competitive',
-    description: 'Cloud infrastructure modernization and software development',
-    responseDeadline: '2026-05-01T17:00:00Z',
-  },
-  {
-    name: 'Acme Federal LLC',
-    naicsCodes: ['541511', '541512', '541519'],
-    capabilities: ['software development', 'cloud infrastructure'],
-    certifications: ['Small Business', 'SBA 8(a)'],
-  },
-)
-// → 85 (out of 100)
-```
-
----
-
-## Monorepo structure
-
-```mermaid
-graph LR
-    Root["OpenSAM/"]
-
-    subgraph "packages/"
-        Types["sam-gov-types<br/>@opensam/sam-gov-types"]
-        SDK["samgov-sdk<br/>@opensam/sdk"]
-        Score["govcon-scoring<br/>@opensam/scoring"]
-    end
-
-    subgraph "apps/"
-        Web["web<br/>Vite + React"]
-    end
-
-    subgraph "docs/"
-        Arch["ARCHITECTURE.md"]
-        ScoreDoc["SCORING.md"]
-        Deploy["DEPLOYMENT.md"]
-    end
-
-    subgraph ".github/workflows/"
-        CI["ci.yml"]
-        Release["release.yml"]
-        CodeQL["codeql.yml"]
-    end
-
-    Root --> Types
-    Root --> SDK
-    Root --> Score
-    Root --> Web
-    Root --> Arch
-    Root --> ScoreDoc
-    Root --> Deploy
-    Root --> CI
-    Root --> Release
-    Root --> CodeQL
-
-    Web -.->|uses| SDK
-    SDK -.->|re-exports| Types
-    SDK -.->|uses internally| Score
-
-    style Root fill:#1d63ed,color:#fff
-    style Web fill:#3178C6,color:#fff
-    style SDK fill:#238636,color:#fff
-    style Score fill:#238636,color:#fff
-    style Types fill:#3178C6,color:#fff
-```
-
-```
-OpenSAM/
-├── packages/
-│   ├── sam-gov-types/      # TypeScript definitions
-│   ├── samgov-sdk/         # HTTP client + scoring integration
-│   └── govcon-scoring/     # Standalone scoring engine
-├── apps/
-│   └── web/                # Reference Vite + React web app
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── SCORING.md
-│   └── DEPLOYMENT.md
-├── examples/
-│   └── basic-search.ts
-├── .github/workflows/
-│   ├── ci.yml              # Audit, type-check, test, build (Node 22/24)
-│   └── release.yml         # npm publish + GitHub Release on tag
-├── package.json            # npm workspaces root
-└── tsconfig.base.json
-```
-
-Each package is independently versionable and publishable. The web app depends on the SDK via `workspace:*`-style resolution.
-
----
-
-## Release lifecycle
-
-```mermaid
-gitGraph
-    commit id: "feat: v2.0.0"
-    commit id: "fix: ci"
-    commit id: "fix: tests"
-    branch develop
-    checkout develop
-    commit id: "feat: alpha feature"
-    checkout main
-    merge develop tag: "v2.1.0-beta"
-    commit id: "chore: bump"
-    tag "v2.1.0"
-    branch hotfix
-    checkout hotfix
-    commit id: "fix: critical bug"
-    checkout main
-    merge hotfix tag: "v2.1.1"
-```
-
-Releases are automated via GitHub Actions:
-
-1. A maintainer pushes a tag `v1.2.3` to `main`.
-2. The `release.yml` workflow builds, tests, and publishes each package to npm.
-3. A GitHub Release is auto-created with generated release notes.
-
----
-
-## Development
-
-### Prerequisites
-
-- Node.js 22.12+ (required by the current Vite/Vitest toolchain)
-- npm bundled with Node.js
-
-### Install dependencies
-
-```bash
-git clone https://github.com/eddyflores100-lang/OpenSAM.git
-cd OpenSAM
-npm ci
-```
-
-### Run tests
-
-```bash
-npm test          # all packages
-npm run typecheck # tsc --noEmit across the monorepo
-npm run build     # build all packages
-```
-
-### Run the web app locally
-
-```bash
-npm run dev
-# opens http://localhost:5173
-```
-
-The browser calls the same-origin `/api/search` endpoint. In a second terminal, set
-`SAM_GOV_API_KEY` and a random `OPENSAM_ACCESS_TOKEN` of at least 32 characters in
-the **server process environment**, then run `npm run start:pilot`. The Vite dev
-server proxies API calls to port 3001. Never put provider keys in Vite variables.
-For production, build the web app and run the same server behind HTTPS.
-
-See [dependency and toolchain policy](docs/DEPENDENCIES.md) and [pilot deployment and commercial scope](docs/PILOT.md). This is an assisted
-research pilot, not an autonomous bidding service or a public multi-user SaaS.
-
----
-
-## Roadmap
-
-- [x] Type definitions for SAM.gov Opportunities API
-- [x] HTTP client with retries, rate-limit handling, async iteration
-- [x] Deterministic viability scoring (NAICS + set-aside + capabilities + deadline)
-- [x] Web app with search + scoring UI
-- [x] CI pipeline (Node 22/24, npm audit, CodeQL, npm publish on tag)
-- [ ] Multi-user Supabase backend with RLS and encrypted PII
-- [ ] Edge Functions for automated daily opportunity digest
-- [ ] LLM agent that drafts proposal responses from opportunity + profile
-- [ ] Integrations with SAM.gov Entity, FPDS, USAspending
-- [ ] CLI tool: `npx opensam search "cloud infrastructure" --score`
-
-Have an idea? Open a [discussion](https://github.com/eddyflores100-lang/OpenSAM/discussions).
-
----
-
-## Legal & data sources
-
-- All opportunity data comes from the [SAM.gov Opportunities Public API](https://open.gsa.gov/api/get-opportunities-public-api/), operated by the U.S. General Services Administration (GSA).
-- OpenSAM is **not affiliated with, endorsed by, or sponsored by** the U.S. Government or GSA.
-- All code in this repository is licensed under the [MIT License](LICENSE) © AliceLabs LLC.
-- See [`LEGAL.md`](LEGAL.md) for full disclaimers.
-
----
-
-## Security
-
-If you discover a security vulnerability, please follow the responsible disclosure process in [`SECURITY.md`](SECURITY.md). Do **not** open a public issue.
-
----
-
-## Contributing
-
-Pull requests are welcome. Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) first, and make sure your code passes `npm test` and `npm run typecheck` before submitting.
-
-By contributing, you agree that your contributions will be licensed under the MIT License.
-
----
-
-## License (Dual)
-
-OpenSAM uses a **dual license** model:
-
-| Component | License | What it means |
-|-----------|---------|---------------|
-| `@opensam/sdk` | [MIT](packages/samgov-sdk/LICENSE) | Use, modify, sell — no restrictions |
-| `@opensam/scoring` | [MIT](packages/govcon-scoring/LICENSE) | Use, modify, sell — no restrictions |
-| `@opensam/sam-gov-types` | [MIT](packages/sam-gov-types/LICENSE) | Use, modify, sell — no restrictions |
-| Web app + landing page | [AL-1.0](apps/LICENSE-AL-1.0) | Proprietary — no copying, no redistribution |
-
-This is **open-core**: the developer tools are free and open-source under MIT; the hosted platform is proprietary under AliceLabs Proprietary License (AL-1.0).
-
-© 2026 AliceLabs LLC
+El piloto privado requiere una clave de SAM.gov y un token de acceso configurados en el servidor. No hay cuentas de usuario, cuotas duraderas por cliente ni un servicio público multi-tenant. No introduzcas secretos en variables VITE ni en el navegador.
+
+## Componentes del repositorio
+
+| Ruta | Función |
+| --- | --- |
+| apps/web/ | Interfaz de búsqueda y revisión |
+| apps/server/ | API privada del piloto; consulta SAM.gov desde el servidor |
+| apps/landing/ | Sitio informativo estático |
+| packages/samgov-sdk/ | Cliente TypeScript para la API de oportunidades |
+| packages/sam-gov-types/ | Tipos TypeScript de los datos SAM.gov |
+| packages/govcon-scoring/ | Funciones de scoring reutilizables |
+| docs/ | Arquitectura, despliegue, dependencias, scoring y límites del piloto |
+
+Los paquetes y el piloto no deben confundirse: el SDK mantiene su propia API y su scoring independiente; el piloto web usa una regla más acotada descrita en docs/PILOT.md.
+
+## Arquitectura
+
+    Navegador
+      └── apps/web (Vite + React)
+            └── /api (proxy en desarrollo)
+                  └── apps/server (Node.js)
+                        └── SAM.gov Opportunities Public API
+
+    Paquetes independientes
+      ├── packages/samgov-sdk
+      ├── packages/sam-gov-types
+      └── packages/govcon-scoring
+
+    Sitio informativo
+      └── apps/landing
+
+En el piloto, el servidor consulta el host oficial fijo de SAM.gov y devuelve campos normalizados para mostrar los avisos. La clave del proveedor permanece en el proceso del servidor. Consulta [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) para el diseño y [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md) para el inventario de dependencias.
+
+## Requisitos
+
+- Node.js **22.12 o superior**.
+- npm.
+- Una clave de SAM.gov para realizar consultas reales.
+- Para el piloto privado: SAM_GOV_API_KEY y OPENSAM_ACCESS_TOKEN configurados en el entorno del servidor.
+
+## Instalación y desarrollo
+
+Clona el repositorio e instala las dependencias del workspace:
+
+    git clone https://github.com/eddyflores100-lang/OpenSAM.git
+    cd OpenSAM
+    npm ci
+
+Inicia el servidor privado del piloto:
+
+    # Configura primero SAM_GOV_API_KEY y OPENSAM_ACCESS_TOKEN
+    npm run start:pilot
+
+Inicia la interfaz web en otra terminal:
+
+    npm run dev
+
+Vite sirve la aplicación web y reenvía las rutas /api al servidor local del piloto. El servidor escucha en 127.0.0.1:3001 de forma predeterminada. No lo expongas directamente a Internet sin HTTPS, control de acceso y límites de petición adecuados.
+
+### Variables del piloto
+
+| Variable | Dónde se usa | Propósito |
+| --- | --- | --- |
+| SAM_GOV_API_KEY | Servidor | Credencial de la API oficial SAM.gov |
+| OPENSAM_ACCESS_TOKEN | Servidor y cliente autorizado | Token de acceso privado del piloto |
+| HOST | Servidor, opcional | Cambia la dirección de escucha cuando el entorno lo requiere |
+
+Genera el token de acceso con un generador criptográficamente seguro y distribúyelo por un canal privado. El ejemplo de entorno es documentación: el servidor no carga automáticamente archivos .env. No guardes claves en Git ni en el bundle de Vite.
+
+## Comprobaciones
+
+Desde la raíz:
+
+    npm test
+    npm run build
+    npm run typecheck
+    npm run test:pilot
+
+- npm test: ejecuta las pruebas de los workspaces que definen ese script.
+- npm run build: construye los workspaces con script de build.
+- npm run typecheck: ejecuta la comprobación de tipos de los workspaces que la implementan.
+- npm run test:pilot: prueba las rutas y reglas del servidor privado del piloto.
+
+Para ejecutar el sitio informativo:
+
+    npm run build --workspace apps/landing
+
+Los comandos y límites de cada paquete se describen también en su propio package.json y README. Una prueba automatizada con respuestas simuladas no demuestra acceso real a SAM.gov ni sustituye una validación con credenciales autorizadas.
+
+## Cómo se calcula el resultado del piloto
+
+La regla del piloto es intencionalmente sencilla y visible:
+
+- La consulta usa el título y los criterios configurados.
+- Se procesa una página limitada de avisos recientes.
+- Se muestran los registros que la respuesta identifica como activos.
+- La puntuación suma coincidencias de NAICS y términos de capacidades encontrados en el título.
+
+No se descargan ni analizan anexos, no se sigue una URL de descripción externa y no se verifican certificaciones. La regla del piloto no es la misma API de scoring que ofrece el paquete govcon-scoring.
+
+Consulta [docs/PILOT.md](docs/PILOT.md) y [docs/SCORING.md](docs/SCORING.md) antes de interpretar una puntuación o comunicar resultados a un cliente.
+
+## Despliegue y operación
+
+El piloto está diseñado para una instancia privada controlada. Su estado de cuota es temporal y se reinicia con el proceso; no uses varias réplicas ni prometas límites persistentes por usuario. Configura un proxy HTTPS delante del servidor, evita registrar cabeceras de autorización y aplica límites de tráfico.
+
+Antes de cualquier lanzamiento público se necesitan, como mínimo, identidad de usuario, cuotas persistentes, auditoría, revocación de acceso, controles operativos y una revisión de seguridad. No se implementan pagos ni suscripciones en este piloto.
+
+Guía completa: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
+## Límites y uso responsable
+
+- Los avisos y sus estados dependen de la API oficial y de los parámetros consultados.
+- Una lista parcial o vacía no equivale a una búsqueda exhaustiva.
+- El scoring no es asesoría legal, financiera ni de contratación pública.
+- La persona usuaria debe revisar el aviso oficial, sus anexos, fechas, requisitos y modificaciones en SAM.gov.
+- No se envían ofertas ni se realizan acciones de contratación en nombre del usuario.
+
+## Contribuir
+
+Antes de proponer cambios, revisa la documentación del paquete afectado, ejecuta las pruebas relevantes y describe cualquier cambio en el comportamiento del SDK o del piloto. No publiques claves API, tokens ni datos privados de clientes.
+
+- [Issues](https://github.com/eddyflores100-lang/OpenSAM/issues)
+- [Pull requests](https://github.com/eddyflores100-lang/OpenSAM/pulls)
+- [License](LICENSE)
+- [Security policy](SECURITY.md)
