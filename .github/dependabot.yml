@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+    open-pull-requests-limit: 8
+    groups:
+      vite-vitest:
+        patterns:
+          - "vite"
+          - "vitest"
+          - "@vitest/*"
+          - "@vitejs/plugin-react"
+      eslint-typescript:
+        patterns:
+          - "eslint"
+          - "@typescript-eslint/*"
+      postcss:
+        patterns:
+          - "postcss"
+          - "postcss-*"
+          - "autoprefixer"
