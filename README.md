@@ -382,7 +382,7 @@ the **server process environment**, then run `npm run start:pilot`. The Vite dev
 server proxies API calls to port 3001. Never put provider keys in Vite variables.
 For production, build the web app and run the same server behind HTTPS.
 
-See [pilot deployment and commercial scope](docs/PILOT.md). This is an assisted
+See [dependency and toolchain policy](docs/DEPENDENCIES.md) and [pilot deployment and commercial scope](docs/PILOT.md). This is an assisted
 research pilot, not an autonomous bidding service or a public multi-user SaaS.
 
 ---
