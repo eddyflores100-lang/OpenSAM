@@ -31,7 +31,7 @@
     "test:pilot": "node --test apps/server/test/*.test.mjs"
   },
   "devDependencies": {
-    "typescript": "^5.5.0",
+    "typescript": "^7.0.2",
     "tsx": "^4.19.0",
     "eslint": "^10.14.0",
     "@typescript-eslint/eslint-plugin": "^8.72.2",
